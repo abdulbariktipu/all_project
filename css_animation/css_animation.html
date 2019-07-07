@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CSS Animation</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
+
+	<style type="text/css">
+		#section-1 {
+		  animation-delay: 1s;
+		  animation-duration: 1s;
+		  animation-iteration-count: 1;
+		}
+		#section-2 {
+		  animation-delay: 2s;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<header class="animated slideInDown text-center bg-primary text-white p-5">
+			<h1 class="display-4">Animation.css Sandbox</h1>
+		</header>
+		<section id="section-1" class="animated slideInLeft bg-primary p-5 my-3">
+			<h1>Section One</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur 
+			adipisicing elit. Quo, repellat minima suscipit
+			dolorum perferendis iure et maiores sint obcaecati 
+			laboriosam ut nobis. Deleniti suscipit, ea non.</p>
+		</section>
+		<section id="section-2" class="animated slideInRight bg-primary p-5 my-3">
+			<h1 id="anim-head">Section Two</h1>
+			<p id="anim-body">Lorem ipsum dolor sit amet, consectetur 
+			adipisicing elit. Quo, repellat minima suscipit
+			sapiente dolore inventore debitis maxime distinctio
+			dolorum perferendis iure et.</p>
+			<button id="animatedBtn" class="btn btn-primary">Animate</button>
+
+			<button id="animatedBtn2" class="btn btn-primary">Animate2</button>
+		</section>
+	</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#animatedBtn').click(function(){
+			animate('#anim-head', 'bounce');
+			animate('#anim-body', 'rubberBand');
+			return false;
+		});
+
+		$('#animatedBtn2').click(function(){
+			animate('header', 'slideOutUp');
+			setTimeout(function(){
+				$('header').css('visibility','hidden');
+			}, 1000);
+			return false;
+		});
+
+		//animate
+		function animate(element, animation){
+			$(element).addClass('animated '+animation);
+			var wait = setTimeout(function(){
+				$(element).removeClass('animated '+animation);
+			}, 1000);
+		}
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<html>
+ <head><title>Add/Append and Remove Elements!</title></head>
+ <body>
+            <ol>
+             <li>
+             	<input type="type" name="">
+             </li>
+            </ol>
+ 
+ 
+          <button id="add_li">Add List</button>
+          <button id="remove_li">Remove List</button>
+ 
+   <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+   <script type="text/javascript" src="js/my_script.js"></script>
+ </body>
+</html>
+
+<script type="text/javascript">
+	$(document).ready( function() {
+
+ $("#add_li").click( function() {
+    $("ol").append("<li></li>");
+ });
+ 
+  $("#remove_li").click( function() {
+    $("li:last").remove();
+ });
+
+});
+</script>

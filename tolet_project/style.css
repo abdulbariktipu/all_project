@@ -1,0 +1,58 @@
+body{
+    padding: 0px;
+    margin: 0px;
+    background: gray;
+}
+.header{
+    background-color: green;
+    color: white;
+    text-align: center;
+    top: 0px;
+    width: 100%;
+    padding: 5px;
+}
+form{
+    width: 40%;
+    padding: 30px;
+    border: 1px solid #cbcbcb;
+    margin: 5px auto;
+    margin-top: 20px; 
+}
+.textInput{
+    margin-top: 2px;
+    height: 28px;
+    border: 1px solid #5E6E66;
+    font-size: 16px;
+    padding: 1px;
+    padding-left: 10px;    
+    width: 100%;
+}
+#error_msg{
+    width: 360px;
+    margin: 5px auto;
+    height: 30px;
+    border: 1px solid #FF0000;
+    background: #FFB9BB;
+    color: #FF0000;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#login_success{
+    width: 360px;
+    margin: 5px auto;
+    height: 30px;
+    border: 1px solid #FF0000;
+    background: green;
+    color: white;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+td{
+    text-align: right;
+}
+.centered-form{
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+}

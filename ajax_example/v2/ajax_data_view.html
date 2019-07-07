@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>data insert using ajax</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script>
+      //browser support code
+      function ajaxFunction(){         
+         var ajaxRequest;
+         var ajaxDisplay;
+         try 
+         {
+            // Opera 8.0+, Firefox, Safari
+            ajaxRequest = new XMLHttpRequest();
+         } 
+         catch(e) 
+         {
+            try 
+            {
+               ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+            } 
+            catch(e) 
+            {
+               try 
+               {
+                  ajaxRequest =  new ActiveXObject("Microsoft.XMLHTTP");
+               } 
+               catch(e) 
+               {
+                  // Something went wrong
+                  alert("Your browser broke!");
+                  return false; 
+               }
+            }
+         }
+
+         // Create a function that will receive data 
+         // sent from the server and will update
+         // div section in the same page.
+         ajaxRequest.onreadystatechange = function()
+         {
+            if(ajaxRequest.readyState == 4)
+            {
+               ajaxDisplay = document.getElementById('displayId');
+               ajaxDisplay.innerHTML = ajaxRequest.responseText;
+            }
+         }
+
+         // Now get the value from user and pass it to
+         // server script.
+         var user_name = document.getElementById('u_name').value;
+         var user_age = document.getElementById('age').value;
+         var user_sex = document.getElementById('sex').value;
+         var user_wpm = document.getElementById('wpm').value;
+         var queryString = "?u_name=" + user_name + "&age=" + user_age + "&sex=" + user_sex + "&wpm=" + user_wpm;
+         //alert(queryString);die;
+
+         ajaxRequest.open("GET", "ajax_data_view_controller.php" + queryString, true);
+         ajaxRequest.send(null); 
+
+
+
+      }
+   </script>
+</head>
+<body>
+   User Name:<input type="text" name="name" id="u_name">
+   Age:<input type="text" name="age" id="age">
+   Sex: <select id = 'sex'>
+            <option value = "m">M</option>
+            <option value = "f">F</option>
+         </select>
+   WPM:<input type="text" name="wpm" id="wpm">
+   <input type="submit" value="Insert" onclick="ajaxFunction()">
+
+   <div id="displayId">Display Data</div>
+</body>
+</html>

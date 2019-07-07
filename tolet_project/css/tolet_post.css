@@ -1,0 +1,8 @@
+a[title] {
+    font-style: italic;
+    color: red;
+}
+a[title]:hover:after {
+    font-style: italic;
+    color:green;
+}

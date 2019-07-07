@@ -1,0 +1,57 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,900,700,600,500,300,200,100,800);
+
+body{
+	font-family: 'Raleway', sans-serif;
+}
+
+.big-price span{
+	color: #333;
+	font-size:40px;
+}
+
+.btn-price{
+    background-color:#5db4c0;
+    color: #fff;
+    border-radius:50%; 
+	border:none;
+    padding:40px 20px; 
+    font-size: 13px;
+	font-weight: 600;
+	margin-top:20px;
+}
+
+.prices-box{
+	margin:50px 0px;
+}
+
+.top-content{
+	background-color:#4d4d4d;
+	padding:20px;
+}
+
+.bottom-content{
+	background-color:#f6f6f6;
+	padding:60px;
+}
+
+#prices h3{
+	color:#FFF;
+}
+
+#prices .features li{
+	padding:10px;
+}
+
+#prices .btn.btn-default{
+	margin:20px 0px;
+}
+
+#prices .features-border li{
+	border-top:1px solid #c7c7c7;
+	padding: 10px 0px;
+}
+
+#prices .features-border li:last-child{
+	border-bottom:1px solid #c7c7c7;
+}
+

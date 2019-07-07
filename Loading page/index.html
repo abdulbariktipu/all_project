@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Loading Pages</title>
+<script src="jquery-1.8.3.js"></script>
+<style>
+.content {
+	display:none;
+}
+
+.preload {
+	margin:0;
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-right: -50%;
+	transform:translate(-50%, -50%);
+}
+</style>
+</head>
+
+<body>
+	
+    <div class="preload">
+    	<img src="loading_spinner.gif" />
+    </div>
+
+	<div class="content">
+    	        <form method="post" action="send_mail.php">
+            To : <input type="text" name="mail_to"> <br/>
+            Subject :   <input type="text" name="mail_sub">
+           <br/>
+            Message   <input type="text" name="mail_msg">
+            <br/>
+            <input type="submit" value="Send Email">
+        </form>
+    </div>
+    
+<script>
+	$(function() {
+		$(".preload").fadeOut(2000, function() {
+			$(".content").fadeIn(1000);
+		});
+	});
+</script>    
+</body>
+</html>

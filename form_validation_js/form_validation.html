@@ -1,0 +1,37 @@
+<html>
+<head>
+	<title></title>
+	<script>
+		function validate(){
+		var n1 = document.getElementById("firstname");
+		var n2 = document.getElementById("lastname");
+		if(n1.value =="")
+		{
+			alert("Please input your first name.");
+			return false;	
+	
+		}
+		if(n2.value =="")
+		{
+			alert("Please input your last name.");
+			return false;
+		}
+
+
+		alert("Subitting form, Thank you!");
+		return true;
+	}		
+
+
+	</script>
+</head>
+<body>
+	<form name="tform" action="#" method="post" onsubmit="return validate();">
+		First Name:<br>
+		<input type="text" name="firstname" id="firstname"/><br/><br/>
+		Last Name:<br>
+		<input type="text" name="lastname" id="lastname"/><br/><br/>
+		<input type="submit" value="submit"/>
+	</form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+#error_msg{
+    font-size: 14px !important;
+    width: 360px;
+    margin: 5px auto;
+    height: 40px;
+    border: 1px solid #FF0000;
+    border-radius: 5px;
+    background: #FFB9BB;
+    color: #FF0000;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+#login_success{
+    width: 360px;
+    margin: 5px auto;
+    height: 40px;
+    border: 1px solid #FF0000;
+    border-radius: 5px;
+    background: green;
+    color: white;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#login_success{
+    width: 360px;
+    margin: 5px auto;
+    height: 40px;
+    border: 1px solid #FF0000;
+    border-radius: 5px;
+    background: green;
+    color: white;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

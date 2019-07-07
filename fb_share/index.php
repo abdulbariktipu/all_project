@@ -1,0 +1,3 @@
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=http://chillyfacts.com/create-facebook-share-button-for-website-webpages/&layout=button_count&size=large&mobile_iframe=true&width=83&height=28&appId" width="83" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+<br>
+<iframe src="https://www.facebook.com/plugins/like.php?href='<?php echo $row[id]; ?>'&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>

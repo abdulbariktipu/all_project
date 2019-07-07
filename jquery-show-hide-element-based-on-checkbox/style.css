@@ -1,0 +1,32 @@
+* { 
+	font-family:sans-serif;
+	color:green;
+  }
+input {
+	border:1px solid green;
+	border-radius:5px;
+	padding:2px;
+	margin:10px;
+	color:gray;
+    }
+table {
+	border-radius:5px;
+	border:1px solid green;
+	margin:auto;
+    }
+h1 {
+	color:white;
+	background:green;
+	font-weight:lighter;
+	border-radius:5px;
+  }
+tr{
+	text-align:center;
+ }
+input[type='submit']{
+	font-weight:bolder;
+ }
+input[type='submit']:hover {
+	cursor:pointer;
+	background:white;
+}

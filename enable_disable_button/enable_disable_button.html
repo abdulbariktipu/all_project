@@ -1,0 +1,25 @@
+How to enable and disable button using jQuery 
+<form action="" method="post">
+<input id="select" disabled="disabled" type="submit" value="Button"/>
+<input id="accept" type="checkbox" />
+I accept the terms and conditions
+</form>
+
+Then, I will write a new jQuery code:
+
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script language="javascript">
+
+$(function(){
+$("#accept").click(function(){
+if($("#select").is(":enabled"))
+{
+$("#select").prop("disabled",true);
+}
+else
+{
+$("#select").prop("disabled",false);
+}
+});
+});
+</script>

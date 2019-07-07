@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Delete Select Multiple Rows Checkboxes</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body onload="viewdata()">
+    
+    <div class="container" style="margin:45px auto;">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <button id="delall" class="btn btn-danger">Delete Selected</button><span class="info"></span><br/><br/>
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width:35px;text-align:center;"><input type="checkbox" class="checkall"/></th>
+                            <th>Name</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center"><input type="checkbox" class="checkitem" value="1"/></td>
+                            <td>T Ghazali</td>
+                            <td>12/11/2016</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><input type="checkbox" class="checkitem" value="2"/></td>
+                            <td>Zulkifli</td>
+                            <td>5/12/2016</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><input type="checkbox" class="checkitem" value="3"/></td>
+                            <td>Bukhari</td>
+                            <td>28/10/2016</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><input type="checkbox" class="checkitem" value="4"/></td>
+                            <td>Boyhaki</td>
+                            <td>30/05/2016</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><input type="checkbox" class="checkitem" value="5"/></td>
+                            <td>Nurjannah</td>
+                            <td>7/07/2016</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script>
+    $('.checkall').change(function(){
+        $(".checkitem").prop("checked", $(this).prop("checked"))
+    })
+    $('.checkitem').change(function(){
+        if($(this).prop("checked")==false){
+            $(".checkall").prop("checked", false)
+        }
+        if($(".checkitem:checked").length == $(".checkitem").length){
+            $(".checkall").prop("checked", true)
+        }
+    })
+    $('#delall').click(function(){
+        var myid = $('.checkitem:checked').map(function(){
+            return $(this).val()
+        }).get()
+        var id = myid.join(' ');
+        $.post( "data.php?p=del", { id: id}, function(data){
+            viewdata();
+        });
+    })
+    function viewdata(){
+        $.ajax({
+            url: 'data.php',
+            type: "GET",
+            success: function(datas){
+                $('tbody').html(datas)
+            }
+        })
+    }
+    </script>
+</body>
+</html>

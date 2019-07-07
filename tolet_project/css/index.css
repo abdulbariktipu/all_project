@@ -1,0 +1,14 @@
+.modal-dialog {width:600px;}
+.thumbnail {margin-bottom:6px;}
+
+.bg-img
+{
+    background: transparent url("../images/grass4_Vector_Clipart.png") no-repeat;
+    height: 100%;
+}
+.footer-bg-img
+{
+    background: transparent url("../images/curve.png") no-repeat;
+    height: 100%;
+}
+

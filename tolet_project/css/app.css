@@ -1,0 +1,416 @@
+body{
+    padding: 0px;
+    margin: 0px;
+    background: #fefefe !important;
+    color: black !important;
+}
+body{
+    background-color: #fefefe !important;
+    margin-top: 220px;
+    color: black !important;
+}
+#error_msg{
+    width: 360px;
+    margin: 5px auto;
+    height: 30px;
+    border: 1px solid #FF0000;
+    background: #FFB9BB;
+    color: #FF0000;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+#login_success{
+    width: 360px;
+    margin: 5px auto;
+    margin-top: 220px;
+    height: 30px;
+    border: 1px solid #FF0000;
+    background: green;
+    color: white;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 0px;
+}
+.form-control-log
+{
+    width: 260px; 
+}
+.form {
+        width: 100% !important;
+        padding: 0px !important;
+        border: none;
+        margin: 0px  !important;
+        margin-top: 0px !important;
+    }
+  
+.navbar-default .navbar-nav > li > a
+{
+    max-height: 120px;
+}
+body
+{
+    background: transparent url("../img/bg-body.jpg") repeat;
+    
+}
+
+.body-width
+{
+    max-width: 1170px;
+}
+.navbar-collapse.collapse
+{
+    height: 50px !important;
+}
+
+.navbar-default .navbar-nav > li > a
+{
+    line-height: 95px;
+}
+
+
+
+.navbar-default
+{
+    background:#E1E7E5 ;
+}
+
+.navbar-default .navbar-nav > .active > a
+{
+    background: url(../img/bg-nav-selected.png) repeat-x;
+    color: #1bb5ac;
+    margin-left: 0px !important;
+}
+.navbar-default .navbar-nav > .active > a:hover
+{
+    background: url(../img/flashdian1.gif) repeat-x ;
+    color:#1bb5ac ;
+    margin-left: 0px !important;
+}
+
+.navbar-default .navbar-nav > li > a
+{
+    color: black;
+    text-shadow: white 1px 1px;
+    letter-spacing: 0.7px;
+    width: 100px;
+    text-align: center;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.navbar-default .navbar-nav > li > a:hover
+{
+    color: #1bb5ac;
+}
+
+.navbar-collapse.collapse
+{
+    height: 120px !important;
+}
+
+.container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse
+{
+    height: 120px !important;
+}
+
+.navbar-toggle
+{
+    margin-right: 15px;
+    padding: 20px 30px;
+    margin-top: 30px;
+    margin-bottom: 8px;
+}
+
+.navbar-default .navbar-nav > li > a
+
+
+.navbar-header
+{
+    border-bottom: 1px solid red;
+}
+.holder
+{
+    text-align: right;
+    color: #E49E06;
+    letter-spacing: 2.7px;
+}
+.holder-para1
+{
+    color: #959595;
+    letter-spacing: 1px;
+    line-height: 25px;
+    font-size: 12px;
+}
+.continue a
+{
+    color: #EAED56;
+    background: transparent -moz-linear-gradient(center top,#1BB5AC 2px,#7FCDA4 20px) repeat scroll 0% 0%;
+    letter-spacing: 1px;
+    line-height: 25px;
+    font-size: 15px;
+    padding: 5px 20px 5px 20px;
+    border-radius: 13px;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.continue a:hover
+{
+    color: #2AC0C1;
+    background: transparent -moz-linear-gradient(center top,#EAED56 2px,#3C6700 20px) repeat scroll 0% 0%;
+    letter-spacing: 1px;
+    line-height: 25px;
+    font-size: 15px;
+    padding: 5px 20px 5px 20px;
+    border-radius: 13px;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+
+
+.holder-para2
+{
+    color: #959595;
+    letter-spacing: 1px;
+    line-height: 25px;
+    font-size: 12px;
+}
+.holder2
+{
+    text-align: left;
+    color: #E49E06;
+    letter-spacing: 2.7px;
+    margin-top: 30px;
+}
+
+.foot
+{
+    background: transparent -moz-linear-gradient(center top,#29BCBF 5px,#1E819D 150px) repeat scroll 0% 0%;
+    color: white;    
+    padding-bottom: 20px;
+}
+
+.Reserved
+{
+    color: #5bdee6;
+    text-align: left;
+}
+.Reserved2
+{
+    color: #5bdee6;
+    text-align: right;
+}
+
+.connect
+{
+    background: url(../img/icons.png) no-repeat 0 0;
+}
+.foot-para
+{
+    
+    font-weight: bold;
+}
+.foot-list
+{
+    list-style-type: none;
+    font-size: 13px;
+    color: #BF7C08;
+    padding-left: 0px;
+}
+
+.foot-list a
+{
+    
+    font-size: 13px;
+    color: #5bdee6;
+    
+}
+.foot-list a:hover
+{
+    color: #F6A61E;
+}
+
+
+.blog
+{
+     border: 1px solid silver; 
+     border-radius: 13px;
+     background: white;
+}
+
+.blog-thumb1
+{
+     overflow: hidden; 
+     float: left;
+     margin-right: 15px;
+     margin-bottom: 15px;
+     margin-top: 15px;    
+}
+
+.blog-border
+{
+    background: url(../img/bg-border.png) repeat-y 670px 0;
+    margin-top: 35px !important;
+    margin-bottom: 35px !important;
+}
+
+.archive
+{
+    font-size: 20px;
+    background: #E2E2E0;
+    color: #A1AF6E;
+    text-shadow: 1px 1px white;
+    margin-left: 60px;
+    margin-bottom: 0px;
+    height: 42px;
+    line-height: 42px;
+    border-top-right-radius: 13px;
+    border-top-left-radius: 13px;
+}
+
+.right-nav
+{
+    list-style-type: none;
+    padding-left: 0px;
+    margin-left: 60px;
+    background: white;
+    border-left: 1px solid silver;
+    border-right: 1px solid silver;
+    border-bottom: 1px solid silver;
+    border-bottom-right-radius: 13px;
+    border-bottom-left-radius: 13px;
+}
+
+.right-nav li
+{
+    list-style-type: none;
+}
+#first-2023
+{
+    font-size: 15px; 
+    padding-left: 20px;
+    text-decoration: none;
+    color: #1bb5ac;
+}
+
+#first-2023 a
+{
+    color: #1bb5ac;
+}
+
+.right-nav li a:hover
+{
+    color:#e49e06;
+    text-decoration: none;
+}
+hr
+{
+    margin: 15px;
+}
+.right-nav2 li a
+{
+    color: #a3a3a3;
+    text-decoration: none;
+    font-size: 13px;
+    
+}
+
+.right-nav2 li
+{
+    line-height: 25px;
+}
+
+.right-nav2 li a:hover
+{
+    color: #e49e06;
+}
+
+.active a
+{
+    background: url(../img/flashdian1.gif) repeat-y 0 0;
+    color: #e49e06;
+    padding-left: 20px;
+}
+
+
+.E-mail
+{
+    text-align: justify; 
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+
+.phone
+{
+    text-align: justify; 
+    margin-left: 80px;
+    margin-bottom: 30px;
+}
+
+.btn-primary
+{
+    background-color: #EE7516 !important;
+    border: none !important;
+    font-size: 14px;
+    line-height: 30px;
+}
+.btn-primary:hover
+{
+    background-color:  #EE7516 !important;
+    border: none;
+    color: black;
+    font-size: 14px;
+    
+}
+
+table
+{
+   width: 100%; 
+   
+   height: 200px;
+}
+.modal-body
+{
+    padding-left: 15px;
+}
+
+table tr td input{
+    width: 300px;
+}
+
+.modal-content
+{
+    width: 580px;
+}
+
+
+.input-group-addon:not(:last-child) {
+    border-right: 0;
+    padding-right: 50px;
+}
+
+#text_hover a:hover
+{
+  text-decoration: none !important;   
+}
+
+tr td
+{
+    border: 1px solid black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

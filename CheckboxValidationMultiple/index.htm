@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>JavaScript Tutorial</title>
+<script type="text/javascript">
+function val(){
+var chks = document.getElementsByName('chk[]');
+var hasChecked = false;
+for (var i = 0; i < chks.length; i++)
+{
+if (chks[i].checked)
+{
+hasChecked = true;
+break;
+}
+}
+if (hasChecked == false)
+{
+	alert("Please select at least one hobby");
+	return false;
+}
+return true;
+}
+</script>
+</head>
+<body>
+<h2>JavaScript Tutorial - Multiple Checkbox Validation</h2>
+<p>Check if atleast a checkbox is checked</p>
+<form name="frm" method="post" action="thankyou.htm">
+Select Your Hobbies:<br />
+<input name="chk[]" type="checkbox" value="Reading">Reading
+<br />
+<input name="chk[]" type="checkbox" value="Singing">Singing
+<br />
+<input name="chk[]" type="checkbox" value="Dancing">Dancing
+<br />
+<input name="chk[]" type="checkbox" value="Travel">Travel
+<br />
+<input type="submit" name="submit" value="Submit" onclick="return val();" />
+<input type="reset" value="Reset" />
+</form>
+</body>
+</html>
