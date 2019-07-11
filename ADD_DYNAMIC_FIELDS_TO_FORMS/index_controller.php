@@ -3,6 +3,8 @@
 	require_once('db_mysql_function.php');
 	$action=$_REQUEST['action'];
 	$row_num=$_REQUEST['row_num'];
+	$process="";
+	$data_array="";
 	function check_magic_quote_gpc( $data )
 	{
 		$data_array=array();
