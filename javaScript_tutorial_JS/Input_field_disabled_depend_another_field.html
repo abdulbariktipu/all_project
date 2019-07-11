@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>input field disabled depend another field</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="css/style_common.css" rel="stylesheet" type="text/css">
+
+<script>
+	function myFunction(type)
+	{
+		//alert(type);
+		if (type==1) {
+			//alert('tipu');
+			$('#company_id').attr('disabled',true);//using jquery
+			$('#company_id').val('');
+			$('#location_id').removeAttr('disabled',true);//using jquery
+			//document.getElementById("company_id").disabled = true;
+		}
+		else 
+		{
+			document.getElementById("company_id").disabled = false;//usingt javascript
+		}
+		if (type==2) 
+		{
+			$('#location_id').attr('disabled',true);//using jquery
+			$('#location_id').val('');//using jquery
+
+			var area, text, aLen, i;
+			area = [];
+			aLen = area.length;
+			text = "";
+			text += "<select>";
+			text += "<option value=''>-Select Location-</option>";
+			for (i = 0; i < aLen; i++) 
+			{
+			    text += area[i] +"<br>" ;
+			    text += "<option value='"+area[i]+"'>"+area[i]+"</option>";
+			}
+			text += "</select>";
+			document.getElementById("demo").innerHTML = text;
+		}
+		else
+		{
+			if (type=='') 
+		
+			$('#location_id').attr('disabled',true);//using jquery
+			$('#location_id').val('');//using jquery
+
+			var area, text, aLen, i;
+			area = [];
+			aLen = area.length;
+			text = "";
+			text += "<select>";
+			text += "<option value=''>-Select Location-</option>";
+			for (i = 0; i < aLen; i++) 
+			{
+			    text += area[i] +"<br>" ;
+			    text += "<option value='"+area[i]+"'>"+area[i]+"</option>";
+			}
+			text += "</select>";
+			document.getElementById("demo").innerHTML = text;
+		
+		}
+	}
+
+	function myCountry(country)
+	{
+		// if(country==''){
+		// 	document.getElementById("demo").innerHTML = "<select><option value=''>-Select Location-</option></select>";
+		// }
+		if (country==1) 
+		{
+			var area, text, aLen, i;
+
+			area = ["Badda", "Gulshan", "Nadda", "Kuril"];
+			aLen = area.length;
+			text = "";
+			text += "<select>";
+			text += "<option value=''>-Select Area-</option>";
+			for (i = 0; i < aLen; i++) {
+			    text += area[i] +"<br>" ;
+			    text += "<option value='"+area[i]+"'>"+area[i]+"</option>";
+			}
+			text += "</select>";
+			document.getElementById("demo").innerHTML = text;
+			var content = document.getElementById("test").innerHTML = "<td id='com_id'>InnerHTML: </td><input name='input_id' id='input_id' class='text_boxes_numeric' style='width:150px;' tabindex='8' type='text' placeholder='input_id'>";
+			// alert(content);
+			$('#company_id').hide();
+			$('#com_id').hide();
+			$('#wopi').show();
+			$('#wopi_id').show();
+			//$('#double').show(1000);
+			$('#test').show();
+
+			function myDouble() 
+			{
+		    	document.getElementById("double").innerHTML = "Hello World";
+			}
+		}
+		else if (country==2) 
+		{
+			var area, text, aLen, i;
+			area = ["IND-A", "IND-B", "IND-C", "IND-D"];
+			aLen = area.length;
+			text = "";
+			text += "<select>";
+			text += "<option value=''>-Select Area-</option>";
+			for (i = 0; i < aLen; i++) 
+			{
+			    text += area[i] +"<br>" ;
+			    text += "<option value='"+area[i]+"'>"+area[i]+"</option>";
+			}
+			text += "</select>";
+			document.getElementById("demo").innerHTML = text;
+			$('#company_id').show();
+			$('#com_id').show();
+			$('#wopi').hide();
+			$('#wopi_id').hide();
+			$('#double').hide();
+			$('#test').hide();
+		}
+		else 
+		{
+			var area, text, aLen, i;
+			area = [];
+			aLen = area.length;
+			text = "";
+			text += "<select>";
+			text += "<option value=''>-Select Location-</option>";
+			for (i = 0; i < aLen; i++) 
+			{
+			    text += area[i] +"<br>" ;
+			    text += "<option value='"+area[i]+"'>"+area[i]+"</option>";
+			}
+			text += "</select>";
+			document.getElementById("demo").innerHTML = text;				
+		}	
+	}
+
+	function myDouble() 
+	{
+    	document.getElementById("double").innerHTML = "Hello World";
+	}
+	function double() 
+	{
+    	$('#double').hide(1000);
+	}
+
+</script>
+</head>
+<body>
+<div class="form_caption" style=" margin-bottom: 15px;">Input field disabled depend another field</div>
+<fieldset style="width:1000px; text-align: center; margin-left: 15%; margin-bottom: 5px;" align="center">
+	<legend>Entry From</legend>
+	<div class="container" align="center">
+	  <form align="center">
+	    <div class="form-group row" align="center">
+	        <table>
+	    	<tr>
+	        <td>Name</td>
+			<select class="combo_boxes" style="width:150px" onchange="myFunction(this.value)">
+				<option value="">-Select-</option>
+				<option value="1">Tipu</option>
+				<option value="2">Sultan</option>
+			</select>			
+	        <label for="ex3">Location</label>
+	        <select style="width:150px;" class="combo_boxes" id="location_id" name="location_id" onchange="myCountry(this.value)">
+				<option value="">-Select Country-</option>
+				<option value="1">Bangladesh</option>
+				<option value="2">India</option>
+			</select>
+	        <label for="ex2">Area</label>
+			<select class="combo_boxes" style="width:150px;" name="demo" id="demo" class="form-control" placeholder="company">
+				<option>-Select Area-</option>
+			</select>
+			<span id="com_id">
+	        <td id="com_id">Company</td>
+	        <input name="company_id" id="company_id" class="text_boxes_numeric" style="width:150px;"  type="text" placeholder="company">
+	        </span>
+	        <span id="wopi_id" style="display: none;">
+	        <td>WO/PI</td>
+	        <input name="wopi" id="wopi" style="display: none;" class="text_boxes_numeric" style="width:150px;"  type="text" placeholder="Double Click" ondblclick="myDouble()">
+	        </span>
+	        <span id="test"></span>
+	        <button type="reset" class="formbutton" value="Reset">Reset</button>
+			</tr>
+			</table>
+	    </div>
+	  </form>
+	</div>
+</fieldset>
+<div id="close" class="container" align="center">
+	<p onclick="double();" id="double"></p>
+</div>
+
+</body>
+</html>

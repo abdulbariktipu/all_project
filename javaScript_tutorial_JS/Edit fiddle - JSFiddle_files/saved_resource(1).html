@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://fiddle.jshell.net/_display/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title></title>
+  
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <script type="text/javascript" src="./jquery-1.8.3.js.download"></script>
+    <script type="text/javascript" src="./jquery-ui.js.download"></script>
+    <link rel="stylesheet" type="text/css" href="./jquery-ui.css">
+
+    <link rel="stylesheet" type="text/css" href="./result-light.css">
+
+  <style type="text/css">
+    
+  </style>
+  <!-- TODO: Missing CoffeeScript 2 -->
+
+  <script type="text/javascript">
+
+
+    $(window).load(function(){
+      
+ $(function(){
+ $("#firstInputId").change(function(){
+ if($("#secondInputId").val('')){
+   $("#secondInputId").val('');
+ }
+  $("#secondInputId").val($(this).val());
+ });
+ 
+ $("#secondInputId").change(function(){
+ if($("#thredInputId").val('')){
+ 	var thred = $("#thredInputId").val('');
+ }
+  $("#thredInputId").val($(this).val());
+ }); 
+}); 
+
+    });
+
+</script>
+
+</head>
+<body>
+  
+
+<input type="text" id="firstInputId" placeholder="firstInputId">
+<input type="text" id="secondInputId" placeholder="secondInputId">
+<input type="text" id="thredInputId" placeholder="thredInputId">
+  
+  <script>
+    // tell the embed parent frame the height of the content
+    if (window.parent && window.parent.parent){
+      window.parent.parent.postMessage(["resultsFrame", {
+        height: document.body.getBoundingClientRect().height,
+        slug: ""
+      }], "*")
+    }
+  </script>
+
+
+</body></html>

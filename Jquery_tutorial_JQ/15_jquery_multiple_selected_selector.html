@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery input vs :input</title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script>
+		$(function (){
+			$('#selectCountries').change(function() {
+			 	var selectedOption = $('#selectCountries option:selected');
+			 	//alert(selectedOption.text());
+			 	//alert(selectedOption.val());
+			 	if (selectedOption.length>0) {
+			 		var reslultString = '';
+			 		selectedOption.each(function(){
+			 			reslultString += "value= " + $(this).val() + ", Text =" + $(this).text() + "<br>";
+			 		});
+			 		$('#divResult').html(reslultString)
+			 	}
+			});
+		});
+	</script>
+</head>
+<body style="font-family: Arial">
+	Country :
+	<select id="selectCountries" multiple="multiple">
+		<option value="BD">Bangaldesh</option>
+		<option value="IND">India</option>
+		<option value="UK">UK</option>
+		<option value="CA">Canada</option>
+	</select>
+	<br><br>
+	<div id="divResult"></div>
+</body>
+</html>
+
+

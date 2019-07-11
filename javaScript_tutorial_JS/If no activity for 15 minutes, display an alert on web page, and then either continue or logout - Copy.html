@@ -1,0 +1,73 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>If no activity for 15 minutes, display an alert on web page, and then either continue or logout</title>
+    	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    	<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+        <script type="text/javascript">
+            // Set timeout variables.
+            var timoutWarning = 60000; // Display warning in 1Mins.
+            var timoutNow = 120000; // Timeout in 2 mins.
+            
+            var warningTimer;
+            var timeoutTimer;
+            
+            var logoutUrl = 'https://www.sololearn.com/Profile/3855808'; 
+    
+            // Start timers.
+            function StartTimers() {
+                warningTimer = setTimeout("IdleWarning()", timoutWarning);
+                timeoutTimer = setTimeout("IdleTimeout()", timoutNow);
+            }
+    
+            // Reset timers.
+            function ResetTimers() {
+                clearTimeout(warningTimer);
+                clearTimeout(timeoutTimer);
+                StartTimers();
+                 $("#timeout").dialog('close');
+                //alert('ResetTimers');
+            }
+            
+            function IdleWarning() {
+                //alert('Time out');
+                $("#timeout").dialog({
+                    modal: true
+                });
+            }
+    
+            // Logout the user.
+            function IdleTimeout() {
+                window.location = logoutUrl;
+            }
+        </script>
+    </head>
+    <body onload="StartTimers();" onmousemove="ResetTimers();">
+    <form id="form1" runat="server">
+    <div id="timeout" hidden="hidden">
+        <h1>
+            Session About To Timeout</h1>
+        <p>
+            You will be automatically logged out in 1 minute.<br />
+        To remain logged in move your mouse over this window.
+    </div>
+    <div>
+        <h1>
+            Session About To Timeout</h1>
+        <p>
+            You will be automatically logged out in 1 minute.<br />
+        To remain logged in move your mouse over this window.
+    </div>
+    <table id="table1" align="center" border="1" width="800" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                Hello World
+            </td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>

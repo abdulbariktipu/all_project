@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery input vs :input</title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script>
+		$(function (){
+			$('input:disabled').css('border', '2px solid red');
+		});
+	</script>
+</head>
+<body style="font-family: Arial">
+	<table>
+		<tr>
+			<td>First Name</td>
+			<td><input type="text" disabled="disabled" name=""></td>
+		</tr>
+		<tr>
+			<td>Last Name</td>
+			<td><input type="text" disabled="disabled" name=""></td>
+		</tr>
+		<tr>
+			<td>Email</td>
+			<td><input type="text" name=""></td>
+		</tr>
+		<tr>
+			<td>Gender</td>
+			<td>
+				<select disabled="disabled">
+					<option value="Male">Male</option>
+					<option value="Famele">Famele</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Comment</td>
+			<td><textarea></textarea></td>
+		</tr>
+		<tr>
+			<td><input type="submit" disabled="disabled" name="" value="submit"></td>
+		</tr>
+	</table>
+</body>
+</html>
+
+

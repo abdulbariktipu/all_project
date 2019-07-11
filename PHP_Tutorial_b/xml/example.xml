@@ -1,0 +1,38 @@
+<producers>
+	<producer>
+		<name>Tipu</name>
+		<age>27</age>
+		<show>
+			<showname>A Show</showname>
+			<showdate>11th Feb 2018</showdate>
+		</show>
+		<show>
+			<showname>A Show</showname>
+			<showdate>14th Feb 2018</showdate>
+		</show>
+	</producer>
+	<producer>
+		<name>Sultan</name>
+		<age>25</age>
+		<show>
+			<showname>A Show</showname>
+			<showdate>12th Feb 2018</showdate>
+		</show>
+	</producer>
+	<producer>
+		<name>Test</name>
+		<age>30</age>
+		<show>
+			<showname>A Show</showname>
+			<showdate>15th Feb 2018</showdate>
+		</show>
+	</producer>
+	<producer>
+		<name>Barik</name>
+		<age>25</age>
+		<show>
+			<showname>A Show</showname>
+			<showdate>16th Feb 2018</showdate>
+		</show>
+	</producer>
+</producers>

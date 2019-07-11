@@ -1,0 +1,59 @@
+<!DOCTYPE html>  
+<html>
+<head>
+	<title>jquery input vs :input</title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script>
+		$(function (){
+			$("#btnSubmit").click(function() {
+				var result = $("input[type='radio']:checked");
+				if (result.length>0) {
+					var outResult = result.val();
+					$("#divResult").html(outResult + ' is checked');
+				}else {
+					$("#divResult").html('No radio checked');
+				}
+				var resultSkill = $("input[type]:checked");//all checked for ==> input[type]:checked
+				if (resultSkill.length>0) {
+					var resultString = resultSkill.length + " Checkboxes checked<br>";
+					resultSkill.each(function() {
+						resultString += $(this).val()+"<br>";
+						//alert(resultString);
+					});	
+					$("#divResult").html(resultString);
+				}else {
+					$("#divResult").html('No radio checked');
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	First Name: <input type="text" name="" value="Tipu">
+	<br><br>
+	Last Name: <input type="text" name="" value="Sultan">
+	<br><br>
+	Gender :
+	<input type="radio" name="gender" value="Male">Male
+	<input type="radio" name="gender" value="Female">Female 
+	<br><br>
+	Skills :
+	<input type="checkbox" name="skills" value="JavaScript">JavaScript
+	<input type="checkbox" name="skills" value="jQuery">jQuery
+	<input type="checkbox" name="skills" value="php">php
+	<br><br>
+	Country :
+	<select>
+		<option selected="selected" value="Bangladesh">Bangladesh</option>
+		<option value="UK">UK</option>
+	</select>
+	<br><br>
+	Summary :
+	<br>
+	<textarea>I am a Senior php developer</textarea>
+	<br><br>
+	<input type="submit" id="btnSubmit" value="submit" name="">
+	<br><br>	
+	<div id="divResult"></div>
+</body>
+</html>

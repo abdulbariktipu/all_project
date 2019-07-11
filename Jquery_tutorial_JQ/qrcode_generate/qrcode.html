@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Page Title</title>
+			<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+			<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/130527/qrcode.js"></script>
+		<script>
+		$(document).ready(function(){
+            $('.generate-qr-code').on('click', function(){
+                // Clear Previous QR Code
+                $('#qrcode').empty();
+                
+                // Set Size to Match User Input
+                $('#qrcode').css({
+                'width' : $('.qr-size').val(),
+                'height' : $('.qr-size').val()
+                })
+                
+                // Generate and Output QR Code
+                $('#qrcode').qrcode({width: $('.qr-size').val(),height: $('.qr-size').val(),text: $('.qr-url').val()});
+            
+            });
+		});
+        </script>
+
+        <div class="qr-code-generator">
+        
+        <input type="text" class="qr-url" placeholder="URL or Text">
+        <input type="number" class="qr-size" value="128" min="20" max="500">
+        
+        <button class="generate-qr-code">Generate</button>
+        
+        <br>
+        
+        <div id="qrcode"></div>
+        
+        </div>
+	</body>
+</html>

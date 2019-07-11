@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Make an awesome Currency converter using HTML and Javascript - 100% working</title>
+
+	<script>
+		function calTk(){
+			tk = document.getElementById('currancy_tk').value;
+			//y = document.getElementById('grams').value;
+			z = document.getElementById('currancy_usd').value = tk / 80;
+			//document.getElementById('currancy_eur').value = tk / 96.8724;
+			a = tk / 96.8724;
+			document.getElementById('currancy_eur').value = a.toFixed(5);//using number format
+			//alert(x);
+		}
+
+		function calUSD(){
+			usd = document.getElementById('currancy_usd').value;
+			//y = document.getElementById('kilogram').value;
+			z = document.getElementById('currancy_tk').value = usd * 80;
+			b = document.getElementById('currancy_eur').value = usd / 0.861788;
+		}
+
+		function calEUR(){
+			eur = document.getElementById('currancy_eur').value;
+			//y = document.getElementById('kilogram').value;
+			z = document.getElementById('currancy_tk').value = eur * 96.8724;
+			b = document.getElementById('currancy_usd').value = eur * 1.16038;
+		}
+
+	</script>
+</head>
+<body>
+	<h1>Currency converter</h1>
+	TK: <input type="number" name="currancy_tk" id="currancy_tk" onchange="calTk()">
+	USD: <input type="number" name="currancy_usd" id="currancy_usd" onchange="calUSD()">
+	EUR: <input type="number" name="currancy_eur" id="currancy_eur" onchange="calEUR()">
+</body>
+</html>

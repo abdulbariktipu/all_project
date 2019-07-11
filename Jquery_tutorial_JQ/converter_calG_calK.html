@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Make an awesome converter using HTML and Javascript - 100% working</title>
+
+	<script>
+		function calG(){
+			x = document.getElementById('kilogram').value;
+			//y = document.getElementById('grams').value;
+			document.getElementById('grams').value = x * 80;
+			//alert(x);
+		}
+
+		function calK(){
+			x = document.getElementById('grams').value;
+			//y = document.getElementById('kilogram').value;
+			document.getElementById('kilogram').value = x / 1000;
+			//alert(y);
+		}
+	</script>
+</head>
+<body>
+	Kilogram: <input type="number" name="kilogram" id="kilogram" onchange="calG()">
+	Grams: <input type="number" name="grams" id="grams" onchange="calK()">
+</body>
+</html>

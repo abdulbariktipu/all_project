@@ -1,0 +1,27 @@
+#feed{
+	width: 500px;
+	margin: auto;
+	padding: 6px;
+	border: 1px solid purple;
+}
+#pre_box{
+	width: 500px;
+	margin: auto;
+	padding: 6px;
+	border: 1px solid lime;
+	margin-bottom: 2px;
+}
+#status_error{
+	color: red;
+}
+#status_box{
+	width: 98%;
+	height: 50px;
+	resize: none;
+	border: 1px solid purple;
+}
+#loader
+{
+	font-size: 20px;
+	text-align: center;
+}

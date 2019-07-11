@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery input vs :input</title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script>
+		$(function (){
+			$('li').css('border', '2px solid red');
+			// $('li').each(function(ind, el) {
+			// 	alert(ind + " : " + $(el).text());
+			// }); or below
+			var result = '';
+			$('li').each(function() {
+				// if ($(this).text() == 'UK') {
+				// 	return false; 
+				// }
+				// alert($(this).text()); another
+				result += '<br>' + $(this).text();				
+			});
+			$('#divResult').html(result); 
+		});
+	</script>
+</head>
+<body style="font-family: Arial">
+	<ul>
+		<li>Bangladesh</li>
+		<li>US</li>
+		<li>UK</li>
+		<li>India</li>
+	</ul>
+	<div id="divResult"></div>
+</body>
+</html>
+
+

@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>input field disabled depend another field</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+	function myFunction()
+	{
+		var input_booking = $('#txt_booking').val();
+		var input_lot = $('#txt_lot').val();
+		var input_date = $('#txt_date').val();
+
+		if (input_booking=="" && input_lot=="" && input_date=="") 
+		{
+			alert('Please Input Booking');
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+</script>
+</head>
+<body>
+<fieldset style="width:1000px; text-align: center; margin-left: 15%; margin-bottom: 5px;" align="center">
+	<legend>Entry From</legend>
+	<div class="container" align="center">
+	  <form align="center">
+	    <div class="form-group row" align="center">
+	        <table>
+	    	<tr>
+	        <label for="ex3">Booking No</label>
+			<input type="text" name="txt_booking" id="txt_booking" placeholder="Booking No">			
+	        <label for="ex3">Lot</label>
+	        <input type="text" name="txt_lot" id="txt_lot" placeholder="Lot">
+	        <label for="ex2">Date</label>
+	        <input type="date" name="txt_date" id="txt_date">
+	        <input type="submit" name="show_data" id="show_data" value="Show" onclick="myFunction();">
+			</tr>
+			</table>
+	    </div>
+	  </form>
+	</div>
+</fieldset>
+
+</body>
+</html>

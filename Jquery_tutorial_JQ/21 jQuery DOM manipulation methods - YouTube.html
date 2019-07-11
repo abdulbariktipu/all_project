@@ -1,0 +1,93 @@
+<!-- part 3 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>21 jQuery DOM manipulation methods - YouTube</title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script>
+		$(document).ready(function (){
+			var config = {
+				'title': 'New DIV Title',
+				'Style': 'border:3px solid red',
+				'name': 'My DIV'
+			};
+
+			$('div').attr(config);
+			//$('div').css('color', 'blue') + '<br>';
+
+			// $('div').attr({
+			// 	'title': 'value1',
+			// 	'style': 'border:3px solid yellow'
+			// });
+
+			var result = '';
+			$('div').each(function() {				
+				result += 'title = ' + $(this).attr('title') + '<br>';			
+				result += 'style = ' + $(this).attr('style'); + '<br>'			
+				result += 'name = ' + $(this).attr('name') + '<br>';
+			});
+
+			$('#resultSpan').html(result);
+		});	
+	</script>			
+</head>
+<body style="font-family: Arial">
+	<div title="My div 1">
+		Div 1
+	</div>
+	<div title="My div 2">
+		Div 2
+	</div>
+	<div id="resultSpan"></div>
+</body>
+</html>
+
+<!-- part 2
+<!DOCTYPE html>
+<html>
+<head>
+	<title>21 jQuery DOM manipulation methods - YouTube</title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script>
+		$(document).ready(function (){
+			$('div').attr('title', 'New DIV Title');
+
+			$('div').each(function() {
+				alert($(this).attr('title'));
+			});
+		});	
+	</script>			
+</head>
+<body style="font-family: Arial">
+	<div title="My div 1">
+		Div 1
+	</div>
+	<div title="My div 2">
+		Div 2
+	</div>
+</body>
+</html> -->
+
+<!-- part 1
+<!DOCTYPE html>
+<html>
+<head>
+	<title>21 jQuery DOM manipulation methods - YouTube</title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script>
+		$(document).ready(function (){
+			var divs = $('div').attr('title');
+			alert(divs);
+		});	
+	</script>			
+</head>
+<body style="font-family: Arial">
+	<div title="My div 1">
+		Div 1
+	</div>
+	<div title="My div 2">
+		Div 2
+	</div>
+</body>
+</html>
+ -->

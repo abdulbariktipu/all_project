@@ -1,0 +1,64 @@
+<!-- <!DOCTYPE html>
+<html>
+<body>
+
+<select id="mySelect">
+  <option>Apple</option>
+  <option>Pear</option>
+  <option>Banana</option>
+  <option>Orange</option>
+</select>
+
+<p>Click the button to return the number of option elements in the dropdown list.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+	function myFunction() {
+	    var x = document.getElementById("mySelect").length;
+	    alert(x);
+	    document.getElementById("demo").innerHTML = x;
+	}
+</script>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        var x = $('option').length;
+         //alert(x);
+         if(x==2)
+         {
+         	//alert('test');
+            //$("#myId").next('option').css("background-color", "yellow");
+            var x = $("option").next().attr('selected', 'selected');
+         }
+         else // for multipul option
+         {
+          // nextAll() 
+          $("option").nextAll();
+         }
+    });
+});
+</script>
+</head>
+<body>
+
+<button>Alert the number of li elements</button>
+<select id="mySelect">
+  <option value='0'>-Select-</option>
+  <option value='1'>Pear</option>
+  <!-- <option value='2'>Another</option> -->
+</select>
+</body>
+</html>
+

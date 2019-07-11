@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery input vs :input</title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script>
+		$(function (){
+			$('input[type="radio"]').each(function() { //input or :input or input[type="text"]
+				//alert($(this).val())
+				var cur = $(this).val();
+				alert(cur);
+			});
+		});
+	</script>
+</head>
+<body>
+	First Name: <input type="text" name="" value="Tipu">
+	<br><br>
+	Last Name: <input type="text" name="" value="Sultan">
+	<br><br>
+	Gender :
+	<input type="radio" name="gender" checked="checked" value="Male">Male
+	<input type="radio" name="gender" value="Female">Female 
+	<br><br>
+	Skills :
+	<input type="checkbox" name="skills" checked="checked" value="JavaScript">JavaScript
+	<input type="checkbox" name="skills" checked="checked" value="jQuery">jQuery
+	<input type="checkbox" name="skills" value="php">php
+	<br><br>
+	Country :
+	<select>
+		<option selected="selected" value="Bangladesh">Bangladesh</option>
+		<option value="UK">UK</option>
+	</select>
+	<br><br>
+	Summary :
+	<br>
+	<textarea>I am a Senior php developer</textarea>
+	<br><br>
+	<input type="submit" value="submit" name="">
+</body>
+</html>

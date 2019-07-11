@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="jquery-3.3.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		const input = 'john*smith*123 Street*Apt 4*New York*NY*12345';
+		const [name, street, unit, city, state, zip] = input.split('*');
+
+		console.log(name); // john smith
+		console.log(street); // 123 Street
+		console.log(unit); // Apt 4
+		console.log(city); // New York
+		console.log(state); // NY
+		console.log(zip); // 12345
+	</script>
+	<script>
+	function disable_enable_fields(flds)
+	{
+		var input = flds;
+		var [name, street, unit] = input.split('*');
+		console.log(name);
+		console.log(street);
+		//alert(flds);
+	    if (!loop_flds) var loop_flds="";
+	    if (!loop_leng) var loop_leng="";
+	    if (!flds) var flds="";
+	    if (!operation) var operation="";
+	    var tipu = $('#currancy_tk').val();
+	    //alert(tipu);
+	    if (tipu == 0) {
+	    	//alert('test');
+	    	$('#currancy_tk').attr('disabled', 'disabled');
+	    }else{
+	    	$('#currancy_tk').removeAttr('disabled', 'disabled');
+	    }
+	    flds=flds.split('*');
+	    console.log(flds);
+	    //alert(flds);
+	    // if (operation==0)  // Enable
+	    // {	
+	        for (var i=0; i<flds.length; i++)
+	        {
+	            var testing = $('#'+ flds[i]).removeAttr('disabled'); 
+
+	        }
+	        console.log(flds[1] == 1);
+	        if (flds[1] == 'currancy_usd') {
+	        	alert('tipu');
+	        }
+	    //}
+	    // else if (operation==1)  // Disable
+	    // {
+	    //     for (var i=0; i<flds.length; i++)
+	    //     {
+	    //         $('#'+ flds[i]).attr('disabled',true);
+	    //     }
+	    // }
+	    loop_flds=loop_flds.split('*');
+	    for (var i=0; i<flds.length; i++)
+	    {
+	        if (operation==0)  // Enable
+	        {
+	            for (var k=1; k<=loop_leng; k++)
+	            {
+	                $('#'+ loop_flds[i]+k).removeAttr('disabled'); 
+	            }
+	        }
+	        else if (operation==1)  // Enable
+	        {
+	            for (var k=1; k<=loop_leng; k++)
+	            {
+	                $('#'+ loop_flds[i]+k).attr('disabled',true);
+	            }
+	        }
+	    }
+	}
+
+
+disable_enable_fields('currancy_tk*currancy_usd*currancy_eur');
+
+</script>
+
+</head>
+<body>
+	TK: <input type="number" name="currancy_tk" id="currancy_tk" onchange="disable_enable_fields(this.value)">
+	USD: <input type="number" name="currancy_usd" id="currancy_usd" onchange="disable_enable_fields()">
+	EUR: <input type="number" name="currancy_eur" id="currancy_eur" onchange="disable_enable_fields()">
+</body>
+</html>

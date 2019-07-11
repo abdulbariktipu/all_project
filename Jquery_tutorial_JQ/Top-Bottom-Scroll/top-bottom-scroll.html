@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Go To Top</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(window).scroll(function(){
+				if ($(this).scrollTop()>100){
+					$('#scroll').fadeIn();					
+				}
+				else{
+					$('#scroll').fadeOut();
+				}
+			
+		});
+		$('#scroll').click(function(){
+			$("html,body").animate({scrollTop:0}, 600);
+				return false;
+			});
+		});
+	</script>
+	<style type="text/css">
+		#scroll{
+			position: fixed;
+			right: 10px;
+			bottom: 10px;
+			height: 50px;
+			width: 50px;
+			background-color: green;
+			border-radius: 60px;
+			-webkit-border-radius:60px;
+			-moz-border-radius:60px;
+		}
+		#scroll span{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-left: -8px;
+			margin-top: -12px;
+			border: 8px scroll transparent;
+			border-bottom-color: white; 
+		}
+		#scroll: hover{
+			background-color: cyan;
+			opacity:1;
+			filter: "alpha(opacity=100)";
+			-ms-filer:"alpha(opacity=100)";
+		}
+	</style>
+</head>
+<body>
+	<h1>Hot to create a go to top button</h1>
+	<h2>html - css - jquery</h2>
+	<hr/>
+	<center>
+	<p>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+	</p>
+	<p>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+		Go to top button how to create with example<br>
+	</p>
+	</center>
+	<a href="javascript:void(0);" title="Go To Top" id="scroll" style="display: none;"><span>Top</span></a>
+</body>
+</html>

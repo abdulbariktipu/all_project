@@ -1,0 +1,60 @@
+<!-- Part 2 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>19 Convert JSON string to object - YouTube</title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script>
+		$(document).ready(function (){
+			var jsonString = '[{"firstName":"Todd","lastName":"Tipu","gender":"Male","salary":48485},{"firstName":"Tani","lastName":"Paji","gender":"Female","salary":45422}]';				
+				
+				var employeeJSON = JSON.parse(jsonString);
+
+				var result = '';
+				$.each(employeeJSON, function(index, el) {
+					result += 'First Name = ' + el.firstName + '<br>';
+					result += 'Last Name = ' + el.lastName + '<br>';
+					result += 'Gender = ' + el.gender + '<br>';
+					result += 'Salary = ' + el.salary + '<br><br>';
+				});
+				$('#resultdIV').html(result);
+			});	
+	</script>			
+</head>
+<body style="font-family: Arial">
+	<div id="resultdIV"></div>
+</body>
+</html>
+
+<!-- part one
+<!DOCTYPE html>
+<html>
+<head>
+	<title>19 Convert JSON object to string - YouTube</title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script>
+		$(document).ready(function (){
+			var employeeJSON = [
+				{
+					"firstName": "Todd",
+					"lastName": "Tipu",
+					"gender": "Male",
+					"salary": 48485
+				},
+				{
+					"firstName": "Tani",
+					"lastName": "Paji",
+					"gender": "Female",
+					"salary": 45422
+				}];
+			
+				var result = JSON.stringify(employeeJSON);
+				$('#resultdIV').html(result);
+			});	
+	</script>			
+</head>
+<body style="font-family: Arial">
+	<div id="resultdIV"></div>
+</body>
+</html> 
+-->

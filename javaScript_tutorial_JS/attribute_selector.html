@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script>
+		$(function(){
+			$("div[title='divTitle']").css('border','5px solid yellow');
+			$("div[title='divTitle2']").css({
+				border: '5px solid yellow',
+				color: 'green'
+			});
+		});
+		//$('[title*="Title"]').css('border','5px solid red');//title="divTitle"
+	</script>
+</head>
+<body>
+	<div title="divTitle" style="background-color:red">
+		Red DIV
+	</div>
+	<div title="divTitle" style="background-color:green">
+		Green DIV
+	</div>
+	<div title="divTitle2">
+		Normal DIV
+	</div>
+	<div>
+		Normal Div without any attributes
+	</div>
+</body>
+</html>

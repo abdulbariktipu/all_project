@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery input vs :input</title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script>
+		$(function (){
+			$("input[name='skills']").click(function() {//"input[name='skills']".click(function(){})				
+				getCheckedCheckBoxes('skills');
+			});
+			$("#btnGetSelectedCities").click(function() {				
+				getCheckedCheckBoxes('cities');
+			});
+				var getCheckedCheckBoxes = function(groupName){
+					var result = $('input[name="'+groupName+'"]:checked');
+					if (result.length>0) {
+						var resultString = result.length + " Checkboxes checked<br>";
+						result.each(function() {
+							resultString += $(this).val()+"<br>";
+						});	
+						$("#div"+groupName).html(resultString);
+					}else {
+						$("#div"+groupName).html('No radio checked');
+					}
+				};
+		});
+	</script>
+</head>
+<body>
+	Skills :
+	<input type="checkbox" name="skills" value="JavaScript">JavaScript
+	<input type="checkbox" name="skills" value="jQuery">jQuery
+	<input type="checkbox" name="skills" value="php">php
+	<br><br>
+	Cities :
+	<input type="checkbox" name="cities" value="Dhaka">Dhaka
+	<input type="checkbox" name="cities" value="Naogaon">Naogaon
+	<input type="checkbox" name="cities" value="Manda">Manda
+	<br><br>
+	<input type="submit" id="btnGetSelectedSkills" value="Get Selected Skills" name="">
+	<input type="submit" id="btnGetSelectedCities" value="Get Selected Cities" name="">
+	<br><br>	
+	<div id="divskills"></div>
+	<br>
+	<div id="divcities"></div>
+</body>
+</html>
+
+
+<!-- First work
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery input vs :input</title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script>
+		$(function (){
+			$("#btnGetSelectedSkills").click(function() {				
+				getCheckedCheckBoxes();
+			});
+			$("#btnGetSelectedCities").click(function() {				
+				getCheckedCheckBoxes();
+			});
+				var getCheckedCheckBoxes = function(){
+					var result = $("input[type='checkbox']:checked");
+					if (result.length>0) {
+						var resultString = result.length + " Checkboxes checked<br>";
+						result.each(function() {
+							resultString += $(this).val()+"<br>";
+						});	
+						$("#divResult").html(resultString);
+					}else {
+						$("#divResult").html('No radio checked');
+					}
+				};
+		});
+	</script>
+</head>
+<body>
+	Skills :
+	<input type="checkbox" name="skills" value="JavaScript">JavaScript
+	<input type="checkbox" name="skills" value="jQuery">jQuery
+	<input type="checkbox" name="skills" value="php">php
+	<br><br>
+	Cities :
+	<input type="checkbox" name="cities" value="Dhaka">Dhaka
+	<input type="checkbox" name="cities" value="Naogaon">Naogaon
+	<input type="checkbox" name="cities" value="Manda">Manda
+	<br><br>
+	<input type="submit" id="btnGetSelectedSkills" value="Get Selected Skills" name="">
+	<input type="submit" id="btnGetSelectedCities" value="Get Selected Cities" name="">
+	<br><br>	
+	<div id="divResult"></div>
+</body>
+</html> 
+-->

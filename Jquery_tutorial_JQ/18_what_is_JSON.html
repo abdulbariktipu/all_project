@@ -1,0 +1,110 @@
+<!-- part 3 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery input vs :input</title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script>
+		// Nested JSON object:
+		$(document).ready(function (){
+			var employeeJSON = {
+			"Todd":	{
+					"firstName": "Todd",
+					"lastName": "Tipu",
+					"gender": "Male",
+					"salary": 48485
+				},
+			"Tani": {
+					"firstName": "Tani",
+					"lastName": "Paji",
+					"gender": "Female",
+					"salary": 45422
+				},
+			"Tarin":{
+					"firstName": "Tarin",
+					"lastName": "Rahaman",
+					"gender": "Female",
+					"salary": 200000
+				}
+			};
+				$('#divResult').html(employeeJSON.Todd.salary);
+				//console.log(employeeJSON.Tarin.salary);
+		});// what is the problem ???
+	</script>
+</head>
+<body style="font-family: Arial">
+	<div id="divResult"></div>
+</body>
+</html>
+<!-- Part 2
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery input vs :input</title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script>
+		$(function (){
+			var employeeJSON = [{
+				"firstName": "Todd",
+				"lastName": "Tipu",
+				"gender": "Male",
+				"salary": 48485
+			},
+			{
+				"firstName": "Tani",
+				"lastName": "Sultan",
+				"gender": "Male",
+				"salary": 45422
+			},
+			{
+				"firstName": "Tarin",
+				"lastName": "Rahaman",
+				"gender": "Female",
+				"salary": 200000
+			}];
+			var result = '';
+			result += 'First Name: ' + employeeJSON[0].firstName +' '+ employeeJSON[1].firstName + '<br>';
+			result += 'lastName: ' + employeeJSON..lastName + '<br>';
+			result += 'gender: ' + employeeJSON.gender + '<br>';
+			result += 'salary: ' + employeeJSON.salary + '<br>';
+			$('#divResult').html(result);
+		});
+	</script>
+</head>
+<body style="font-family: Arial">
+	<div id="divResult"></div>
+</body>
+</html> 
+-->
+
+
+<!-- Stape one
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery input vs :input</title>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script>
+		$(function (){
+			var employeeJSON = {
+				"firstName": "Todd",
+				"lastName": "Tipu",
+				"gender": "Male",
+				"salary": 48485
+			};
+			var result = '';
+			result += 'First Name = '+ employeeJSON.firstName + '<br>';
+			result += 'Last Name = '+ employeeJSON.lastName + '<br>';
+			result += 'Gender = '+ employeeJSON.gender + '<br>';
+			result += 'Salary = '+ employeeJSON.salary + '<br>';
+			$('#divResult').html(result);
+		});
+	</script>
+</head>
+<body style="font-family: Arial">
+	<div id="divResult"></div>
+</body>
+</html>
+ -->
+
