@@ -34,7 +34,7 @@
 	                document.getElementById('showReport').innerHTML = '<div class="loader"></div>';
 	            }
 	        }
-	        xmlhttp.open("POST", "/ADD_DYNAMIC_FIELDS_TO_FORMS/index_controller.php", true);
+	        xmlhttp.open("POST", "index_controller.php", true);
 	        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	        xmlhttp.send(data);     
 	    }
