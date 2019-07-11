@@ -16,12 +16,12 @@
 		      	var multi_data="";
 		      	// alert(row_num);return;
 		      	for (var j=1; j<=row_num; j++)
-				{
-					multi_data+="&txt_item_account_" + j + "='" + $('#txt_item_account_'+j).val()+"'&txt_item_dtls_" + j + "='" + $('#txt_item_dtls_'+j).val()+"'";
-				}
-				
-				var data="action=save_update_delete_dtls&row_num="+row_num+multi_data;
-				// alert(data);return;
+    				{
+    					multi_data+="&txt_item_account_" + j + "='" + $('#txt_item_account_'+j).val()+"'&txt_item_dtls_" + j + "='" + $('#txt_item_dtls_'+j).val()+"'";
+    				}
+    				
+    				var data="action=save_update_delete_dtls&row_num="+row_num+multi_data;
+    				// alert(data);return;
 	        }
 
 	        var xmlhttp = new XMLHttpRequest();
