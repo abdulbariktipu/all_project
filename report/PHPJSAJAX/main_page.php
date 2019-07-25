@@ -138,7 +138,7 @@
         }
     </script>
 </head>
-<body>     
+<body style="background: rgba(76, 175, 80, 0.3);">     
     <form>
 
         <!-- Custome Alert HTML End -->    
