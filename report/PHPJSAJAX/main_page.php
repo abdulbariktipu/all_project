@@ -25,6 +25,11 @@
                 var from_date = document.getElementById('fromDate').value;
                 var to_date = document.getElementById('toDate').value;
                 //alert(from_date+'to'+to_date);return;
+                if (from_date=="" || to_date=="") 
+                {
+                    alert('Please Selet Date');
+                    return;
+                }
                 if (operation==1)
                 {
                     var data="action=customer_wise_report&search="+operation+"&from_date="+from_date+"&to_date="+to_date;
