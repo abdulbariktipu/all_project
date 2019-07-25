@@ -13,7 +13,8 @@
             @keyframes loader{100%{transform:rotate(360deg)}
         }
     </style>
-
+    
+    <!-- Custome Alert CSS Start -->
     <style type="text/css">
         body{
             font-family: 'Arial';
@@ -63,7 +64,9 @@
             color: #666;
         }
     </style>
+    <!-- Custome Alert CSS End -->
 
+    <!-- Custome Alert JS Start -->
     <script type="text/javascript">
         var CustomAlert = new function(){
 
@@ -83,6 +86,7 @@
             }
         }
     </script>
+    <!-- Custome Alert CSS End -->
 
     <script>
         function showHint(operation) 
@@ -98,7 +102,7 @@
                 //alert(from_date+'to'+to_date);return;
                 if (from_date=="" || to_date=="") 
                 {
-                    CustomAlert.show('Please Select Date.');return;
+                    CustomAlert.show('Please Select Date.');return; // CustomAlert.show Function Call
                 }
                 if (operation==1)
                 {
@@ -134,23 +138,26 @@
         }
     </script>
 </head>
-<body>
- 
-<form>
-<div id="dialogCont" class="dlg-container">
-    <div class="dlg-header">Custom Alert Dialog</div>
-    <div id="dialogBody" class="dlg-body" style="color: red;"></div>
-    <div class="dlg-footer">
-        <a onclick="CustomAlert.close();">OK</a>
-    </div>
-</div>
-<input type="date" name="fromDate" id="fromDate"> To 
-<input type="date" name="toDate" id="toDate">
-<button type="button" onclick="showHint(1)">Customer Wise</button>
-<button type="button" onclick="showHint(2)">Customer and Order Wise</button>
-<button type="button" onclick="showHint(3)">Month Wise</button>
-<button type="button" onclick="showHint(4)">Month Wise</button>
-</form>
-<p><span id="showReport"></span></p>
-</body>
+<body>     
+    <form>
+
+        <!-- Custome Alert HTML End -->    
+        <div id="dialogCont" class="dlg-container">
+            <div class="dlg-header">Custom Alert Dialog</div>
+            <div id="dialogBody" class="dlg-body"></div>
+            <div class="dlg-footer">
+                <a onclick="CustomAlert.close();">OK</a>
+            </div>
+        </div>
+        <!-- Custome Alert HTML End -->
+
+        <input type="date" name="fromDate" id="fromDate"> To 
+        <input type="date" name="toDate" id="toDate">
+        <button type="button" onclick="showHint(1)">Customer Wise</button>
+        <button type="button" onclick="showHint(2)">Customer and Order Wise</button>
+        <button type="button" onclick="showHint(3)">Month Wise</button>
+        <button type="button" onclick="showHint(4)">Month Wise</button>
+        </form>
+        <p><span id="showReport"></span></p>
+    </body>
 </html>
