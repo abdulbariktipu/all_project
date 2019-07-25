@@ -41,6 +41,8 @@
         .dlg-body{
             padding: 10px;
             line-height: 30px;
+            color: red;
+            text-align: center;
         }
         .dlg-footer{
             text-align: center;
@@ -96,7 +98,7 @@
                 //alert(from_date+'to'+to_date);return;
                 if (from_date=="" || to_date=="") 
                 {
-                    CustomAlert.show('Please Selet Date.');return;
+                    CustomAlert.show('Please Select Date.');return;
                 }
                 if (operation==1)
                 {
@@ -137,7 +139,7 @@
 <form>
 <div id="dialogCont" class="dlg-container">
     <div class="dlg-header">Custom Alert Dialog</div>
-    <div id="dialogBody" class="dlg-body"></div>
+    <div id="dialogBody" class="dlg-body" style="color: red;"></div>
     <div class="dlg-footer">
         <a onclick="CustomAlert.close();">OK</a>
     </div>
