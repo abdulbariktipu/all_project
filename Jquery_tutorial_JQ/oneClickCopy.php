@@ -34,7 +34,5 @@ function myFunction() {
         </table>
     <input type="text" value="Hello World" id="myInput">
     <button onclick="myFunction()">Copy text</button> 
-
-
     </body>  
 </html>
