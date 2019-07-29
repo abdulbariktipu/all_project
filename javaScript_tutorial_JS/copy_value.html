@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Copy Value Allowance</title>
+	<script type="text/javascript">
+		function copy_value(value,i) 
+		{
+			// var rowCount=$('#tbl_list_search_tc tbody tr').length;
+			var rowCount = document.getElementById('tbl_list_search_tc').getElementsByTagName("tbody")[0].getElementsByTagName("tr").length;
+			for(var j=i; j<=rowCount; j++)
+			{
+				document.getElementById('txtAllowance_'+j).value=value;
+			}
+		}
+	</script>
+</head>
+<body>
+	<table cellpadding="0" cellspacing="0" border="1" rules="all" width="100%" class="rpt_table" id="tbl_list_search_tc">
+		<thead>
+	        <th width="60">SL No.</th>
+	        <th width="140">Thread Type</th>
+	        <th width="200">Thread Description</th>
+	        <th width="120">Thread Length</th>
+	        <th width="120">Allowance</th>
+	        <th width="120" title="(Seam Length*Thread Length)+{( Seam Length*Thread Length)/100}*Allowance">Required</th>
+	        <th></th>
+	    </thead>
+		<tbody id="operation_details_thread">
+			<tr id="tr_1" bgcolor="#FFFFFF" align="center">
+				<td align="left">1</td>
+	            <td><input type="text" name="txtThreadDesc[]" id="txtThreadDesc_1"  placeholder="Write" class="text_boxes" style="width:180px" /></td>
+				<td><input type="text" name="txtThreadDesc[]" id="txtThreadDesc_1" placeholder="Write" class="text_boxes" style="width:180px" /></td>
+	            <td><input type="text" name="txtThreadLength[]" id="txtThreadLength_1" placeholder="Write" class="text_boxes_numeric" style="width:100px" /></td>
+				<td><input type="text" name="txtAllowance[]" id="txtAllowance_1" placeholder="Write Allowance" class="text_boxes_numeric" style="width:100px" onblur="copy_value(this.value,1);" /></td>				
+	            <td><input type="text" name="txtRequired[]" id="txtRequired_1" class="text_boxes_numeric" style="width:100px" placeholder="Calculative" readonly="readonly" /></td>
+	            <td>
+	                <input type="button" id="increaseT_1" name="increase[]" style="width:30px" class="formbuttonplasminus" value="+" onClick="add_break_down_tr(1)"/>
+	                <input type="button" id="decreaseT_1" name="decrease[]" style="width:30px" class="formbuttonplasminus" value="-" onClick="fn_deleteRow(1);" />
+				</td>
+			</tr>
+			<tr id="tr_2" bgcolor="#E9F3FF" align="center">
+				<td align="left">2</td>
+				<td><input type="text" name="txtThreadDesc[]" id="txtThreadDesc_2"  placeholder="Write" class="text_boxes" style="width:180px" /></td>
+				<td><input type="text" name="txtThreadDesc[]" id="txtThreadDesc_2" placeholder="Write" class="text_boxes" style="width:180px" /></td>
+	            <td><input type="text" name="txtThreadLength[]" id="txtThreadLength_2" placeholder="Write" class="text_boxes_numeric" style="width:100px" /></td>
+				<td><input type="text" name="txtAllowance[]" id="txtAllowance_2" placeholder="Write Allowance" class="text_boxes_numeric" style="width:100px" onblur="copy_value(this.value,2);" /></td>
+				<td><input type="text" name="txtRequired[]" id="txtRequired_2" class="text_boxes_numeric" style="width:100px" placeholder="Calculative" readonly="readonly" /></td>
+	            <td align="center">
+	                <input type="button" id="increaseT_2" name="increase[]" style="width:30px" class="formbuttonplasminus" value="+"/>
+	                <input type="button" id="decreaseT_2" name="decrease[]" style="width:30px" class="formbuttonplasminus" value="-" />
+				</td>
+			</tr>
+			<tr id="tr_3" bgcolor="#FFFFFF" align="center">
+				<td align="left">3</td>
+	            <td><input type="text" name="txtThreadDesc[]" id="txtThreadDesc_3"  placeholder="Write" class="text_boxes" style="width:180px" /></td>
+				<td><input type="text" name="txtThreadDesc[]" id="txtThreadDesc_3" placeholder="Write" class="text_boxes" style="width:180px" /></td>
+	            <td><input type="text" name="txtThreadLength[]" id="txtThreadLength_3" placeholder="Write" class="text_boxes_numeric" style="width:100px" /></td>
+				<td><input type="text" name="txtAllowance[]" id="txtAllowance_3" placeholder="Write Allowance" class="text_boxes_numeric" style="width:100px" onblur="copy_value(this.value,3);" /></td>
+				<td><input type="text" name="txtRequired[]" id="txtRequired_3" class="text_boxes_numeric" style="width:100px" placeholder="Calculative" readonly="readonly" /></td>
+	            <td align="center">
+	                <input type="button" id="increaseT_3" name="increase[]" style="width:30px" class="formbuttonplasminus" value="+"/>
+	                <input type="button" id="decreaseT_3" name="decrease[]" style="width:30px" class="formbuttonplasminus" value="-" />
+				</td>
+			</tr>
+			<tr id="tr_4" bgcolor="#E9F3FF" align="center">
+				<td align="left">4</td>
+				<td><input type="text" name="txtThreadDesc[]" id="txtThreadDesc_4"  placeholder="Write" class="text_boxes" style="width:180px" /></td>
+				<td><input type="text" name="txtThreadDesc[]" id="txtThreadDesc_4"  placeholder="Write" class="text_boxes" style="width:180px" /></td>
+	            <td><input type="text" name="txtThreadLength[]" id="txtThreadLength_4" placeholder="Write" class="text_boxes_numeric" style="width:100px" /></td>
+				<td><input type="text" name="txtAllowance[]" id="txtAllowance_4" placeholder="Write Allowance" class="text_boxes_numeric" style="width:100px" onblur="copy_value(this.value,4);" /></td>
+				<td><input type="text" name="txtRequired[]" id="txtRequired_4" class="text_boxes_numeric" style="width:100px" placeholder="Calculative" readonly="readonly" /></td>
+	            <td align="center">
+	                <input type="button" id="increaseT_4" name="increase[]" style="width:30px" class="formbuttonplasminus" value="+"/>
+	                <input type="button" id="decreaseT_4" name="decrease[]" style="width:30px" class="formbuttonplasminus" value="-" />
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+	    	<th>&nbsp;</th>
+	        <th>&nbsp;</th>
+	        <th>&nbsp;</th>
+	        <th>&nbsp;</th>
+	        <th>Total</th>
+	        <th style="text-align:center"><input type="text" name="totReq" id="totReq" class="text_boxes_numeric" style="width:100px" readonly="readonly" /></th>
+	        <th>&nbsp;</th>
+	    </tfoot>
+	</table>
+</body>
+</html>
+
+
