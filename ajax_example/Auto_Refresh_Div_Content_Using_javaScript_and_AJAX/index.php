@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
 	<title>Auto Refresh Div Content Using JavaScript and AJAX</title> 
 	<script>
 		function dis() 
@@ -17,7 +16,7 @@
 			// https://www.w3schools.com/PHP/php_ajax_database.asp
 			xmlhttp.send();
 		}
-		dis();
+		dis(); // onloade
 
 		setInterval(function(){ // For Refresh Div content 2 second we use setInterval()
 			dis();
