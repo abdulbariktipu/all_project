@@ -26,7 +26,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -37,7 +37,17 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd('Submited'); // dd is a like die();
+        // Data insert into student table
+
+        $studentObj = new student;
+        $studentObj->name               = $request->name;
+        $studentObj->registration_id    = $request->registration_id;
+        $studentObj->department_name    = $request->department_name;
+        $studentObj->info               = $request->info;
+        $studentObj->save();
+
+        return redirect()->route('index');
     }
 
     /**
