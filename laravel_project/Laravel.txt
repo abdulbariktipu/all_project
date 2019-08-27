@@ -28,7 +28,7 @@ php artisan make:model students -m // Model and Migration file create
 
 
 **Controller->app/Http/Controllers/StudentInfoController.php
-php artisan make:controller StudentInfoController  // Controller Create
+php artisan make:controller StudentInfoController  // Only Controller Create
 
 **View
 resources/views/index.blade.php
@@ -37,9 +37,9 @@ resources/views/index.blade.php
 Route::get('base URI', 'StudentInfoController_Name@method'); 
 Example->Route::get('/', 'StudentInfoController@index'); 
 
-=====================================================================================================================
+=================================== Database Configration =========================================================
 
-**Database Configration->.env
+**Database -> Location -> Configration->.env
 DB_CONNECTION=mysql
 DB_HOST=localhost
 DB_PORT=3306
@@ -47,7 +47,7 @@ DB_DATABASE=classicmodels
 DB_USERNAME=root
 DB_PASSWORD=
 
--->config/database.php
+Location-->config/database.php
 'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
@@ -73,7 +73,8 @@ DB_PASSWORD=
 **Migration->database/migrations/2019_08_21_072550_create_students_table.php
 php artisan migrate
 Error: In that case error 1071 Specified key was too long;
-Solution: app/Providers/AppServiceProvider.php
+Solution: Location -> app/Providers/AppServiceProvider.php
+
 namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -83,6 +84,7 @@ public function boot()
 }
 
 ================================ Bootstrap Add ================================================================
+
 **bootstrap(js_css)->public/bootstrap
 Add in (View) HTML page below link
 <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
@@ -117,7 +119,7 @@ public function index()
 
 ============================= HeaderFooter =====================================
 
-**HeaderFooter -> location -> headerFooter.blade.php
+**HeaderFooter -> location -> headerFooter.blade.php // Header Footer no need repet all page
 <html> 
     // Header
     <div class="container">
@@ -136,12 +138,12 @@ public function index()
 ============================= Data Insert ==================================================================================
 
 **Data Insert -> laravel_project/resources/views/create.blade.php
- html form
+ *1. html form
 <form class="form-horizontal" action="{{ route('store') }}" method="post"> 
 // action = route('store') is call from routes->web.php -> Route::post('/store', 'StudentController@store')->name('store');
  {{ csrf_field() }} // add csrf token after <form tag>
 
-** StudentController.php
+*2. StudentController.php
     public function store(Request $request)
     {
         // dd('Submited'); // dd is a like die();
@@ -156,10 +158,40 @@ public function index()
 
         return redirect()->route('index');
     }
- 
-=================================================================================================================
+*3. Route::post('/store', 'StudentController@store')->name('store');
 
+======================================= Data Edit ==========================================================
 
+*Route
+Route::get('/edit/{id}', 'StudentController@edit')->name('edit');
+Route::post('/update/{id}', 'StudentController@update')->name('update');
 
+*Controller
+public function edit($id) // Data Update into student table
+{
+    $studentId = Student::find($id); // eloquent, Retrive a model by its primary key
+    return view('edit')->with('studentId', $studentId);
+}
+
+public function update(Request $request, $id)
+{
+    $studentId = Student::find($id);
+        
+    $studentId->name               = $request->name;
+    $studentId->registration_id    = $request->registration_id;
+    $studentId->department_name    = $request->department_name;
+    $studentId->info               = $request->info;
+    $studentId->save();
+
+    return redirect()->route('index');
+}
+
+*Show Data Page -> Edit Link
+<td class="btn btn-success"><a href="{{ route('edit', $student->id) }} ">Edit</a></td>
+
+*Create Edit page
+action="{{ route('update', $studentId->id) }}"
+
+============================== Data Delete ==========================================================
 
 

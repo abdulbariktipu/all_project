@@ -13,7 +13,7 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() // Data show
     {
        //return view('index');
         $studentsName = DB::table('students')->get();
@@ -36,10 +36,9 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) // Data insert into student table
     {
         // dd('Submited'); // dd is a like die();
-        // Data insert into student table
 
         $studentObj = new student;
         $studentObj->name               = $request->name;
@@ -68,9 +67,11 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit($id) // Data Update into student table
     {
-        //
+        $studentId = Student::find($id); // eloquent, Retrive a model by its primary key 
+        //dd($studentId);
+        return view('edit')->with('studentId', $studentId);
     }
 
     /**
@@ -80,9 +81,17 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, $id)
     {
-        //
+        $studentId = Student::find($id);
+        
+        $studentId->name               = $request->name;
+        $studentId->registration_id    = $request->registration_id;
+        $studentId->department_name    = $request->department_name;
+        $studentId->info               = $request->info;
+        $studentId->save();
+
+        return redirect()->route('index');
     }
 
     /**

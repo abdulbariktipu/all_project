@@ -24,7 +24,7 @@
 			<td>{{ $student->department_name }}</td>
 			<td>{{ $student->info }}</td>
 			<td>{{ $student->created_at }}</td>
-			<td class="btn btn-success"><a href="{{ $student->id }}">Edit</a></td>
+			<td class="btn btn-success"><a href="{{ route('edit', $student->id) }} ">Edit</a></td>
 		</tr>
 		@endforeach
 	    </tbody>
