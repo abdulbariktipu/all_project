@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB; // For Data show
 
 class StudentController extends Controller
 {
@@ -90,6 +90,14 @@ class StudentController extends Controller
         $studentId->department_name    = $request->department_name;
         $studentId->info               = $request->info;
         $studentId->save();
+
+        return redirect()->route('index');
+    }
+
+    public function delete($id)
+    {
+        $studentId = Student::find($id);
+        $studentId->delete();
 
         return redirect()->route('index');
     }

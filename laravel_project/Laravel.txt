@@ -35,7 +35,13 @@ resources/views/index.blade.php
 
 **Routes->routes/web.php
 Route::get('base URI', 'StudentInfoController_Name@method'); 
-Example->Route::get('/', 'StudentInfoController@index'); 
+Example->Route::get('/index', 'StudentInfoController@index'); // if index page no need after / index
+
+**Controller -> app\Http\Controllers\StudentController.php
+public function index() // Data show
+{
+    return view('index');
+}
 
 =================================== Database Configration =========================================================
 

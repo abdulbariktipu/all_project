@@ -24,7 +24,14 @@
 			<td>{{ $student->department_name }}</td>
 			<td>{{ $student->info }}</td>
 			<td>{{ $student->created_at }}</td>
-			<td class="btn btn-success"><a href="{{ route('edit', $student->id) }} ">Edit</a></td>
+			<td>
+				<a href="{{ route('edit', $student->id) }} " class="btn btn-success">Edit</a>
+				<form action="{{ route('delete', $student->id) }}" method="post">
+					{{ csrf_field() }}
+					<input type="submit" class="btn btn-danger" value="Delete">
+				</form>
+			</td>
+			
 		</tr>
 		@endforeach
 	    </tbody>
