@@ -10,7 +10,7 @@
 	        <th>Depertment</th>
 	        <th>Info</th>
 	        <th>Insert Date Time</th>
-	        <th>Edit</th>
+	        <th width="30%">Action</th>
 	      </tr>
 	      @php $i = 0; @endphp
 	    </thead>
