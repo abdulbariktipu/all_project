@@ -200,4 +200,54 @@ action="{{ route('update', $studentId->id) }}"
 
 ============================== Data Delete ==========================================================
 
+*1. index.blade.php
+<form action="{{ route('delete', $student->id) }}" method="post">
+  {{ csrf_field() }}
+  <input type="submit" class="btn btn-danger" value="Delete">
+</form>
+
+*2.Route
+Route::post('/delete/{id}', 'StudentController@delete')->name('delete');
+
+*3. StudentController
+public function delete($id)
+{
+    $studentId = Student::find($id);
+    $studentId->delete();
+
+    return redirect()->route('index');
+}
+
+============================================== Validation =============================================
+
+**Creating The Controller -> When data save
+public function store(Request $request)
+{
+    $validatedData = $request->validate([
+        'title' => 'required|unique:posts|max:255',
+        'body' => 'required',
+    ]);
+}
+
+**Displaying The Validation Errors message
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+====================================================================
+
+
+
+
+
+
+
+
+
 

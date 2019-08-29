@@ -16,7 +16,8 @@ class StudentController extends Controller
     public function index() // Data show
     {
        //return view('index');
-        $studentsName = DB::table('students')->get();
+        //$studentsName = DB::table('students')->get();
+        $studentsName = DB::table('students')->paginate(2);
         return view('index', ['studentsName' => $studentsName]);
     }
 
@@ -39,7 +40,12 @@ class StudentController extends Controller
     public function store(Request $request) // Data insert into student table
     {
         // dd('Submited'); // dd is a like die();
+        // Check validation
+        $this->validate($request, [
+            'name'  => 'required'
+        ]);
 
+        dd('Submited');
         $studentObj = new student;
         $studentObj->name               = $request->name;
         $studentObj->registration_id    = $request->registration_id;
