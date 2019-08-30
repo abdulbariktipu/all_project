@@ -1,6 +1,22 @@
 @extends('headerFooter')
 
 @section('content')
+
+	@if (\Session::has('success'))
+	    <div id="mydiv" class="alert alert-success">
+	        <p>{{ \Session::get('success') }}</p>
+	    </div>
+	@endif
+	@if (\Session::has('updateSuccess'))
+	    <div id="mydiv" class="alert alert-success">
+	        <p>{{ \Session::get('updateSuccess') }}</p>
+	    </div>
+	@endif
+	@if (\Session::has('deleteSuccess'))
+	    <div id="mydiv" class="alert alert-success">
+	        <p>{{ \Session::get('deleteSuccess') }}</p>
+	    </div>
+	@endif
 	<table class="table table-hover">
 	    <thead>
 	      <tr>
@@ -31,7 +47,6 @@
 					<input type="submit" class="btn btn-danger" value="Delete">
 				</form>
 			</td>
-			
 		</tr>
 		@endforeach
 	    </tbody>

@@ -17,7 +17,7 @@ class StudentController extends Controller
     {
        //return view('index');
         //$studentsName = DB::table('students')->get();
-        $studentsName = DB::table('students')->paginate(2);
+        $studentsName = DB::table('students')->paginate();
         return view('index', ['studentsName' => $studentsName]);
     }
 
@@ -45,7 +45,7 @@ class StudentController extends Controller
             'name'  => 'required'
         ]);
 
-        dd('Submited');
+        //dd('Submited');
         $studentObj = new student;
         $studentObj->name               = $request->name;
         $studentObj->registration_id    = $request->registration_id;
@@ -53,7 +53,7 @@ class StudentController extends Controller
         $studentObj->info               = $request->info;
         $studentObj->save();
 
-        return redirect()->route('index');
+        return redirect()->route('index')->with('success', 'Data Successfully Save');
     }
 
     /**
@@ -97,7 +97,7 @@ class StudentController extends Controller
         $studentId->info               = $request->info;
         $studentId->save();
 
-        return redirect()->route('index');
+        return redirect()->route('index')->with('updateSuccess', 'Data Successfully Updated');
     }
 
     public function delete($id)
@@ -105,7 +105,7 @@ class StudentController extends Controller
         $studentId = Student::find($id);
         $studentId->delete();
 
-        return redirect()->route('index');
+        return redirect()->route('index')->with('deleteSuccess', 'Data Successfully Deleted');
     }
 
     /**
