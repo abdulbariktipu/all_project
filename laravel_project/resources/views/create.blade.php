@@ -11,26 +11,26 @@
 	        </ul>
 	    </div>
 	@endif
-	<form class="form-horizontal" action="{{ route('store') }}" method="post">
+	<form class="form-horizontal" action="{{ route('store') }}" method="post" data-parsley-validate>
 		{{ csrf_field() }}
 	  <div class="form-group">
 	    <label class="control-label col-sm-2" for="name">Name:</label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" name="name" id="name" placeholder="Enter name">
+	      <input type="text" class="form-control" name="name" id="name" placeholder="Enter name" required>
 	    </div>
 	  </div>
 
 	  <div class="form-group">
 	    <label class="control-label col-sm-2" for="registration_id">Registration No:</label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" name="registration_id" id="registration_id" placeholder="Registration No">
+	      <input type="text" class="form-control" name="registration_id" id="registration_id" placeholder="Registration No" required>
 	    </div>
 	  </div>
 
 	  <div class="form-group">
 	    <label class="control-label col-sm-2" for="department_name">Depertment:</label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" name="department_name" id="department_name" placeholder="Enter Depertment">
+	      <input type="text" class="form-control" name="department_name" id="department_name" placeholder="Enter Depertment" required>
 	    </div>
 	  </div>
 

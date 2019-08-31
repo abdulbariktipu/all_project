@@ -5,15 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Student Management</title>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+
 	<script type="text/javascript">
 		setTimeout(function() {
 		    $('#mydiv').fadeOut('fast');
 		}, 1000);
 	</script>
+
   </head>
   <body>
+
     <nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
@@ -36,9 +42,15 @@
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
+
 	<div class="container">
 		@yield('content')
 	</div>
+
+	<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/parsley.min.js') }}"></script>
+	<!-- https://parsleyjs.org/doc/ -->
 	<script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+
   </body>
 </html>

@@ -42,7 +42,10 @@ class StudentController extends Controller
         // dd('Submited'); // dd is a like die();
         // Check validation
         $this->validate($request, [
-            'name'  => 'required'
+            'name'              => 'required|string|max:10',
+            'registration_id'   => 'required|integer',
+            'department_name'   => 'required|string',
+            'info'              => 'nullable',
         ]);
 
         //dd('Submited');
