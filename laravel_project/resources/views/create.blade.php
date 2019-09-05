@@ -14,9 +14,9 @@
 	<form class="form-horizontal" action="{{ route('store') }}" method="post" data-parsley-validate>
 		{{ csrf_field() }}
 	  <div class="form-group">
-	    <label class="control-label col-sm-2" for="name">Name:</label>
+	    <label class="control-label col-sm-2" for="student_name">Name:</label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" name="name" id="name" placeholder="Enter name" required>
+	      <input type="text" class="form-control" name="student_name" id="student_name" placeholder="Enter name" required>
 	    </div>
 	  </div>
 

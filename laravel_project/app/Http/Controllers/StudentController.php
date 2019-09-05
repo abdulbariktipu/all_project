@@ -15,9 +15,19 @@ class StudentController extends Controller
      */
     public function index() // Data show
     {
-       //return view('index');
+        //return view('index');
         //$studentsName = DB::table('students')->get();
-        $studentsName = DB::table('students')->paginate();
+        //$studentsName = DB::table('students')->orderBy('id')->paginate(2);
+        //return view('index', ['studentsName' => $studentsName]);
+        //return view('index', compact('studentsName'));
+
+        /*$studentsName = DB::table('orders')
+              ->where('status', 'Shipped')
+              ->orderBy('orderNumber', 'desc')
+              ->paginate(4);
+        return view('index', ['studentsName' => $studentsName]);*/
+
+        $studentsName = DB::table('students')->paginate(4);
         return view('index', ['studentsName' => $studentsName]);
     }
 
@@ -42,15 +52,15 @@ class StudentController extends Controller
         // dd('Submited'); // dd is a like die();
         // Check validation
         $this->validate($request, [
-            'name'              => 'required|string|max:10',
-            'registration_id'   => 'required|integer',
+            'student_name'      => 'required|string|max:10',
+            'registration_id'   => 'required|integer|unique:students',
             'department_name'   => 'required|string',
             'info'              => 'nullable',
         ]);
 
         //dd('Submited');
         $studentObj = new student;
-        $studentObj->name               = $request->name;
+        $studentObj->name               = $request->student_name;
         $studentObj->registration_id    = $request->registration_id;
         $studentObj->department_name    = $request->department_name;
         $studentObj->info               = $request->info;
@@ -92,13 +102,17 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $studentId = Student::find($id);
-        
-        $studentId->name               = $request->name;
+        $sId = DB::table('students')
+        ->where('id', $id)
+        ->update(['name' => $request->student_name, 'department_name' => $request->department_name, 'info' => $request->info]);
+
+        /* // our update technic 2
+        $studentId = Student::find($id);        
+        $studentId->name               = $request->student_name;
         $studentId->registration_id    = $request->registration_id;
         $studentId->department_name    = $request->department_name;
         $studentId->info               = $request->info;
-        $studentId->save();
+        $studentId->save();*/
 
         return redirect()->route('index')->with('updateSuccess', 'Data Successfully Updated');
     }

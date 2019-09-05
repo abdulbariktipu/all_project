@@ -17,6 +17,7 @@
 	        <p>{{ \Session::get('deleteSuccess') }}</p>
 	    </div>
 	@endif
+
 	<table class="table table-hover">
 	    <thead>
 	      <tr>
@@ -26,23 +27,25 @@
 	        <th>Depertment</th>
 	        <th>Info</th>
 	        <th>Insert Date Time</th>
-	        <th width="30%">Action</th>
+	        <th colspan="2" style="text-align: center">Action</th>
 	      </tr>
 	      @php $i = 0; @endphp
 	    </thead>
 	    <tbody>
-	    @foreach ($studentsName as $student)
+	    @foreach ($studentsName as $row)
 	    @php $i++; @endphp
 	    <tr>
 			<td>{{ $i }}</td>
-			<td>{{ $student->registration_id }}</td>
-			<td>{{ $student->name }}</td>
-			<td>{{ $student->department_name }}</td>
-			<td>{{ $student->info }}</td>
-			<td>{{ $student->created_at }}</td>
-			<td>
-				<a href="{{ route('edit', $student->id) }} " class="btn btn-success">Edit</a>
-				<form action="{{ route('delete', $student->id) }}" method="post">
+			<td>{{ $row->registration_id }}</td>
+			<td>{{ $row->name }}</td>
+			<td>{{ $row->department_name }}</td>
+			<td>{{ $row->info }}</td>
+			<td>{{ $row->created_at }}</td>
+			<td style="text-align: center">
+				<a href="{{ route('edit', $row->id) }} " class="btn btn-success">Edit</a>
+			</td>
+			<td style="text-align: center">
+				<form action="{{ route('delete', $row->id) }}" method="post">
 					{{ csrf_field() }}
 					<input type="submit" class="btn btn-danger" value="Delete">
 				</form>
@@ -51,4 +54,6 @@
 		@endforeach
 	    </tbody>
 	</table>
+
+	{{ $studentsName->links() }}
 @endsection
