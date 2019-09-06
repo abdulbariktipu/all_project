@@ -27,7 +27,7 @@ class StudentController extends Controller
               ->paginate(4);
         return view('index', ['studentsName' => $studentsName]);*/
 
-        $studentsName = DB::table('students')->paginate(4);
+        $studentsName = DB::table('students')->orderBy('registration_id')->paginate(4);
         return view('index', ['studentsName' => $studentsName]);
     }
 
@@ -57,6 +57,12 @@ class StudentController extends Controller
             'department_name'   => 'required|string',
             'info'              => 'nullable',
         ]);
+
+        /*$user = User::where('email',Input::get('email'))->first();
+        if (is_null($user)) {
+           print_r("email is exists");
+        }
+           print_r("email is not exists");*/
 
         //dd('Submited');
         $studentObj = new student;

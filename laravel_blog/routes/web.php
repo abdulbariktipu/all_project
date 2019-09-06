@@ -16,4 +16,12 @@
 /*Route::get('/', function () {
     return view('homePage');
 });*/
-Route::get('/homePage', 'HomePageController@index')->name('index');
+
+Route::get('/', 'UserRegisController@index')->name('index');
+Route::post('/addUser', 'UserRegisController@addUser')->name('addUser');
+
+/*Route::get('/', 'UserRegisController@index');
+Route::get('/getUsers', 'UserRegisController@getUsers');
+Route::post('/addUser', 'UserRegisController@addUser');
+Route::post('/updateUser', 'UserRegisController@updateUser');
+Route::get('/deleteUser/{id}', 'UserRegisController@deleteUser');*/
