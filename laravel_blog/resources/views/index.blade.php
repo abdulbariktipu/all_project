@@ -3,7 +3,7 @@
   <head>
     <title>Insert Update and Delete record with AJAX in Laravel</title>
     <!-- provide the csrf token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    {{-- <meta name="csrf-token" content="{{ csrf_token() }}" /> --}}
     
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --> <!-- jQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -11,37 +11,41 @@
   </head>
   <body>
 
-    <table border='1' id='userTable' style='border-collapse: collapse;'>
+    <form method="post">
+        <table border='1' id='userTable' style='border-collapse: collapse;'>
+        {{csrf_field()}}
       <thead>
         <tr>
           <th>Name</th>
           <th>Email</th>
-          <th></th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><input type='text' id='name' ></td>
           <td><input type='text' id='email' ></td>
-          <td><input type='button' id='adduser' value='Add'></td>
+          <td><input type='button' id='adduser' value='Insert User'></td>
         </tr>
       </tbody>
-    </table>
+      </table>
+    </form>
 
     <!-- Script -->
     <script type='text/javascript'>
-        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        //var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
         $(document).ready(function()
         {
             // Fetch records
-            /*fetchRecords();*/
+            fetchRecords();
 
             // Add record
             $('#adduser').click(function()
             {
                 var name = $('#name').val();
                 var email = $('#email').val();
+                var CSRF_TOKEN = $("input[name*='_token']").val();
 
                 if(name != '' && email != '')
                 {
@@ -59,13 +63,14 @@
 
                                 if(findnorecord > 0)
                                 {
-                                $('#userTable tr.norecord').remove();
+                                    $('#userTable tr.norecord').remove();
                                 }
                                 var tr_str = "<tr>"+
-                                "<td align='center'><input type='text' value='" + name + "' id='name_"+id+"' disabled ></td>" +
-                                "<td align='center'><input type='email' value='" + email + "' id='email_"+id+"'></td>" +
+                                "<td align='center'><input type='text' value='" + name + "' id='name_"+id+"'></td>" +
+                                "<td align='center'><input type='email' value='" + email + "' id='email_"+id+"' disabled></td>" +
                                 "<td align='center'><input type='button' value='Update' class='update' data-id='"+id+"' ><input type='button' value='Delete' class='delete' data-id='"+id+"' ></td>"+
                                 "</tr>";
+                                //alert(tr_str);
 
                                 $("#userTable tbody").append(tr_str);
                             }
@@ -91,6 +96,33 @@
                 }
             });
 
+        });
+
+        // Update record
+        $(document).on("click", ".update", function () 
+        {
+            //alert('Ok');
+            var edit_id = $(this).data('id');
+            var name = $('#name_'+edit_id).val();
+            var email = $('#email_'+edit_id).val();
+            var CSRF_TOKEN = $("input[name*='_token']").val();
+            $.ajax({
+                url: '{{ route('updateUser') }}',
+                type: 'POST',
+                dataType: 'json',
+                data: {_token: CSRF_TOKEN,name: name,email: email},
+                success: function(response)
+                {
+                    if(response>0)
+                    {
+                        alert('Data Updated Successfully');
+                    }
+                    else
+                    {
+                        alert('No Change');
+                    }
+                }
+            });
         });
 
         // Update record
@@ -136,10 +168,10 @@
         });*/
 
         // Fetch records
-        /*function fetchRecords()
+        function fetchRecords()
         {
             $.ajax({
-                url: 'getUsers',
+                url:"{{ route('getUsers') }}",
                 type: 'get',
                 dataType: 'json',
                 success: function(response)
@@ -156,14 +188,12 @@
                         for(var i=0; i<len; i++)
                         {
                             var id = response['data'][i].id;
-                            var username = response['data'][i].username;
                             var name = response['data'][i].name;
                             var email = response['data'][i].email;
 
                             var tr_str = "<tr>" +
-                            "<td align='center'><input type='text' value='" + username + "' id='username_"+id+"' disabled></td>" +
-                            "<td align='center'><input type='text' value='" + name + "' id='name_"+id+"'></td>" + 
-                            "<td align='center'><input type='email' value='" + email + "' id='email_"+id+"'></td>" +
+                            "<td align='center'><input type='text' value='" + name + "' id='name_"+id+"'></td>" +
+                            "<td align='center'><input type='email' value='" + email + "' id='email_"+id+"' disabled></td>" +
                             "<td align='center'><input type='button' value='Update' class='update' data-id='"+id+"' ><input type='button' value='Delete' class='delete' data-id='"+id+"' ></td>"+
                             "</tr>";
 
@@ -181,7 +211,7 @@
                     }
                 }
             });
-        }*/
+        }
     </script>
 
   </body>

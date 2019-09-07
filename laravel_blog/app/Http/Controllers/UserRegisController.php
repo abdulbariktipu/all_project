@@ -12,14 +12,14 @@ class UserRegisController extends Controller
     }
 
     // Fetch records
-	/*public function getUsers()
+	public function getUsers()
 	{
 		// Call getuserData() method of UserRegis Model
 		$userData['data'] = UserRegis::getuserData();
 
 		echo json_encode($userData);
 		exit;
-	}*/
+	}
 
     // Insert record
 	public function addUser(Request $request)
@@ -33,6 +33,35 @@ class UserRegisController extends Controller
 
 			// Call insertData() method of UserRegis Model
 			$value = UserRegis::insertData($data);
+			if($value)
+			{
+				echo $value;
+			}
+			else
+			{
+				echo 0;
+			}
+		}
+		else
+		{
+		   echo 'Fill all fields.';
+		}
+
+		exit; 
+	}
+
+	// Update record
+	public function updateUser(Request $request)
+	{
+		// dd($request);
+		$name = $request->input('name');
+		$email = $request->input('email');
+
+		if($name !='' && $email != '')
+		{
+			$data = array('name'=>$name,"email"=>$email);
+			// Call editUserData() method of UserRegis Model
+			$value = UserRegis::editUserData($data);
 			if($value)
 			{
 				echo $value;
