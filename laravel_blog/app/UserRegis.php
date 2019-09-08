@@ -32,6 +32,7 @@ class UserRegis extends Model
 	public static function editUserData($data)
 	{
 		//dd($data);
+		//DB::table('users')->where('id', $id)->update($data);
 		$value=DB::table('users')->where('email', $data['email'])->update($data);
 		if($value != 0)
 		{
@@ -42,13 +43,23 @@ class UserRegis extends Model
 			return 0;
 		}
 	}
-	/*public static function updateData($id,$data)
-	{
-		DB::table('users')->where('id', $id)->update($data);
-	}
+
 
 	// Delete record
-	public static function deleteData($id=0)
+	public function deleteUserData($data)
+	{
+		$value=DB::table('users')->where('id', $data['id'])->delete();
+		if($value != 0)
+		{
+			return $value;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+	
+	/*public static function deleteData($id=0)
 	{
 		DB::table('users')->where('id', '=', $id)->delete();
 	}*/

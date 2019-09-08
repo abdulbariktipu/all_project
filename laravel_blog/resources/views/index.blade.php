@@ -125,33 +125,31 @@
             });
         });
 
-        // Update record
-        /*$(document).on("click", ".update" , function() 
-        {
-            var edit_id = $(this).data('id');
-
-            var name = $('#name_'+edit_id).val();
-            var email = $('#email_'+edit_id).val();
-
-            if(name != '' && email != '')
-            {
-                $.ajax({
-                    url: 'updateUser',
-                    type: 'post',
-                    data: {_token: CSRF_TOKEN,editid: edit_id,name: name,email: email},
-                    success: function(response)
-                    {
-                        alert(response);
-                    }
-                });
-            }
-            else
-            {
-                alert('Fill all fields');
-            }
-        });*/
-
         // Delete record
+        $(document).on('click', '.delete', function(){
+            var del_id = $(this).data('id');
+            var el = this;
+            var CSRF_TOKEN = $("input[name*='_token']").val();
+            $.ajax({
+                url: '{{ route('deleteUser') }}',
+                type: 'POST',
+                dataType: 'json',
+                data: {_token: CSRF_TOKEN, del_id: del_id},
+                success: function(response)
+                {
+                    if(response>0)
+                    {
+                        alert('Data Delete Successfully');
+                        $(el).closest( "tr" ).remove();
+                    }
+                    else
+                    {
+                        alert('No Change');
+                    }
+                }
+            });
+            
+        });
         /*$(document).on("click", ".delete" , function() 
         {
             var delete_id = $(this).data('id');
@@ -176,6 +174,7 @@
                 dataType: 'json',
                 success: function(response)
                 {
+                    //alert(response['data']);
                     var len = 0;
                     $('#userTable tbody tr:not(:first)').empty(); // Empty <tbody>
                     if(response['data'] != null)
@@ -190,7 +189,7 @@
                             var id = response['data'][i].id;
                             var name = response['data'][i].name;
                             var email = response['data'][i].email;
-
+                            // alert(id);
                             var tr_str = "<tr>" +
                             "<td align='center'><input type='text' value='" + name + "' id='name_"+id+"'></td>" +
                             "<td align='center'><input type='email' value='" + email + "' id='email_"+id+"' disabled></td>" +

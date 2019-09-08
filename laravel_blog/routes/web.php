@@ -21,6 +21,7 @@ Route::get('/', 'UserRegisController@index')->name('index');
 Route::get('/getUsers', 'UserRegisController@getUsers')->name('getUsers');
 Route::post('/addUser', 'UserRegisController@addUser')->name('addUser');
 Route::post('/updateUser', 'UserRegisController@updateUser')->name('updateUser');
+Route::post('/deleteUser', 'UserRegisController@deleteUser')->name('deleteUser');
 
 /*Route::get('/', 'UserRegisController@index');
 Route::get('/getUsers', 'UserRegisController@getUsers');

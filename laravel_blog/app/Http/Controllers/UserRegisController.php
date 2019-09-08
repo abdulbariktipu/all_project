@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request; 
+use Illuminate\Support\Facades\DB;
 use App\UserRegis;
 
 class UserRegisController extends Controller
@@ -79,30 +80,33 @@ class UserRegisController extends Controller
 		exit; 
 	}
 
-	// Update record
-	/*public function updateUser(Request $request)
+	// Delete record
+	public function deleteUser(Request $request)
 	{
-		$name = $request->input('name');
-		$email = $request->input('email');
-		$editid = $request->input('editid');
+		
+		$del_id = $request->input('del_id');
 
-		if($name !='' && $email != '')
+		if($del_id !='')
 		{
-			$data = array('name'=>$name,"email"=>$email);
-
-			// Call updateData() method of UserRegis Model
-			UserRegis::updateData($editid, $data);
-			echo 'Update successfully.';
+			$data = array('id'=>$del_id); 
+			// Call deleteData() method of UserRegis Model
+			$value = DB::table('users')->where('id', $data['id'])->delete();
+			if($value)
+			{
+				echo $value;
+			}
+			else
+			{
+				echo 0;
+			}
 		}
 		else
 		{
-		  echo 'Fill all fields.';
+		   echo 'Fill all fields.';
 		}
 
 		exit; 
-	}*/
-
-	// Delete record
+	}
 	/*public function deleteUser($id=0)
 	{
 		// Call deleteData() method of UserRegis Model
