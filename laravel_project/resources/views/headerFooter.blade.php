@@ -38,6 +38,7 @@
 	      <ul class="nav navbar-nav">
 	        <li class="active"><a href=" {{ route('index') }} ">Home <span class="sr-only">(current)</span></a></li>
 	        <li><a href=" {{ route('create') }} ">Create</a></li>
+	        <li><a href=" {{ route('file_upload_route') }} ">File Upload</a></li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->

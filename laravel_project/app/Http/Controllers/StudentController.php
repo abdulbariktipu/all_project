@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use App\document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; // For Data show
 
@@ -112,7 +113,7 @@ class StudentController extends Controller
         ->where('id', $id)
         ->update(['name' => $request->student_name, 'department_name' => $request->department_name, 'info' => $request->info]);
 
-        /* // our update technic 2
+        /* // update technic 2
         $studentId = Student::find($id);        
         $studentId->name               = $request->student_name;
         $studentId->registration_id    = $request->registration_id;
@@ -129,6 +130,45 @@ class StudentController extends Controller
         $studentId->delete();
 
         return redirect()->route('index')->with('deleteSuccess', 'Data Successfully Deleted');
+    }
+
+    public function uploadPage()
+    {
+        return view('file');
+    }
+
+    public function saveFile(Request $request)
+    {
+        $this->validate($request, [
+            'imgUpload1'  => 'required'
+        ]);
+
+        $image = $request->file('imgUpload1');
+
+        $new_name = rand() . '.' . $image->getClientOriginalExtension();
+
+        $image->move(public_path('images'), $new_name);
+        return back()->with('success', 'Image Uploaded Successfully')->with('path', $new_name);
+
+       /*request()->validate([
+         'imgUpload1'  => 'required|mimes:doc,docx,pdf,txt',
+       ]);
+       $files = $request->file('fileUpload');
+       dd($files);
+ 
+       if ($files = $request->file('imgUpload1')) {
+           $destinationPath = 'public/file/'; // upload path
+           $profilefile = date('YmdHis') . "." . $files->getClientOriginalExtension();
+           $files->move($destinationPath, $profilefile);
+           dd($profilefile);
+           $insert['file'] = "$profilefile";
+        }
+         
+        $check = document::insertGetId($insert);
+ 
+        return Redirect::to("file")
+        ->withSuccess('Great! file has been successfully uploaded.');*/
+ 
     }
 
     /**

@@ -8,10 +8,13 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --> <!-- jQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/parsley.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/parsley.min.js.map') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   </head>
   <body>
 
-    <form method="post">
+    <form data-parsley-validate>
         <table border='1' id='userTable' style='border-collapse: collapse;'>
         {{csrf_field()}}
       <thead>
@@ -23,9 +26,9 @@
       </thead>
       <tbody>
         <tr>
-          <td><input type='text' id='name' ></td>
-          <td><input type='text' id='email' ></td>
-          <td><input type='button' id='adduser' value='Insert User'></td>
+          <td><input type='text' id='name' required=""></td>
+          <td><input type='text' id='email' required=""></td>
+          <td><input type='submit' id='adduser' value='Insert User'></td>
         </tr>
       </tbody>
       </table>
@@ -90,10 +93,10 @@
                         }
                     });
                 }
-                else
+                /*else
                 {
                     alert('Fill all fields');
-                }
+                }*/
             });
 
         });
@@ -212,6 +215,6 @@
             });
         }
     </script>
-
+    
   </body>
 </html>

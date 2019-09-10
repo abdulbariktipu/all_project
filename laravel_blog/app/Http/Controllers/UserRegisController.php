@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\UserRegis;
 use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\DB;
-use App\UserRegis;
 
 class UserRegisController extends Controller
 {
@@ -82,8 +83,7 @@ class UserRegisController extends Controller
 
 	// Delete record
 	public function deleteUser(Request $request)
-	{
-		
+	{		
 		$del_id = $request->input('del_id');
 
 		if($del_id !='')

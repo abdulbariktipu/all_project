@@ -13,15 +13,16 @@ class HomePageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */ //SELECT * FROM `orders` WHERE `customerNumber` IN (SELECT `customerNumber` FROM `customers`)
-    public function index(){
-         $studentsInfo = DB::table('orders')
+    public function index()
+    {
+        $studentsInfo = DB::table('orders')
                 ->select('*')
                 ->whereIn('customerNumber',function($query){
                     $query->select('customerNumber')->from('customers');
-                })                
+                })
                 ->groupBy('customerNumber')
                 ->get();
-         return view('homePage', ['studentsInfo' => $studentsInfo]);
+        return view('homePage', ['studentsInfo' => $studentsInfo]);
     }
 
     /**

@@ -13,9 +13,9 @@ class UserRegis extends Model
 		return $value;
 	}
 
-   // Add record
-   public static function insertData($data)
-   {
+	// Add record
+	public static function insertData($data)
+	{
 		$value=DB::table('users')->where('email', $data['email'])->get();
 		if($value->count() == 0)
 		{
@@ -26,7 +26,7 @@ class UserRegis extends Model
 		{
 			return 0;
 		}
-   }
+	}
 
    // Update record
 	public static function editUserData($data)

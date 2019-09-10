@@ -17,6 +17,8 @@
     return view('homePage');
 });*/
 
+// Route::get('/', 'HomePageController@index')->name('index');
+
 Route::get('/', 'UserRegisController@index')->name('index');
 Route::get('/getUsers', 'UserRegisController@getUsers')->name('getUsers');
 Route::post('/addUser', 'UserRegisController@addUser')->name('addUser');

@@ -26,3 +26,9 @@ Route::get('/edit/{id}', 'StudentController@edit')->name('edit');
 Route::post('/update/{id}', 'StudentController@update')->name('update');
 
 Route::post('/delete/{id}', 'StudentController@delete')->name('delete');
+
+/*Route::get('/file_upload_page', 'StudentController@uploadPage')->name('file_upload_page');
+Route::get('/saveFile', 'StudentController@saveFile')->name('saveFile');*/
+
+Route::get('/fileis', 'StudentController@uploadPage')->name('file_upload_route');
+Route::get('/saveFile', 'StudentController@saveFile');
