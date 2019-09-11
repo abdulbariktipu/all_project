@@ -1,0 +1,253 @@
+http://laraveleasytutorials.blogspot.com/2018/02/laravel-tutorial-in-bangla-basic-project.html
+http://w3programmers.com/bangla/laravel-middleware-basics/
+
+================================ Composer Setup ==================================================================
+**Composer Setup
+E:\wamp64\bin\php\php7.2.2\php.exe
+
+**Laravel installer using composer
+composer global require laravel/installer
+
+**Via Composer Create-Project
+composer create-project --prefer-dist laravel/laravel project_name
+
+**Local Development Server
+cd\wamp64\www\student_management
+php artisan serve
+http://127.0.0.1:8000
+
+================================ Create Model and Controller =======================================================
+
+**Create Model->app/Student.php
+php artisan make:model Student -mcr // Model, Migration and Controller Create
+php artisan make:model Student // Only Model Create
+php artisan make:controller StudentInfoController  // Only Controller Create
+php artisan make:migration create_student_table // Only migration file Create
+php artisan make:migration create_students_table --create=students // Only migration file Create
+php artisan make:model students -m // Model and Migration file create
+
+
+**Controller->app/Http/Controllers/StudentInfoController.php
+php artisan make:controller StudentInfoController  // Only Controller Create
+
+**View
+resources/views/index.blade.php
+
+**Routes->routes/web.php
+Route::get('base URI', 'StudentInfoController_Name@method'); 
+Example->Route::get('/index', 'StudentInfoController@index'); // if index page no need after / index
+
+**Controller -> app\Http\Controllers\StudentController.php
+public function index() // Data show
+{
+    return view('index');
+}
+
+=================================== Database Configration =========================================================
+
+**Database -> Location -> Configration->.env
+DB_CONNECTION=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=classicmodels
+DB_USERNAME=root
+DB_PASSWORD=
+
+Location-->config/database.php
+'mysql' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', 'localhost'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'classicmodels'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
+================================= Migration ==================================================================
+
+**Migration->database/migrations/2019_08_21_072550_create_students_table.php
+php artisan migrate
+Error: In that case error 1071 Specified key was too long;
+Solution: Location -> app/Providers/AppServiceProvider.php
+
+namespace App\Providers;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
+public function boot()
+{
+   Schema::defaultStringLength(191); //NEW: Increase StringLength
+}
+
+================================ Bootstrap Add ================================================================
+
+**bootstrap(js_css)->public/bootstrap
+Add in (View) HTML page below link
+<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+<script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+
+============================== Data Show ========================================================================
+
+**Data Show->Controller
+use Illuminate\Support\Facades\DB;
+public function index()
+{
+   /*$studensName = array('Joy','Tipu');
+   $teacher = array('shofiq','sokha');
+   $data = array('name' => 'San Juan', 'date' => date('Y-m-d'));
+   return view('index', compact('studensName','teacher','data'));*/
+   /*$students = Student::all();
+   return view('index')->with('students',$students);*/
+   $studentsName = DB::table('students')->get();
+   return view('index', ['studentsName' => $studentsName]);
+}
+**Data Show->View Page
+@foreach ($studentsName as $student)
+	<tr>
+		<td> {{ $student->id }} </td>
+		<td> {{ $student->registration_id }} </td>
+		<td> {{ $student->name }} </td>
+		<td> {{ $student->department_name }} </td>
+		<td> {{ $student->info }} </td>
+		<td> {{ $student->created_at }} </td>
+	</tr>
+@endforeach
+
+============================= HeaderFooter =====================================
+
+**HeaderFooter -> location -> headerFooter.blade.php // Header Footer no need repet all page
+<html> 
+    // Header
+    <div class="container">
+       @yield('content') // only add
+    </div>
+    // Footer
+</html>
+
+** Include in Main page like index.blade.php or create.blade.php
+@extends('headerFooter') // @extends('headerFooter Page Name')
+
+@section('content')
+ // main body like Data show, data insert
+@endsection
+
+============================= Data Insert ==================================================================================
+
+**Data Insert -> laravel_project/resources/views/create.blade.php
+ *1. html form
+<form class="form-horizontal" action="{{ route('store') }}" method="post"> 
+// action = route('store') is call from routes->web.php -> Route::post('/store', 'StudentController@store')->name('store');
+ {{ csrf_field() }} // add csrf token after <form tag>
+
+*2. StudentController.php
+    public function store(Request $request)
+    {
+        // dd('Submited'); // dd is a like die();
+        // Data insert into student table
+
+        $studentObj = new student;
+        $studentObj->name               = $request->name;
+        $studentObj->registration_id    = $request->registration_id;
+        $studentObj->department_name    = $request->department_name;
+        $studentObj->info               = $request->info;
+        $studentObj->save(); 
+
+        return redirect()->route('index');
+    }
+*3. Route::post('/store', 'StudentController@store')->name('store');
+
+======================================= Data Edit ==========================================================
+
+*Route
+Route::get('/edit/{id}', 'StudentController@edit')->name('edit');
+Route::post('/update/{id}', 'StudentController@update')->name('update');
+
+*Controller
+public function edit($id) // Data Update into student table
+{
+    $studentId = Student::find($id); // eloquent, Retrive a model by its primary key
+    return view('edit')->with('studentId', $studentId);
+}
+
+public function update(Request $request, $id)
+{
+    $studentId = Student::find($id);
+        
+    $studentId->name               = $request->name;
+    $studentId->registration_id    = $request->registration_id;
+    $studentId->department_name    = $request->department_name;
+    $studentId->info               = $request->info;
+    $studentId->save();
+
+    return redirect()->route('index');
+}
+
+*Show Data Page -> Edit Link
+<td class="btn btn-success"><a href="{{ route('edit', $student->id) }} ">Edit</a></td>
+
+*Create Edit page
+action="{{ route('update', $studentId->id) }}"
+
+============================== Data Delete ==========================================================
+
+*1. index.blade.php
+<form action="{{ route('delete', $student->id) }}" method="post">
+  {{ csrf_field() }}
+  <input type="submit" class="btn btn-danger" value="Delete">
+</form>
+
+*2.Route
+Route::post('/delete/{id}', 'StudentController@delete')->name('delete');
+
+*3. StudentController
+public function delete($id)
+{
+    $studentId = Student::find($id);
+    $studentId->delete();
+
+    return redirect()->route('index');
+}
+
+============================================== Validation =============================================
+
+**Creating The Controller -> When data save
+public function store(Request $request)
+{
+    $validatedData = $request->validate([
+        'title' => 'required|unique:posts|max:255',
+        'body' => 'required',
+    ]);
+}
+
+**Displaying The Validation Errors message
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+====================================================================
+
+
+
+
+
+
+
+
+
+
