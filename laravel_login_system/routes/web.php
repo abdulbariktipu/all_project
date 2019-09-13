@@ -12,9 +12,10 @@
 */
 
 /*Route::get('/', function () {
-    return view('index');
+    return view('welcome');
 });*/
 
-Route::get('/', 'UserRegController@index')->name('index');
-Route::get('/user_registration', 'UserRegController@userPage')->name('userPage');
-Route::post('/addUser', 'UserRegController@saveUser')->name('saveUser');
+Route::get('/login', 'UserLoginController@login')->name('login');
+Route::post('/checklogin', 'UserLoginController@checklogin')->name('checklogin');
+Route::get('/login/successlogin', 'UserLoginController@successlogin')->name('successlogin');
+Route::get('/login/logout', 'UserLoginController@logout')->name('logout');

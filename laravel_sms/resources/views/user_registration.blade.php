@@ -3,8 +3,8 @@
 @section('content')
 
     <h1>User Registration</h1>
+    <span id="message"></span>
     <form  data-parsley-validate>
-        <table border='1' id='userTable' style='border-collapse: collapse;'>
 	        {{csrf_field()}}
 
 	        <div class="form-group">
@@ -34,37 +34,37 @@
 			    </div>
 			</div>
 			
-		</table>
 	</form>
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('#adduser').click(function() 
+			$('#adduser').click(function(e) 
 			{
+				e.preventDefault();
 				var userName = $('#user_name').val();
 				var userEmail = $('#user_email').val();
 				var userPassword = $('#user_password').val();
-				var csrfToken=$("input[name*='_token']").val();
+				// var csrfToken=$("input[name*='_token']").val();
 
-				if (userName!="" && user_email!="" && userPassword!="")
+				if (userName!="" && userEmail!="" && userPassword!="")
 				{
 					$.ajax({
-						url: '{{ route('saveUser') }}',
+						url: ' {{ route('saveUser') }} ',
 						type: 'post',
-						data: {_token: 'csrfToken', userName:userName, userEmail:userEmail, userPassword:userPassword},
+						data: {userName:userName, userEmail:userEmail, userPassword:userPassword},
 						success: function(response)
 						{
-							alert('OK');
+							$('#message').text('Data Insert Success');
+							var userName = $('#user_name').val('');
+							var userEmail = $('#user_email').val('');
+							var userPassword = $('#user_password').val('');
 						}
-					});
-					
+					});	
 				}
 				else
 				{					
 					alert('Plz input');
 				}
-
-
 			});
 		});
 	</script>

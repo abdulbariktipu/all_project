@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\userReg;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Hash;
 
 class UserRegController extends Controller
 {
@@ -23,8 +24,8 @@ class UserRegController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function userPage(Request $request)
-    {
+    public function userPage()
+    {        
         return view('user_registration');
     }
 
@@ -36,8 +37,35 @@ class UserRegController extends Controller
      */
     public function saveUser(Request $request)
     {
-        dd($request);
+        $userName = $request->input('userName');
+        $userEmail = $request->input('userEmail');
+        $userPassword = $request->input('userPassword');
+        $hashPass = Hash::make($userPassword);
+        $rememberToken = str_random(10);
+
+        if($userName !='' && $userEmail != '' && $userPassword != '')
+        {
+            $data = array('name' => $userName, 'email' => $userEmail, 'password' => $userPassword, 'remember_token' => $rememberToken);
+            $value = userReg::insertData($data);
+            // $value = DB::table('users')->insertGetId($data);
+            if ($value) 
+            {
+               echo $value;
+            } 
+            else 
+            {
+               echo 0;
+            }            
+        }
+        else
+        {
+           echo 'Fill all fields.';
+        }
+
+        exit; 
     }
+
+    
 
     /**
      * Display the specified resource.
