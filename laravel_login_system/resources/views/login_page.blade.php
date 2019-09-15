@@ -46,6 +46,7 @@
                 <div class="d-flex justify-content-center form_container">
                     
                     <form action="{{ route('checklogin') }}" method="post" data-parsley-validate>
+                        {{ csrf_field() }}
                         @if(isset(Auth::user()->email))
                             <script>window.location="/login/successlogin";</script>
                            @endif
@@ -58,15 +59,15 @@
                         @endif
 
                         @if ($errors->any())
-                        <div class="alert alert-danger appcss">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                        {{ csrf_field() }}
+                            <div class="alert alert-danger appcss">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        
                         <div class="input-group mb-3">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -111,35 +112,6 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        });
-
-        $(document).ready(function(){
-            $('#loginUser').click(function(e) 
-            {
-                e.preventDefault();
-                var userEmail = $('#user_email').val();
-                var userPassword = $('#user_password').val();
-                // var csrfToken=$("input[name*='_token']").val();
-
-                if (userEmail!="" && userPassword!="")
-                {
-                    $.ajax({
-                        url: ' {{ route('checklogin') }} ',
-                        type: 'post',
-                        data: {userEmail:userEmail, userPassword:userPassword},
-                        success: function(response)
-                        {
-                            $('#message').text('Data Insert Success');
-                            var userEmail = $('#user_email').val('');
-                            var userPassword = $('#user_password').val('');
-                        }
-                    }); 
-                }
-                else
-                {                   
-                    alert('Plz input');
-                }
-            });
         });
     </script>
 </body>

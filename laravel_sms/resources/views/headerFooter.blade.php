@@ -36,11 +36,25 @@
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">
-	        <li class="active"><a href=" {{ route('index') }} ">Home <span class="sr-only">(current)</span></a></li>
-	        <li><a href=" {{ route('userPage') }} ">Create</a></li>
-	        <li><a href="#">File Upload</a></li>
-	      </ul>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href=" {{ route('homePage') }} ">Home <span class="sr-only">(current)</span></a></li>
+				<li><a href=" {{ route('userPage') }} ">Create</a></li>
+				<li><a href="#">File Upload</a></li>
+			</ul>
+		    <div id="navbar" class="navbar-collapse collapse">
+			    <ul class="nav navbar-nav navbar-right">
+			    <li class="active">
+			    	<a href="#">@if(isset(Auth::user()->email))
+			    		<strong>Welcome {{ Auth::user()->email }}</strong><br/>
+			    	</a>
+			 	</li> 
+			    <li><a href="{{ url('logout') }}">Logout</a>
+				@else
+			    	<script>window.location = "/";</script>
+				@endif
+			</li>
+			    </ul>
+			</div>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>

@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Hash;
 
+use Validator;
+use Auth;
+
 class UserRegController extends Controller
 {
     /**
@@ -14,9 +17,42 @@ class UserRegController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function login()
     {
-        return view('index');
+        return view('login_page');
+    }
+
+
+    public function checklogin(Request $request)
+    {
+        $userEmail = $request->input('user_email');
+        $userPassword = $request->input('user_password');
+        
+        $this->validate($request, [
+          'user_email'   => 'required|email',
+          'user_password'  => 'required|alphaNum|min:3'
+         ]);
+        //dd($userEmail);
+
+        $user_data = array(
+          'email'  => $request->get('user_email'),
+          'password' => $request->get('user_password')
+         );
+        // dd($user_data);
+        if(Auth::attempt($user_data))
+        {
+            // dd('test');
+            return redirect('homePage');
+        }
+        else
+        {
+            return back()->with('error', 'Wrong Login Details');
+        }
+    }
+
+    public function homePage()
+    {
+        return view('homePage');
     }
 
     /**
@@ -29,6 +65,7 @@ class UserRegController extends Controller
         return view('user_registration');
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -38,14 +75,20 @@ class UserRegController extends Controller
     public function saveUser(Request $request)
     {
         $userName = $request->input('userName');
-        $userEmail = $request->input('userEmail');
+        $email = $request->input('email');
         $userPassword = $request->input('userPassword');
         $hashPass = Hash::make($userPassword);
         $rememberToken = str_random(10);
+        //dd($request);
+        $this->validate($request, [
+          'userName'   => 'required',
+          'email'   => 'required|email|unique:users,email',
+          'userPassword'  => 'required|alphaNum|min:3'
+         ]);
 
-        if($userName !='' && $userEmail != '' && $userPassword != '')
+        if($userName !='' && $email != '' && $userPassword != '')
         {
-            $data = array('name' => $userName, 'email' => $userEmail, 'password' => $userPassword, 'remember_token' => $rememberToken);
+            $data = array('name' => $userName, 'email' => $email, 'password' => $hashPass, 'remember_token' => $rememberToken);
             $value = userReg::insertData($data);
             // $value = DB::table('users')->insertGetId($data);
             if ($value) 
@@ -110,5 +153,11 @@ class UserRegController extends Controller
     public function destroy(userReg $userReg)
     {
         //
+    }
+
+    function logout()
+    {
+        Auth::logout();
+        return redirect('/'); // redirect login.blade.php page
     }
 }

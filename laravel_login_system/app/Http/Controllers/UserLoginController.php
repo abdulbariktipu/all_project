@@ -49,13 +49,13 @@ class UserLoginController extends Controller
 
     function successlogin()
     {
-     return view('successlogin');
+        return view('successlogin');
     }
 
     function logout()
     {
-     Auth::logout();
-     return redirect('login');
+        Auth::logout();
+        return redirect('login');
     }
 
     /**
