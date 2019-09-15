@@ -10,6 +10,7 @@
     <div class="container">
         
         <h3 class="jumbotron">Laravel Multiple File Upload</h3>
+
         @if (count($errors) > 0)
         <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -20,15 +21,17 @@
             </ul>
         </div>
         @endif
+
         @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
         @endif
+
         <form method="post" action="{{url('file')}}" enctype="multipart/form-data">
             {{csrf_field()}}
             
-            <div class="input-group control-group increment">
+            <div class="input-group control-group increment" id="incrementDiv">
                 <input type="file" name="filename[]" class="form-control">
                 <div class="input-group-btn">
                     <button class="btn btn-success" id="adds" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
@@ -54,10 +57,10 @@
         $(document).ready(function() {
      
           $("#adds").click(function(){ 
-              var html = $("#copyDiv").html();
-              $(".increment").after(html);
+              var copy = $("#copyDiv").html();
+              $("#incrementDiv").after(copy);
           });
-     
+            
           $("body").on("click","#removeDive",function(){ 
               $(this).parents("#parentsDiv").remove();
           });
