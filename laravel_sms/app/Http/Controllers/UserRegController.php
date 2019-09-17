@@ -41,12 +41,11 @@ class UserRegController extends Controller
         // dd($user_data);
         if(Auth::attempt($user_data))
         {
-            // dd('test');
             return redirect('homePage');
         }
         else
         {
-            return back()->with('error', 'Wrong Login Details');
+            return back()->with('errorMessage', 'Wrong Login Details');
         }
     }
 

@@ -49,7 +49,7 @@
                             <script>window.location="homePage";</script>
                         @endif
 
-                        @if ($message = Session::get('error'))
+                        @if ($message = Session::get('errorMessage'))
                             <div class="alert alert-danger alert-block">
                             <button type="button" class="close" data-dismiss="alert">×</button>
                             <strong>{{ $message }}</strong>
@@ -110,35 +110,6 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        });
-
-        $(document).ready(function(){
-            $('#loginUser').click(function(e) 
-            {
-                e.preventDefault();
-                var userEmail = $('#user_email').val();
-                var userPassword = $('#user_password').val();
-                // var csrfToken=$("input[name*='_token']").val();
-
-                if (userEmail!="" && userPassword!="")
-                {
-                    $.ajax({
-                        url: ' {{ route('checklogin') }} ',
-                        type: 'post',
-                        data: {userEmail:userEmail, userPassword:userPassword},
-                        success: function(response)
-                        {
-                            $('#message').text('Data Insert Success');
-                            var userEmail = $('#user_email').val('');
-                            var userPassword = $('#user_password').val('');
-                        }
-                    }); 
-                }
-                else
-                {                   
-                    alert('Plz input');
-                }
-            });
         });
     </script>
 </body>

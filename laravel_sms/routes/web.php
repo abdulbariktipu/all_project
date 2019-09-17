@@ -21,4 +21,5 @@ Route::post('/checklogin', 'UserRegController@checklogin')->name('checklogin');
 Route::get('/homePage', 'UserRegController@homePage')->name('homePage');
 Route::get('/user_registration', 'UserRegController@userPage')->name('userPage');
 Route::post('/addUser', 'UserRegController@saveUser')->name('saveUser');
+
 Route::get('/logout', 'UserRegController@logout')->name('logout');
