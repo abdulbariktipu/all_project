@@ -1,0 +1,129 @@
+https://justlaravel.com/middleware-laravel-content-restriction-user-role/
+================================================== Auto Login and Register and Password reset page generate =======================================
+Auth => app->http
+Auth => resources -> views
+
+1. php artisan make:auth
+
+=========================================================================== ==============================================
+
+2. php artisan migrate //create_users_table.php or others table
+
+=============================================== register.blade.php ======================================================
+
+** \resources\views\auth\register.blade.php -> 
+<div class="form-group">
+  <label for="type" class="col-md-4 control-label" >User Type:</label>
+  <div class="col-md-6">
+      <select class="form-control" name="type" id="type">
+        <option value="admin">Admin</option>
+        <option value="super_admin">Super Admin</option>
+        <option value="member">Member</option>
+      </select>
+  </div>
+</div>
+
+** app\Http\Controllers\Auth\RegisterController.php -> 'type' => $data['type'],
+** \app\User.php -> protected $fillable = [ 'name', 'email', 'password','type',];
+
+====================================== make:middleware ================================================================
+use Illuminate\Http\Response;
+** php artisan make:middleware AdminMiddleware -> 
+public function handle($request, Closure $next)
+{
+    if ($request->user() && $request->user()->type != 'admin')
+    {
+        return new Response(view('unauthorized')->with('role', 'ADMIN'));
+    }
+        return $next($request);
+}
+** php artisan make:middleware SuperAdminMiddleware -> 
+public function handle($request, Closure $next)
+{
+    if ($request->user() && $request->user()->type != 'super_admin')
+    {
+        return new Response(view('unauthorized')->with('role', 'SUPER ADMIN'));
+    }
+        return $next($request);
+}
+** php artisan make:middleware MemberMiddleware -> 
+public function handle($request, Closure $next)
+{
+    if ($request->user() && $request->user()->type != 'member')
+    {
+        return new Response(view('unauthorized')->with('role', 'MEMBER'));
+    }
+        return $next($request);
+}
+
+================================================= Route ======================================================
+
+** \routes\web.php -> 
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
+{
+    Route::match(['get', 'post'], '/adminOnlyPage/', 'HomeController@admin');
+});
+Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function()
+{
+    Route::match(['get', 'post'], '/memberOnlyPage/', 'HomeController@member');  
+});
+ Route::group(['middleware' => 'App\Http\Middleware\SuperAdminMiddleware'], function()
+{
+    Route::match(['get', 'post'], '/superAdminOnlyPage/', 'HomeController@super_admin');  
+});
+
+======================================== unauthorized.blade.php access page mess new create ======================================================
+
+** \resources\views\unauthorized.blade.php ->
+<div class="title m-b-md">
+    You cannot access this page! This is for only '{{$role}}'"
+</div>
+
+======================================== ======================================== 
+
+G:\xampp\htdocs\all_project\lara_user_role\app\Http\Controllers\HomeController.php -> 
+
+    public function admin(Request $req){
+        return view('middleware')->withMessage("Admin");
+    }
+    public function super_admin(Request $req){
+        return view('middleware')->withMessage("Super Admin");
+    }
+    public function member(Request $req){
+        return view('middleware')->withMessage("Member");
+    }
+
+======================================== ======================================== 
+
+G:\xampp\htdocs\all_project\lara_user_role\resources\views\middleware.blade.php -> 
+
+	   <div class="content">
+                <div class="title m-b-md">
+                    {{ strtoupper($message)}} only page!
+                </div>
+            </div>
+
+======================================== ======================================== 
+
+\resources\views\home.blade.php -> 
+	   <div class="panel panel-default">
+                <div class="panel-heading">Dashboard</div>
+                <div class="panel-body">
+ 
+                    You are logged in! as <strong>{{ strtoupper(Auth::user()->type) }}</strong>
+                    
+            	Admin Page: <a href="{{ url('/') }}/adminOnlyPage">{{ url('/') }}/adminOnlyPage</a>
+                    
+            	Super Admin Page: <a href="{{ url('/') }}/superAdminOnlyPage">{{ url('/') }}/super_adminOnlyPage</a>
+                    
+            	Member Page: <a href="{{ url('/') }}/memberOnlyPage">{{ url('/') }}/memberOnlyPage</a>
+                </div>
+            </div>
