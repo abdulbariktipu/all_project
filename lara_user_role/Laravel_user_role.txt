@@ -1,16 +1,15 @@
 https://justlaravel.com/middleware-laravel-content-restriction-user-role/
-================================================== Auto Login and Register and Password reset page generate =======================================
+================================================== Auto Login and Register and Password reset page generate ====
 Auth => app->http
 Auth => resources -> views
 
 1. php artisan make:auth
 
-=========================================================================== ==============================================
+=========================================================================== ===================================
 
 2. php artisan migrate //create_users_table.php or others table
 
-=============================================== register.blade.php ======================================================
-
+=============================================== register.blade.php =============================================
 ** \resources\views\auth\register.blade.php -> 
 <div class="form-group">
   <label for="type" class="col-md-4 control-label" >User Type:</label>
@@ -26,23 +25,23 @@ Auth => resources -> views
 ** app\Http\Controllers\Auth\RegisterController.php -> 'type' => $data['type'],
 ** \app\User.php -> protected $fillable = [ 'name', 'email', 'password','type',];
 
-====================================== make:middleware ================================================================
+====================================== make:middleware =========================================================
 use Illuminate\Http\Response;
 ** php artisan make:middleware AdminMiddleware -> 
 public function handle($request, Closure $next)
 {
     if ($request->user() && $request->user()->type != 'admin')
     {
-        return new Response(view('unauthorized')->with('role', 'ADMIN'));
+        return new Response(view('unauthorized')->with('role', 'ADMIN')); // going to unauthorized.blade.php
     }
         return $next($request);
 }
 ** php artisan make:middleware SuperAdminMiddleware -> 
 public function handle($request, Closure $next)
 {
-    if ($request->user() && $request->user()->type != 'super_admin')
+    if ($request->user() && $request->user()->type != 'super_admin') 
     {
-        return new Response(view('unauthorized')->with('role', 'SUPER ADMIN'));
+        return new Response(view('unauthorized')->with('role', 'SUPER ADMIN')); // going to unauthorized.blade.php
     }
         return $next($request);
 }
@@ -51,12 +50,12 @@ public function handle($request, Closure $next)
 {
     if ($request->user() && $request->user()->type != 'member')
     {
-        return new Response(view('unauthorized')->with('role', 'MEMBER'));
+        return new Response(view('unauthorized')->with('role', 'MEMBER')); // going to unauthorized.blade.php
     }
         return $next($request);
 }
 
-================================================= Route ======================================================
+================================================= Route =================================================
 
 ** \routes\web.php -> 
 Route::get('/', function () {
@@ -80,28 +79,28 @@ Route::group(['middleware' => 'App\Http\Middleware\MemberMiddleware'], function(
     Route::match(['get', 'post'], '/superAdminOnlyPage/', 'HomeController@super_admin');  
 });
 
-======================================== unauthorized.blade.php access page mess new create ======================================================
+======================================== unauthorized.blade.php access page mess new create ===========
 
 ** \resources\views\unauthorized.blade.php ->
 <div class="title m-b-md">
     You cannot access this page! This is for only '{{$role}}'"
 </div>
 
-======================================== ======================================== 
+======================================== HomeController.php ======================================== 
 
 G:\xampp\htdocs\all_project\lara_user_role\app\Http\Controllers\HomeController.php -> 
 
     public function admin(Request $req){
-        return view('middleware')->withMessage("Admin");
+        return view('middleware')->withMessage("Admin"); // going to middleware.blade.php page
     }
     public function super_admin(Request $req){
-        return view('middleware')->withMessage("Super Admin");
+        return view('middleware')->withMessage("Super Admin"); // going to middleware.blade.php page
     }
     public function member(Request $req){
-        return view('middleware')->withMessage("Member");
+        return view('middleware')->withMessage("Member"); // going to middleware.blade.php page
     }
 
-======================================== ======================================== 
+======================================== middleware.blade.php Message =================================
 
 G:\xampp\htdocs\all_project\lara_user_role\resources\views\middleware.blade.php -> 
 
@@ -111,7 +110,7 @@ G:\xampp\htdocs\all_project\lara_user_role\resources\views\middleware.blade.php 
                 </div>
             </div>
 
-======================================== ======================================== 
+======================================== Home page ======================================== 
 
 \resources\views\home.blade.php -> 
 	   <div class="panel panel-default">
@@ -127,3 +126,22 @@ G:\xampp\htdocs\all_project\lara_user_role\resources\views\middleware.blade.php 
             	Member Page: <a href="{{ url('/') }}/memberOnlyPage">{{ url('/') }}/memberOnlyPage</a>
                 </div>
             </div>
+
+======================================== After Register redirect page ======================================== 
+
+** G:\xampp\htdocs\all_project\lara_user_role\app\Http\Controllers\Auth\RegisterController.php
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+
+public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        return redirect($this->redirectPath())->with('message', 'Your message');
+    }
+
+======================================== Password Reset/Forget Password =====================================
+
+** 
