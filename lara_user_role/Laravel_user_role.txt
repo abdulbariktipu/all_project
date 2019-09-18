@@ -144,4 +144,12 @@ public function register(Request $request)
 
 ======================================== Password Reset/Forget Password =====================================
 
-** 
+** G:\xampp\htdocs\all_project\lara_user_role\.env
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=ff035059637e4c
+MAIL_PASSWORD=0056fcc56d7e40
+MAIL_ENCRYPTION=null
+
+** Login mailtrap.io
