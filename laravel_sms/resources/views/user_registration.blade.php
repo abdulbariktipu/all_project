@@ -2,8 +2,7 @@
 
 @section('content')
 
-    <h1>User Registration</h1>
-    <span id="message"></span>
+    <h1>User Registration</h1>    
     @if ($errors->any())
         <div class="alert alert-danger appcss">
             <ul>
@@ -13,8 +12,9 @@
             </ul>
         </div>
 	@endif
+	<div id="showHide"><span id="message"></span></div>
     <form data-parsley-validate>
-    	<span id="result"></span>
+    	
         <div class="form-group">
 		    <label class="control-label col-sm-2" for="user_name">Name:</label>
 		    <div class="col-sm-10">
@@ -70,11 +70,11 @@
 			                    {
 			                        error_html += '<p>'+response.error[count]+'</p>';
 			                    }
-			                    $('#message').html('<div class="alert alert-danger">'+error_html+'</div>');
+			                    $('#message').html('<div class="alert alert-danger">'+error_html+'</div>').fadeIn(5000);
 			                }
 			                else
 			                {
-			                    $('#message').html('<div class="alert alert-success">'+"Data Insert Success"+'</div>');
+			                    $('#message').html('<div class="alert alert-success">'+"Data Insert Success"+'</div>').fadeOut(5000);
 			                    var userName = $('#user_name').val('');
 								var email = $('#email').val('');
 								var userPassword = $('#user_password').val('');
@@ -90,6 +90,7 @@
 				}
 			});
 		});
+
 	</script>
 
 @endsection
