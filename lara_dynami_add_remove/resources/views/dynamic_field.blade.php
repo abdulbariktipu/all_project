@@ -83,7 +83,7 @@ $(document).ready(function(){
             data:$(this).serialize(),
             dataType:'json',
             beforeSend:function(){
-                //$('#save').attr('disabled','disabled');
+                $('#save').attr('disabled','disabled');
             },
             success:function(data)
             {

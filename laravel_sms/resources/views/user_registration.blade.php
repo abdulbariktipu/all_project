@@ -14,7 +14,7 @@
         </div>
 	@endif
     <form data-parsley-validate>
-    	
+    	<span id="result"></span>
         <div class="form-group">
 		    <label class="control-label col-sm-2" for="user_name">Name:</label>
 		    <div class="col-sm-10">
@@ -62,10 +62,25 @@
 						data: {userName:userName, email:email, userPassword:userPassword},
 						success: function(response)
 						{
-							$('#message').text('Data Insert Success');
-							var userName = $('#user_name').val('');
-							var email = $('#email').val('');
-							var userPassword = $('#user_password').val('');
+							if(response.error)
+			                {
+			                	//$('#message').text('Data Error');
+			                    var error_html = '';
+			                    for(var count = 0; count < response.error.length; count++)
+			                    {
+			                        error_html += '<p>'+response.error[count]+'</p>';
+			                    }
+			                    $('#message').html('<div class="alert alert-danger">'+error_html+'</div>');
+			                }
+			                else
+			                {
+			                    $('#message').html('<div class="alert alert-success">'+"Data Insert Success"+'</div>');
+			                    var userName = $('#user_name').val('');
+								var email = $('#email').val('');
+								var userPassword = $('#user_password').val('');
+			                }
+							/*$('#message').text('Data Insert Success');
+							*/
 						}
 					});	
 				}

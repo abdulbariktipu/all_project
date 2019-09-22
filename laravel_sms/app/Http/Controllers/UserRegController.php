@@ -79,11 +79,25 @@ class UserRegController extends Controller
         $hashPass = Hash::make($userPassword);
         $rememberToken = str_random(10);
         //dd($request);
-        $this->validate($request, [
+        
+        /*$this->validate($request, [
           'userName'   => 'required',
           'email'   => 'required|email|unique:users,email',
           'userPassword'  => 'required|alphaNum|min:3'
-         ]);
+         ]);*/
+
+        $rules = array(
+        'userName'  => 'required',
+        'email'  => 'required|email|unique:users,email',
+        'userPassword'  => 'required|alphaNum|min:3'
+        );
+        $error = Validator::make($request->all(), $rules);
+        if($error->fails())
+        {
+            return response()->json([
+                'error'  => $error->errors()->all()
+            ]);
+        }
 
         if($userName !='' && $email != '' && $userPassword != '')
         {
