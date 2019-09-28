@@ -39,8 +39,8 @@ class DynamicFieldController extends Controller
     public function insert(Request $request)
     {
         $rules = array(
-        'first_name.*'  => 'required',
-        'last_name.*'  => 'required'
+            'first_name.*'  => 'required',
+            'last_name.*'  => 'required'
         );
         $error = Validator::make($request->all(), $rules);
         if($error->fails())
@@ -53,7 +53,7 @@ class DynamicFieldController extends Controller
         $first_name = $request->first_name;
         $last_name = $request->last_name;
         for ($count=0; $count < count($first_name); $count++) 
-        { 
+        {
             $data = array(
                 'first_name' => $first_name[$count],
                 'last_name'  => $last_name[$count],
