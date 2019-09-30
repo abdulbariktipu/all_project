@@ -86,7 +86,7 @@
             }
         }
     </script>
-    <!-- Custome Alert CSS End -->
+    <!-- Custome Alert JS End -->
 
     <script>
         function showHint(operation) 
@@ -141,7 +141,7 @@
 <body style="background: rgba(76, 175, 80, 0.3);">     
     <form>
 
-        <!-- Custome Alert HTML End -->    
+        <!-- Custome Alert HTML Start -->    
         <div id="dialogCont" class="dlg-container">
             <div class="dlg-header">Custom Alert Dialog</div>
             <div id="dialogBody" class="dlg-body"></div>
