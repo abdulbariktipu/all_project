@@ -9,6 +9,7 @@
 	require_once('../includes/db_mysql_function.php');
 	$action=$_REQUEST['action'];
 	$data=$_REQUEST['search'];
+	// print_r($_REQUEST);die;
 
 	if ($action=='customer_wise_report') // customer_wise_report
 	{
@@ -102,12 +103,14 @@
 		<?php
 	}
 
-	if ($action=='customer_order_wise_report') // customer_order_wise_report
+	if ($action=='customer_order_wise_report') // customer_order_productCode_wise_report
 	{
+		extract($_REQUEST);
+
 		$sql="SELECT a.customerName, b.orderNumber, b.shippedDate, b.status, sum(c.quantityOrdered) as qty, sum(c.priceEach) as value, c.productCode
 		FROM customers a, orders b, orderdetails c 
-		WHERE a.customerNumber=b.customerNumber and b.orderNumber=c.orderNumber
-		GROUP by a.customerName, b.orderNumber, c.productCode"; //  and b.customerNumber in(242,249)
+		WHERE a.customerNumber=b.customerNumber and b.orderNumber=c.orderNumber AND b.shippedDate BETWEEN '$from_date' AND '$to_date'
+		GROUP by a.customerName, b.orderNumber, c.productCode";
 		$sql_result=sql_select($sql);
 
 		$data_arr=$rowspan=array();
@@ -117,11 +120,12 @@
 		  $data_arr[$row['customerName']][$row['orderNumber']][$row['productCode']]['value']=$row['value'];
 		  $data_arr[$row['customerName']][$row['orderNumber']][$row['productCode']]['shippedDate']=$row['shippedDate'];
 		  $data_arr[$row['customerName']][$row['orderNumber']][$row['productCode']]['status']=$row['status'];
+		  $data_arr[$row['customerName']][$row['orderNumber']][$row['productCode']]['productCode']=$row['productCode'];
 
 		  $rowspan[$row['orderNumber']]++;
 		}
 		/*echo "<pre>";
-		print_r($rowspan);die;*/
+		print_r($data_arr);die;*/
 
 		$customer_rowspan=$qty_arr=$value_arr=array();
 		?>
@@ -158,17 +162,19 @@
 				                    <tr bgcolor="<?php echo $bgcolor; ?>">
 				                        <td width="40"><?php echo $i; ?></td>
 				                        <td width="200"><?php echo $customerName_key; ?></td>
-				                        <td width="100"><?php echo $productCode_key; ?></td>
+				                        <td width="100"><?php echo $row['productCode']; ?></td>
 				                        <td width="130"><?php echo $orderNumber_key; ?></td>
 				                        <td width="130"><?php echo $row['qty']; ?></td>
 				                        <td width="140"><?php echo $row['value']; ?></td>
 				                        <?php 
-				                        if (!in_array($orderNumber_key,$chk)) 
+				                        if (!in_array($orderNumber_key, $chk)) 
 				                        {
-				                        ?>				                        
-				                        <td width="130" rowspan="<?php echo $rowspan[$orderNumber_key]; ?>"><?php echo $row['shippedDate']; ?></td>
-				                        <td  rowspan="<?php echo $rowspan[$orderNumber_key]; ?>"><?php echo $row['status']; ?></td>
-				                        <?php
+					                        ?>				                        
+					                        <td width="130" rowspan="<?php echo $rowspan[$orderNumber_key]; ?>">
+					                        	<?php echo $row['shippedDate']; ?></td>
+					                        <td rowspan="<?php echo $rowspan[$orderNumber_key]; ?>">
+					                        	<?php echo $row['status']; ?></td>
+					                        <?php
 				                        }
 				                        $chk[]=$orderNumber_key;
 				                        ?> 
@@ -249,7 +255,7 @@
 		  $yearMonth_arr[$row['yearMonth']]=$row['yearMonth'];
 		}
 		$total_yearMonth=count($yearMonth_arr);
-		$table_width=1040+($total_yearMonth*230); // 230
+		$table_width=1040+($total_yearMonth*230); 
 		//$div_width=($total_yearMonth*100); 
 		/*echo "<pre>";
 		print_r($monthYarQty);die;*/
@@ -384,10 +390,93 @@
 		  $rowspan[$row['customerNumber']]++;
 		}
 		/*echo "<pre>";
-		print_r($rowspan);*/
+		print_r($data_arr);die;*/
 		$table_width=1040;
- 
+
+		$data = array('1,2,3,4,5,6,7,8','45','','56,31,32,33','','','21,22','11,12,12,13,16');
+		//echo "<pre>";
+		//print_r($data );
+		$max_arr = array();
+		$max = 0;
+		foreach($data as $value)
+		{
+		  $value = trim($value);
+		  if (!empty($value))
+		  {
+		      $arr = explode(",",$value);
+		      $max_count = count($arr);
+		      if($max_count>$max)
+		      {
+		        $max=$max_count;
+		      }
+		  }
+		}
+
+		//$max;
+		$NewArr = explode(",",$max);
 		?>
+		<style>
+			#customers {
+			  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+			  border-collapse: collapse;
+			  width: 100%;
+			}
+
+			#customers td, #customers th {
+			  border: 1px solid red;
+			  padding: 8px;
+			}
+
+			#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+			#customers tr:hover {background-color: #ddd;}
+
+			#customers th {
+			  padding-top: 12px;
+			  padding-bottom: 12px;
+			  text-align: left;
+			  background-color: #4CAF50;
+			  color: white;
+			}
+		</style>
+		<table id="customers">
+			<tr>
+				<th>Color</th>
+				<th>Fabric</th>
+			<?php
+			for($i=0;$i<$max;$i++)
+			{
+				?>
+				<th style="text-align: center;"><?php echo $i; ?></th>
+				<?php
+			}
+			?>
+			</tr>
+
+			<?php
+			$arrayName = array(1 => "Red", 2 => "Blue");
+			foreach ($arrayName as $key => $value) 
+			{
+				?>
+				<tr>
+					<td><?php echo $value; ?></td>
+					<td>100% Cotton</td>
+					<?php
+					for($i=0;$i<$max;$i++)
+					{
+						?>
+						<td><?php echo "Process ".$i; ?></td>
+						<?php
+					}
+					?>
+				</tr>
+				<?php
+			}
+			?>
+		</table>
+
+		<br>
+
 		<div id="report_container" align="center" style="width:1040px">
 			<fieldset style="width:1040px;">
 				<h2>CustomerName, OrderNumber and ProductCode Wise Report</h2>
