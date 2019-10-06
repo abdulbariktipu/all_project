@@ -120,6 +120,10 @@
                 {
                     var data="action=month_wise_report2&search="+operation+"&from_date="+from_date+"&to_date="+to_date;
                 }
+                if (operation==5)
+                {
+                    var data="action=month_date_wise_report&search="+operation+"&from_date="+from_date+"&to_date="+to_date;
+                }
 
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() 
@@ -157,6 +161,7 @@
         <button type="button" onclick="showHint(2)">Customer and Order Wise</button>
         <button type="button" onclick="showHint(3)">Month Wise</button>
         <button type="button" onclick="showHint(4)">Month Wise</button>
+        <button type="button" onclick="showHint(5)">Month and Date Wise</button>
         </form>
         <p><span id="showReport"></span></p>
     </body>

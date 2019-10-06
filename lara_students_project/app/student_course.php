@@ -22,6 +22,19 @@ class student_course extends Model
 		}
 	}
 
+	public static function updateData($updateData)
+	{
+		$value=DB::table('student_courses')->where('id', $updateData['id'])->update($updateData);
+		if($value != 0)
+		{
+			return 2;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
 	public static function getCourseData($id=null)
     {
 		$value=DB::table('student_courses')->orderBy('id', 'asc')->get(); //->paginate(4) 

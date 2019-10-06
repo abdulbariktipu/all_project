@@ -28,13 +28,14 @@ class StudentCourseController extends Controller
      */
     public function saveCourse(Request $request)
     {
-        // dd($request);
+        //dd($request);
 
         $courseCode = $request->input('courseCode');
         $courseName = $request->input('courseName');
         $credit = $request->input('credit');
         $writerName = $request->input('writerName');
         $edition = $request->input('edition');
+        $updateId = $request->input('updateId');
         
         /*$this->validate($request, [
           'userName'   => 'required',
@@ -42,14 +43,27 @@ class StudentCourseController extends Controller
           'userPassword'  => 'required|alphaNum|min:3'
          ]);*/
 
-        $rules = array(
-            'courseCode'  => 'required|unique:student_courses,course_code',
-            'courseName'  => 'required',
-            'credit'  => 'required|numeric',
-            'writerName'  => 'required',
-            'edition'  => 'required'
-        );
-
+        if($updateId!="")
+        {
+            $rules = array(
+                'courseCode'  => 'required',
+                'courseName'  => 'required',
+                'credit'  => 'required|numeric',
+                'writerName'  => 'required',
+                'edition'  => 'required'
+            ); 
+        } 
+        else 
+        {
+            $rules = array(
+                'courseCode'  => 'required|unique:student_courses,course_code',
+                'courseName'  => 'required',
+                'credit'  => 'required|numeric',
+                'writerName'  => 'required',
+                'edition'  => 'required'
+            );           
+        }
+        
         $input = $request->all();
         $customMessages = [
             'writerName.required' => 'The writer name cant empty.',
@@ -67,8 +81,18 @@ class StudentCourseController extends Controller
 
         if($courseCode !='' && $courseName != '' && $credit != '')
         {
-            $data = array('course_code' => $courseCode, 'course_name' => $courseName, 'credit' => $credit, 'writer' => $writerName, 'edition' => $edition, 'created_at' => Carbon::now());
-            $value = student_course::insertData($data);
+            if ($updateId!="") // update.................
+            {
+                $dataUpdate = array('course_code' => $courseCode, 'course_name' => $courseName, 'credit' => $credit, 'writer' => $writerName, 'edition' => $edition, 'id' => $updateId, 'updated_at' => Carbon::now());
+                // dd($dataUpdate);
+                $value = student_course::updateData($dataUpdate);
+            } 
+            else // Insert.................
+            {
+                $data = array('course_code' => $courseCode, 'course_name' => $courseName, 'credit' => $credit, 'writer' => $writerName, 'edition' => $edition, 'created_at' => Carbon::now());
+                $value = student_course::insertData($data);
+            }
+            
             // $value = DB::table('users')->insertGetId($data);
             if ($value) 
             {
@@ -152,8 +176,20 @@ class StudentCourseController extends Controller
      * @param  \App\student_course  $student_course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(student_course $student_course)
+    public function destroy(Request $deleteIdrequ)
     {
-        //
+        //dd($deleteId);
+        // $value = student_course::Find($deleteId)->delete();
+        $del_id = $deleteIdrequ->input('deleteId');
+        $data = array('id'=>$del_id);
+        $value = DB::table('student_courses')->where('id', $data['id'])->delete();
+        if($value)
+        {
+            echo $value;
+        }
+        else
+        {
+            echo 0;
+        }
     }
 }

@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/course', 'StudentCourseController@course')->name('course');
 Route::post('/addcourse', 'StudentCourseController@saveCourse')->name('saveCourse');
+Route::post('/deleteCourse', 'StudentCourseController@destroy')->name('deleteCourse');
 
 Route::get('/getCourse', 'StudentCourseController@getCourse')->name('getCourse');
 

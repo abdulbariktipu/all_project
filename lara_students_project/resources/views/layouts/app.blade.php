@@ -24,6 +24,11 @@
     <script type="text/javascript" src="{{ asset('js/parsley.min.js') }}"></script>
     <!-- https://parsleyjs.org/doc/ -->
     <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <style type="text/css">
+        .displayClass{
+         display: none;
+    }
+    </style>
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {

@@ -45,8 +45,10 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <button type="submit" id="addData" class="btn btn-info btn-block">Submit</button>    
+                        <input type="hidden" name="updateId" id="updateId">
+                        <button type="submit" id="addData" class="btn btn-info btn-block addedClass">Submit</button>   
+                        <button type="submit" id="updateData" class="btn btn-info btn-block updateClass displayClass">Update</button>
+                        <button type="submit" id="deleteData" class="btn btn-info btn-block deleteClass displayClass">Delete</button>  
                     </form>                    
                 </div>
             </div>
@@ -54,21 +56,22 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Student List View</div>
-                    <div class="card-body">
-                        <table class="table table-bordered table-hover">
+                    <div class="card-body" style="height: 300px; overflow: auto;">
+                        <table class="table table-bordered table-hover" id="table_id">
                             <thead>
                                 <tr>
                                     <th>Course Code</th>
                                     <th>Course Name</th>
                                     <th>Credit</th>
+                                    <th>Writer Name</th>
+                                    <th>Edition</th>
                                 </tr>
                             </thead>
-                            <tbody id="CourseTable">
-
+                            <tbody id="CourseTable" style="cursor: pointer;">
                             </tbody>
                         </table>
                     </div>
-             </div>
+            </div>
         </div>
     </div>
 </div>
@@ -79,6 +82,64 @@
 
         fetchRecords(); // Get data from database, // Fetch records // Follow laravel_blog
 
+        // Update Record
+        $('#updateData').click(function(e)
+        {
+            e.preventDefault();
+            //alert('ok');return;
+            var courseCode = $('#course_code').val();
+            var courseName = $('#course_name').val();
+            var credit = $('#credit').val();
+            var writerName = $('#writer_name').val();
+            var edition = $('#edition').val();
+            var csrfToken=$("input[name*='_token']").val();
+            var updateId = $('#updateId').val();
+
+            if (courseCode!="" && courseName!="" && credit!="")
+            {
+                $.ajax({
+                    url: ' {{ route('saveCourse') }} ',
+                    type: 'post',
+                    data: {"_token": "{{ csrf_token() }}", courseCode:courseCode, courseName:courseName, credit:credit, writerName:writerName, edition:edition, updateId:updateId},
+                    success: function(response)
+                    {
+                        //alert(response);
+                        if(response.error)
+                        {
+                            //$('#message').text('Data Error');
+                            var error_html = '';
+                            for(var count = 0; count < response.error.length; count++)
+                            {
+                                error_html += '<p>'+response.error[count]+'</p>';
+                            }
+                            $('#message').html('<div class="alert alert-danger">'+error_html+'</div>').fadeIn(5000);
+                        }
+                        else if (response==2)
+                        {
+                            $('#message').html('<div class="alert alert-success">'+"Data Update Success"+'</div>').fadeOut(5000);
+                            fetchRecords();
+                            $('#course_code').val('');
+                            $('#course_name').val('');
+                            $('#credit').val('');
+                            $('#writer_name').val('');
+                            $('#edition').val('');
+                            $('#updateId').val('');
+                            $('#course_code').prop("disabled", false);
+
+                            $('.addedClass').removeClass('displayClass');
+                            $('.updateClass').addClass('displayClass');
+                            $('.deleteClass').addClass('displayClass');
+                            $('.addedClass').attr('id', 'addData');
+                            $('.updateClass').attr('id', 'remove');
+                        }
+                    }
+                }); 
+            }
+            else
+            {                   
+                alert('Plz input');
+            }
+        });
         // Add record
         $('#addData').click(function(e) 
         {
@@ -99,6 +160,7 @@
                     data: {"_token": "{{ csrf_token() }}", courseCode:courseCode, courseName:courseName, credit:credit, writerName:writerName, edition:edition},
                     success: function(response)
                     {
+                        //alert(response);
                         if(response.error)
                         {
                             //$('#message').text('Data Error');
@@ -109,8 +171,7 @@
                             }
                             $('#message').html('<div class="alert alert-danger">'+error_html+'</div>').fadeIn(5000);
                         }
-                        else
-                        {
+                        else{
                             $('#message').html('<div class="alert alert-success">'+"Data Insert Success"+'</div>').fadeOut(5000);
                             fetchRecords();
                             $('#course_code').val('');
@@ -118,9 +179,9 @@
                             $('#credit').val('');
                             $('#writer_name').val('');
                             $('#edition').val('');
+                            $('#updateId').val('');
+                            $('#course_code').prop("disabled", false);
                         }
-                        /*$('#message').text('Data Insert Success');
-                        */
                     }
                 }); 
             }
@@ -144,16 +205,20 @@
                     {
                         len = response['data'].length;
                     }
+                    //alert(len);
                     if(len > 0)
                     {
                         var res='';
                         $.each (response['data'], function (key, value) {
+                            //alert(response['data']);
                             res +=
-                            "<tr>"+
-                                "<input id='update_" + value.id + "' type='hidden' value='" + value.id + "'>"+
-                                "<td>"+value.course_code+"</td>"+
-                                "<td>"+value.course_name+"</td>"+
-                                "<td>"+value.credit+"</td>"+
+                            "<tr>"+                                
+                                "<td id='course_code_"+value.id+"'>"+value.course_code+"</td>"+
+                                "<td id='course_name_"+value.id+"'>"+value.course_name+"</td>"+
+                                "<td id='credit_"+value.id+"'>"+value.credit+"</td>"+
+                                "<td id='writer_name_"+value.id+"'>"+value.writer+"</td>"+
+                                "<td id='edition_"+value.id+"'>"+value.edition+"</td>"+
+                                "<td style='display: none;' id='updateId_"+value.id+"'>"+value.id+"</td>"+
                             "</tr>";
                         });
 
@@ -167,9 +232,73 @@
 
                         $("#CourseTable").append(tr_str);
                     }
+
+                    var tableData = document.getElementById('table_id');
+                
+                    for(var i = 1; i < tableData.rows.length; i++)
+                    {
+                        //alert(i);
+                        tableData.rows[i].onclick = function()
+                        {
+                            document.getElementById("course_code").value    = this.cells[0].innerHTML;
+                            document.getElementById("course_name").value    = this.cells[1].innerHTML;
+                            document.getElementById("credit").value         = this.cells[2].innerHTML;
+                            document.getElementById("writer_name").value    = this.cells[3].innerHTML;
+                            document.getElementById("edition").value        = this.cells[4].innerHTML;
+                            document.getElementById("updateId").value       = this.cells[5].innerHTML;
+                            $('#course_code').prop('disabled', true);
+                            
+                            $('.addedClass').addClass('displayClass');
+                            $('.updateClass').removeClass('displayClass');
+                            $('.deleteClass').removeClass('displayClass');
+                            $('.addedClass').attr('id', 'remove');
+                            $('.updateClass').attr('id', 'addData');
+                        };
+                    }
                 }
             });
         }
+
+        // Delete Data
+        $('#deleteData').click(function(e)
+        {
+            e.preventDefault();
+            // alert('ok');return;
+            var csrfToken=$("input[name*='_token']").val();
+            var deleteId = $('#updateId').val();
+
+            $.ajax({
+                url: ' {{ route('deleteCourse') }} ',
+                type: 'post',
+                data: {"_token": "{{ csrf_token() }}", deleteId:deleteId},
+                success: function(response)
+                {
+                    if(response>0)
+                    {
+                        $('#message').html('<div class="alert alert-success">'+"Data Delete Successfully"+'</div>').fadeOut(5000);
+                        fetchRecords();
+                        $('#course_code').val('');
+                        $('#course_name').val('');
+                        $('#credit').val('');
+                        $('#writer_name').val('');
+                        $('#edition').val('');
+                        $('#updateId').val('');
+                        $('#course_code').prop("disabled", false);
+
+                        $('.addedClass').removeClass('displayClass');
+                        $('.updateClass').addClass('displayClass');
+                        $('.deleteClass').addClass('displayClass');
+                        $('.addedClass').attr('id', 'addData');
+                        $('.updateClass').attr('id', 'remove');
+                    }
+                    else
+                    {
+                        $('#message').html('<div class="alert alert-danger">'+"Data Delete Is Not Successfully"+'</div>').fadeIn(5000);
+                    }
+                }
+            }); 
+            
+        });
     });
 </script>
 @endsection
