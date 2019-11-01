@@ -3,14 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\student_course;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use Validator;
 use Auth;
 
+use Illuminate\Support\Facades\Gate;
+
 class StudentCourseController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +26,10 @@ class StudentCourseController extends Controller
      */
     public function course()
     {
+        // dd(auth()->id()); // Get login user id
+        if(!Gate::allows('isSuperAdmin')){
+          abort(404,"Sorry, You can do this action");
+        }
         return view('course_create');
     }
 
@@ -109,6 +121,41 @@ class StudentCourseController extends Controller
         }
 
         exit; 
+    }
+
+    public function getProfile()
+    {
+        $data = array('id'=>auth()->id());
+        $profileArr = DB::table('users')->where('id', $data['id'])->get();
+        //dd($profileArr);
+        return view('profile_page', ['profileArr' => $profileArr]);
+    }
+
+    public function profileEdit($id)
+    {
+        $profileId = User::find($id); 
+        return view('edit_profile')->with('profileId', $profileId);
+    }
+
+    public function profileUpdate(Request $request, $id)
+    {
+        $image = $request->file('filename');
+        if($request->hasfile('filename'))
+        { 
+            foreach($request->file('filename') as $file)
+            {
+                $name=$file->getClientOriginalName();
+                $file->move(public_path().'/upload/', $name); 
+                //$data[] = $name; 
+            }
+        }
+        //dd($name);
+
+        $sId = DB::table('users')
+        ->where('id', $id)
+        ->update(['name' => $request->user_name, 'user_type' => $request->user_type, 'image_file' => $name]);
+
+        return redirect()->route('getProfile')->with('updateSuccess', 'Data Successfully Updated');
     }
 
     /**

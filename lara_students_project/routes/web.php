@@ -24,4 +24,8 @@ Route::post('/deleteCourse', 'StudentCourseController@destroy')->name('deleteCou
 
 Route::get('/getCourse', 'StudentCourseController@getCourse')->name('getCourse');
 
+Route::get('/getProfile', 'StudentCourseController@getProfile')->name('getProfile');
+Route::get('/profileEdit/{userId}', 'StudentCourseController@profileEdit')->name('profileEdit');
+Route::post('/profileUpdate/{userId}', 'StudentCourseController@profileUpdate')->name('profileUpdate');
+
 

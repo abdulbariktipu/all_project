@@ -185,7 +185,7 @@
 				                    $order_wise_total_order_value+=$row['value'];
 
 				                    $grand_total_order_qty+=$row['qty'];
-				                    $grand_total_order_value+=$row['value']; 						                
+				                    $grand_total_order_value+=$row['value'];	                
 								}
 								?>
 								<tr>
@@ -209,7 +209,6 @@
 							</tr>
 							<?php
 	                	}
-
 		                ?>
 		            </tbody>
 	        	</table>

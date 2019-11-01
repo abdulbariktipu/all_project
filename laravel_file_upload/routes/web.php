@@ -12,4 +12,4 @@
 */
 
 Route::get('file','FileController@create');
-Route::post('file','FileController@store');
+Route::post('file','FileController@storeImg');

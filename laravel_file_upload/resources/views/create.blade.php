@@ -3,6 +3,11 @@
   <title>Laravel Multiple File Upload Example</title>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <style type="text/css">
+      input[type="file"] {
+    display: inline-flex;
+}
+  </style>
 </head>
 <body>
     
@@ -32,14 +37,23 @@
             {{csrf_field()}}
             
             <div class="input-group control-group increment" id="incrementDiv">
-                <input type="file" name="filename[]" class="form-control">
+                <div>
+                    <input type="text" name="imgCaption[]" id="imgCaption">
+                    <input type="file" name="filename[]" >
+                </div>
                 <div class="input-group-btn">
                     <button class="btn btn-success" id="adds" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
                 </div>
+
             </div>
+
             <div class="clone hide" id="copyDiv">
+            
                 <div class="control-group input-group" style="margin-top:10px" id="parentsDiv">
-                    <input type="file" name="filename[]" class="form-control">
+                    <div>
+                        <input type="text" name="imgCaption[]" id="imgCaption">
+                        <input type="file" name="filename[]" >
+                    </div>
                     <div class="input-group-btn">
                         <button class="btn btn-danger" id="removeDive" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
                     </div>

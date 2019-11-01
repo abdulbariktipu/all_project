@@ -37,3 +37,5 @@ textarea.parsley-error {
 .parsley-errors-list.filled {
   opacity: 1;
 }
+
+.imgcircle{border-radius:50%}

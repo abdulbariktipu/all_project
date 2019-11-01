@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\File;
-
+use Illuminate\Support\Facades\DB;
+use Validator;
 class FileController extends Controller
 {
     public function create()
@@ -13,28 +14,33 @@ class FileController extends Controller
         return view('create');
     }
 
-    public function store(Request $request) 
+    public function storeImg(Request $request) 
     {
  
         $this->validate($request, [ 
             'filename' => 'required',
             'filename.*' => 'mimes:doc,pdf,docx,zip,txt,jpg,png' 
         ]);
- 
+        
+        $caption = $request->input('imgCaption');
+        $image = $request->file('filename');
+
         if($request->hasfile('filename'))
         { 
             foreach($request->file('filename') as $file)
             {
                 $name=$file->getClientOriginalName();
-                $file->move(public_path().'/files/', $name);  
-                $data[] = $name;  
+                $file->move(public_path().'/files/', $name); 
+                $data[] = $name;   
+                //$imgdata = array($caption[0],$name);  
            	}
         }
- 
-         $file= new File();
-         $file->filename=json_encode($data);          
+        //dd($imgdata);
+        $dataObj= new File();
+        $dataObj->filename=json_encode($data);
+        $dataObj->img_caption=json_encode($caption);
          
-        $file->save();
+        $dataObj->save();
  
         return back()->with('success', 'Your files has been successfully added');
     }
