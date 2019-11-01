@@ -28,4 +28,6 @@ Route::get('/getProfile', 'StudentCourseController@getProfile')->name('getProfil
 Route::get('/profileEdit/{userId}', 'StudentCourseController@profileEdit')->name('profileEdit');
 Route::post('/profileUpdate/{userId}', 'StudentCourseController@profileUpdate')->name('profileUpdate');
 
+Route::get('/userReg', 'StudentCourseController@userReg')->name('userReg');
+
 

@@ -27,10 +27,19 @@ class StudentCourseController extends Controller
     public function course()
     {
         // dd(auth()->id()); // Get login user id
+        /*if(!Gate::allows('isSuperAdmin')){
+          abort(404,"Sorry, You can do this action");
+        }*/
+        return view('course_create');
+    }
+
+    public function userReg()
+    {
+        // dd(auth()->id()); // Get login user id
         if(!Gate::allows('isSuperAdmin')){
           abort(404,"Sorry, You can do this action");
         }
-        return view('course_create');
+        return view('user_reg');
     }
 
     /**
