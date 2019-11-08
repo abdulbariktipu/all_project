@@ -1,0 +1,39 @@
+**laravel_middleware**
+
+** Video Link
+https://www.youtube.com/watch?v=mjIRBlzMMTo
+
+**create project
+composer create-project --prefer-dist laravel/laravel laravel_middleware
+
+**User Login & Reg plugins
+php artisan make:auth
+
+**Create Model, Controller and Migrat file
+php artisan make:model Student -mcr
+
+**Student Seeder create StudentsTableSeeder
+php artisan make:seeder StudentsTableSeeder
+
+**Users Seeder create UsersTableSeeder
+php artisan make:seeder UsersTableSeeder
+
+**Table Migrate
+php artisan migrate
+
+** Data Insert using seed
+composer dump-autoload
+php artisan db:seed
+
+** Middleware create
+php artisan make:middleware CheckRole
+*Kernel.php
+'checkrole' => \App\Http\Middleware\CheckRole::class,
+*web.php
+Route::get('/students', 'StudentController@index')->middleware('checkrole');
+*home.blade.php
+@if (session('errors'))
+    <div class="alert alert-danger" role="alert">
+      {{ session('errors') }}
+    </div>
+@endif
