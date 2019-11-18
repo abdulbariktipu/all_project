@@ -13,6 +13,7 @@
         "laravel/framework": "5.8.*",
         "laravel/telescope": "^2.1",
         "laravel/tinker": "^1.0",
+        "laravelcollective/html": "^5.8",
         "spatie/laravel-permission": "^2.38"
     },
     "require-dev": {

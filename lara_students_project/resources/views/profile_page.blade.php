@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">User Profile</div>
+                <div style="font-size: 20px;"><span class="badge badge-primary">User Profile</span></div>
                 <div class="card-body">
                     <table class="table table-user-information">
                         <tbody>

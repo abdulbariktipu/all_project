@@ -148,22 +148,32 @@ class StudentCourseController extends Controller
 
     public function profileUpdate(Request $request, $id)
     {
-        $image = $request->file('filename');
+        //$image = $request->file('filename');
+        $img_name="";
         if($request->hasfile('filename'))
         { 
             foreach($request->file('filename') as $file)
             {
-                $name=$file->getClientOriginalName();
-                $file->move(public_path().'/upload/', $name); 
-                //$data[] = $name; 
+                $img_name=$file->getClientOriginalName();
+                $file->move(public_path().'/upload/', $img_name); 
+                //$data[] = $img_name; 
             }
+          //$img_name =$img_name;
         }
         //dd($name);
-
-        $sId = DB::table('users')
+        if ($img_name=="") 
+        {
+          $sId = DB::table('users')
         ->where('id', $id)
-        ->update(['name' => $request->user_name, 'user_type' => $request->user_type, 'image_file' => $name]);
-
+        ->update(['name' => $request->user_name, 'user_type' => $request->user_type]);
+        } 
+        else 
+        {
+          $sId = DB::table('users')
+          ->where('id', $id)
+          ->update(['name' => $request->user_name, 'user_type' => $request->user_type, 'image_file' => $img_name]);
+        }
+        
         return redirect()->route('getProfile')->with('updateSuccess', 'Data Successfully Updated');
     }
 

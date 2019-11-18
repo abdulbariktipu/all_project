@@ -86,7 +86,33 @@
 <!-- $studentsName->links() // paginate-->
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function()
+    {
+        if({{ auth()->user()->id }}!=2)
+        {
+            document.onkeydown = function(e) {
+              if(event.keyCode == 123) {
+                 alert('Inspect Element Not Allow'); return false;
+              }
+              if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+                 alert('Inspect Element Not Allow'); return false;
+              }
+              if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+                 alert('Inspect Element Not Allow'); return false;
+              }
+              if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+                 alert('Inspect Element Not Allow'); return false;
+              }
+              if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+                 alert('Inspect Element Not Allow'); return false;
+              }
+            }
+            document.addEventListener('contextmenu', function(e) //Use of Right click
+            {               
+                alert('Inspect Element Not Allow'); return;
+                e.preventDefault();
+            });
+        }
 
         fetchRecords(); // Get data from database, // Fetch records // Follow laravel_blog
 

@@ -50,7 +50,7 @@
 		            	$i=1;
 		            	$grand_total_order_qty=$grand_total_order_value=$grand_customer_total_order_qty=$grand_customer_total_order_value=0;
 	                	foreach ($sql_result as $customerName_key => $row) 
-	                	{
+	                	{	                		
 							if ($i%2==0) $bgcolor="#E9F3FF"; else $bgcolor="#FFFFFF"; 
 							?>
 		                    <tr bgcolor="<?php echo $bgcolor; ?>">
@@ -125,7 +125,7 @@
 		  $rowspan[$row['orderNumber']]++;
 		}
 		/*echo "<pre>";
-		print_r($data_arr);die;*/
+		print_r($rowspan);die;*/
 
 		$customer_rowspan=$qty_arr=$value_arr=array();
 		?>
@@ -148,6 +148,7 @@
 		            <tbody>
 		            	<?php
 		            	$i=1;
+		            	//$chk=array();
 		            	$grand_total_order_qty=$grand_total_order_value=0;
 	                	foreach ($data_arr as $customerName_key => $customerName_val) 
 						{
@@ -170,7 +171,7 @@
 				                        if (!in_array($orderNumber_key, $chk)) 
 				                        {
 					                        ?>				                        
-					                        <td width="130" rowspan="<?php echo $rowspan[$orderNumber_key]; ?>">
+					                        <td width="130" title="<?php echo $rowspan[$orderNumber_key]; ?>" rowspan="<?php echo $rowspan[$orderNumber_key]; ?>">
 					                        	<?php echo $row['shippedDate']; ?></td>
 					                        <td rowspan="<?php echo $rowspan[$orderNumber_key]; ?>">
 					                        	<?php echo $row['status']; ?></td>

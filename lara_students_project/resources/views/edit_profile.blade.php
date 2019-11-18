@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">User Profile</div>
-                <div class="card-body">
+                <div style="font-size: 20px;"><span class="badge badge-primary">Edit User Profile</span></div><br><br>
+                <div class="card-body" style="margin-bottom: 200px;">
                     <form class="form-horizontal" action="{{ route('profileUpdate', $profileId->id) }}" method="post" enctype="multipart/form-data">
 
                         {{ csrf_field() }}
@@ -15,6 +15,7 @@
                           <label for="user_type" class="col-md-4 col-form-label text-md-right" >Image Upload:</label>
                           <div class="col-md-6">
                               <input type="file" name="filename[]" id="filename">
+                              <img src="/upload/{{ $profileId->image_file }}"  class="" alt="{{ $profileId->image_file }}" width="100" height="100" />
                           </div>
                         </div>
 
