@@ -1,5 +1,5 @@
 <?php
-
+// php artisan make:controller SendMailController
 namespace App\Http\Controllers;
 
 use App\student_course;

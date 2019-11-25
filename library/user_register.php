@@ -79,6 +79,9 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script> 
     
+    <!-- https://jqueryvalidation.org/?fbclid=IwAR3WOzDCS8jtYagVF9kinC9N_l_yrr4GIUI1Oz8Hu7_DqegEDNyJ_bqNgLs -->
+    <!-- https://jqueryvalidation.org/ -->
+    <!-- http://bootstrapvalidator.votintsev.ru/getting-started/ -->
     <link rel="stylesheet" href="validCss/bootstrap.css"/><!--<link bootstrapValidator.css -->
     <link rel="stylesheet" href="validCss/bootstrapValidator.css"/> <!--link bootstrapValidator.css-->
     <script type="text/javascript" src="validJs/jquery.min.js"></script><!--bootstrapValidator.js-->

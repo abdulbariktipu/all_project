@@ -26,4 +26,12 @@ Route::post('/profileUpdate/{userId}', 'StudentCourseController@profileUpdate')-
 
 Route::get('/userReg', 'StudentCourseController@userReg')->name('userReg');
 
+Route::get('/counter', function(){
+	return view('counter');
+});
+
+
+Route::get('/contact_mail', 'SendMailController@contact')->name('contact');
+Route::post('/send_mail', 'SendMailController@send_mail')->name('send_mail');
+
 

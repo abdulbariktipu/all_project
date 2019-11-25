@@ -1,0 +1,21 @@
+
+
+1. Auto Create after commend
+  php artisan make:mail ContractFormMail -m emails.contact-form
+
+  G:\xampp\htdocs\all_project\lara_students_project\app\Mail\ContractFormMail.php
+  G:\xampp\htdocs\all_project\lara_students_project\resources\views\emails\contact-form.blade.php
+
+2. After Commend
+  php artisan make:request Contact_Mail
+
+  G:\xampp\htdocs\all_project\lara_students_project\app\Http\Requests\Contact_Mail.php
+
+
+3. Controller Create
+php artisan make:controller SendMailController
+
+G:\xampp\htdocs\all_project\lara_students_project\app\Http\Controllers\SendMailController.php
+
+
+
