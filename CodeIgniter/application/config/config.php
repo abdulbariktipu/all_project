@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = ''; 
-// $config['base_url'] = 'http://localhost/codeIgniter/'; // Comment by Tipu
+// $config['base_url'] = 'http://[::1]/all_project/codeIgniter/index.php/'; // Comment by Tipu
 
 
 /*

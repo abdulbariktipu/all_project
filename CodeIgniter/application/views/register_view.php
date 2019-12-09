@@ -102,13 +102,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							}
 						?>
 			            <form method="post" action="<?php echo site_url('Register_Controller/register'); ?>">
-			            <input type="text" name="name" id="name" class="form-control input-sm chat-input" placeholder="username" /> </br>			            
-			            <input type="text" name="email" id="email" class="form-control input-sm chat-input" placeholder="Email" /> <span id="email_result"></span></br>
-			            <input type="password" name="password" id="password" class="form-control input-sm chat-input" placeholder="password" /> </br>
-			            <input type="password" name="rePassword" id="rePassword" class="form-control input-sm chat-input" placeholder="rePassword" /> </br>			            
-			            <div class="wrapper">
-			            <input type="submit" name="submit" value="Register Now" class="">
-				        </div>
+				            <input type="text" name="name" id="name" class="form-control input-sm chat-input" placeholder="username" /> </br>	
+
+				            <input type="text" name="email" id="email" class="form-control input-sm chat-input" placeholder="Email" /> <span id="email_result"></span></br>
+
+				            <input type="password" name="password" id="password" class="form-control input-sm chat-input" placeholder="password" /> </br>
+
+				            <input type="password" name="rePassword" id="rePassword" class="form-control input-sm chat-input" placeholder="rePassword" /> </br>	
+				            		            
+				            <div class="wrapper">
+				            	<input type="submit" name="submit" value="Register Now" class="">
+					        </div>
 				        </form>
 				        <p>Already Registered! <a href="<?php echo site_url('Register_Controller/loginFunction'); ?>">Login Heare</a></p>
 		            </div>        

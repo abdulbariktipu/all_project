@@ -1,5 +1,6 @@
 <?php
 // php artisan make:mail ContractFormMail -m emails.contact-form
+// Email Documentation: Email Send_doc_by_tipu.txt
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;

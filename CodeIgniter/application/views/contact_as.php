@@ -235,6 +235,7 @@ if (!$id)
                     <th>Email</th>
                     <th>Telephone</th>
                     <th>Message</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -249,11 +250,33 @@ if (!$id)
 				     	<td><?=$row->email;?></td>
 				     	<td><?=$row->telephone;?></td>
 				     	<td><?=$row->message;?></td>
+				     	<!-- <td><a class="delete_data" id="<?php echo $row->id; ?>" href="<?php //echo site_url('Register_Controller/delete_contact/');?><?=$row->id;?>">Delete</a></td> -->
+				     	<td><a class="delete_data" id="<?php echo $row->id; ?>" href="#">Delete</a></td>
 				     </tr>     
 				    <?php 
 				}
+				
 				?> 
             </tbody>
         </table>
 </div>
 <!-- Data Show 2 End -->
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.delete_data').click(function(event) {
+			var delete_id = $(this).attr('id');
+			if (confirm("Are Your Sure You Want To Delete This?")) 
+			{
+				//alert('ok'); // if you use base_url() plz flow config.php file
+				//window.location="<?php //echo base_url();?>Register_Controller/delete_contact/"+delete_id;
+				window.location="<?php echo site_url('Register_Controller/delete_contact/');?>"+delete_id;
+			}
+			else
+			{
+				//alert('Error');
+				return false;
+			}
+		});
+	});
+</script>

@@ -30,7 +30,7 @@ class Register_Controller extends CI_Controller
 		);
 
 		if (!$data['name']=='' && !$data['email']=='' && !$data['password']=='')
-		{			
+		{
 	    	$this->load->model('U_Model'); 
 	    	if ($this->U_Model->CheckExitUser($data['email'])) // Data Already Exit, more comma separetor
 	    	{
@@ -45,14 +45,15 @@ class Register_Controller extends CI_Controller
 		    		$this->session->set_flashdata('smsg','Registration Success');
 					redirect('Register_Controller');
 				}
-				else{
+				else
+				{
 					$this->session->set_flashdata('emsg','Password do not match');
 					redirect("Register_Controller"); 
 				}	    		 	   
-	    	}
-	    	       
+	    	}	       
 		}
-		else{
+		else
+		{
 			$this->session->set_flashdata('emsg','Name and email and password can not be blank');
 			redirect('Register_Controller');
 		} 
@@ -88,7 +89,7 @@ class Register_Controller extends CI_Controller
 	public function home() // pagination with data show in home page
 	{
 		// $this->load->view('home'); 
-		$config['base_url']		=	"http://[::1]/codeIgniter/index.php/register_Controller/home";
+		$config['base_url']		=	"http://[::1]/all_project/codeIgniter/index.php/register_Controller/home";
 		$config['per_page']		=	5;
 		$config['num_links']	=	5;
 		$config['total_rows']	=	$this->db->get('baby')->num_rows();
@@ -200,6 +201,16 @@ class Register_Controller extends CI_Controller
 		}*/
 		// Data Show 2 end contact_as page
     }
+
+	public function delete_contact()
+	{
+		//echo "string";die;
+		$id = $this->uri->segment(3);
+		//echo $id;die;
+		$this->load->model('U_Model');
+		$this->U_Model->delete_contact_data($id);
+		redirect("Register_Controller/contact_as_function");
+	}
 
 
 

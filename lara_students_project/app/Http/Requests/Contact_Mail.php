@@ -1,5 +1,6 @@
 <?php
 //  php artisan make:request Contact_Mail
+// Email Documentation: Email Send_doc_by_tipu.txt
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;

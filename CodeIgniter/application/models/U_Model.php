@@ -93,5 +93,11 @@
 			return $show->result();
 		}*/
  		// Data Show 2 end contact_as page
+
+ 		public function delete_contact_data($id)
+ 		{
+ 			$this->db->where('id', $id);
+ 			$this->db->delete('contact_info');
+ 		}
 	}
 ?>

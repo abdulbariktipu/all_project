@@ -148,6 +148,7 @@ class StudentCourseController extends Controller
 
     public function profileUpdate(Request $request, $id)
     {
+      // dd($id);
         //$image = $request->file('filename');
         $img_name="";
         if($request->hasfile('filename'))

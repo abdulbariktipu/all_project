@@ -71,8 +71,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 	</style>
 
-      <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
-      <script type = 'text/javascript' src = "<?php echo base_url(); ?>js/sample.js"></script> 
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
+    <script type = 'text/javascript' src = "<?php echo base_url(); ?>js/sample.js"></script> 
 
 </head>
 <body>
@@ -89,14 +89,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		            <div class="form-login">
 			            <h4>Enter your Email and Password to Login</h4>
 
-						<?php 
+						<?php
 							$emsg=$this->session->flashdata('emsg');
 							if ($emsg) 
 							{
 								echo '<span id="error_mess">'.$emsg.'<span>';
 							}
 						?>
-			            <form method="post" action="<?php echo site_url('Register_Controller/loginFunction'); ?>"> 			            
+			            <form method="post" action="<?php echo site_url('Register_Controller/loginFunction'); ?>">
 				            <input type="text" name="email" id="email" class="form-control input-sm chat-input" placeholder="Email" /> <span id="email_result"></span></br>
 				            <input type="text" name="password" id="password" class="form-control input-sm chat-input" placeholder="password" /> </br>			            
 				            <div class="wrapper">

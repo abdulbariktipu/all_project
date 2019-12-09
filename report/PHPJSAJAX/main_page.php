@@ -73,7 +73,7 @@
             this.show = function(msg){
                 var dlg = document.getElementById('dialogCont');
                 var dlgBody = dlg.querySelector('#dialogBody');
-                dlg.style.top = '30%';
+                dlg.style.top = '50%';
                 dlg.style.opacity = 1;
                 dlgBody.textContent = msg;
             }
@@ -81,7 +81,7 @@
             this.close = function(){
                 var dlg = document.getElementById('dialogCont');
                 var dlgBody = dlg.querySelector('#dialogBody');
-                dlg.style.top = '-30%';
+                dlg.style.top = '-50%';
                 dlg.style.opacity = 0;
             }
         }
