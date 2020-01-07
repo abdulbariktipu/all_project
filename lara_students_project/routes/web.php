@@ -25,6 +25,7 @@ Route::get('/profileEdit/{userId}', 'StudentCourseController@profileEdit')->name
 Route::post('/profileUpdate/{userId}', 'StudentCourseController@profileUpdate')->name('profileUpdate');
 
 Route::get('/userReg', 'StudentCourseController@userReg')->name('userReg');
+Route::get('/user_list_view', 'StudentCourseController@user_list_view_fn')->name('user_list_view');
 
 Route::get('/counter', function(){
 	return view('counter');

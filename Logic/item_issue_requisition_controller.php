@@ -904,7 +904,8 @@ if ($action == "print_item_issue_requisition") {
 }
 */
 
-if ($action == "save_update_delete_mst") {
+if ($action == "save_update_delete_mst") 
+{
 	$process = array(&$_POST);
 	extract(check_magic_quote_gpc($process));
 	if ($operation == 0)  // Insert Here

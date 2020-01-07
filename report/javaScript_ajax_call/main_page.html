@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		function fnc_item_issue_requisition_mst(operation)
+		{
+			//alert(operation);
+			var http = new XMLHttpRequest();
+			var data="action=save_update_delete_mst&operation="+operation;
+			//alert(data);
+			http.open("POST","requers/controller.php",true);
+			http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			http.send(data);
+			http.onreadystatechange =fnc_item_issue_requisition_mst_Reply_info;
+
+			function fnc_item_issue_requisition_mst_Reply_info()
+			{
+				if(http.readyState == 4) 
+				{
+					var response=http.responseText.split("**");
+					// alert(response[2]);
+					document.getElementById("myName").value = response[0]+response[1]+response[2];
+					
+				}
+			}
+		}		
+	</script>
+</head>
+<body>
+	<input type="text" name="myName" id="myName">
+	<input type="submit" name="save" id="save" value="Insert" onclick="fnc_item_issue_requisition_mst(2)">
+</body>
+</html>

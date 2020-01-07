@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
 
         @can('isSuperAdmin') 
-        {{-- Show only Super Admin User path: G:\xampp\htdocs\all_project\lara_students_project\app\Providers\AuthServiceProvider.php--}}
+        {{-- Data insert only Super Admin User path: G:\xampp\htdocs\all_project\lara_students_project\app\Providers\AuthServiceProvider.php--}}
 
         <div class="col-md-8">
             <div class="card">

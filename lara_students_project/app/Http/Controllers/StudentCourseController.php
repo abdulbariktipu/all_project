@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use Validator;
 use Auth;
+use App\helpers;
+use App\Application;
 
 use Illuminate\Support\Facades\Gate;
 
@@ -40,6 +42,16 @@ class StudentCourseController extends Controller
           abort(404,"Sorry, You can do this action");
         }
         return view('user_reg');
+    }
+
+    public function user_list_view_fn()
+    {
+        if(!Gate::allows('isSuperAdmin')){
+          abort(404,'Sorry, You can do this action.');
+        }
+        $userList = DB::table('users')->select('id','name','user_type','email','created_at')->orderBy('id')->get();
+        //dd($userList);
+        return view('user_list_view', ['userList' => $userList]);
     }
 
     /**

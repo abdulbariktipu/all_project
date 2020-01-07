@@ -303,8 +303,11 @@ desired effect
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i><span>Manage Users</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
+            @can('isSuperAdmin') 
+            {{-- Data insert only Super Admin User path: G:\xampp\htdocs\all_project\lara_students_project\app\Providers\AuthServiceProvider.php--}}
             <li><a href=" {{ route('register') }}">Create User</a></li>
-            <li><a href="#">User List</a></li>
+            @endcan
+            <li><a href=" {{ route('user_list_view') }}">User List</a></li>
           </ul>
         </li>
         <li class="treeview">

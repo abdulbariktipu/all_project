@@ -1,0 +1,31 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div id="date" class="container_date">
+    <div class="date_day" id="input_day">
+        <input type="text" maxlength="2" name="input_day" id="1" value="">
+    </div>
+    <div class="date_month" id="input_month">
+        <input type="text" maxlength="2" name="input_month" id="2" value="">
+    </div>
+    <div class="date_year" id="input_year">
+        <input type="text" maxlength="4" name="input_year" id="3" value="">
+    </div>
+</div>
+<div id="time" class="container_time">
+    <div class="time_hour" id="input_hour">
+        <input type="text" maxlength="2" name="input_hour" id="1" value="">
+    </div>
+    <div class="time_minute" id="input_minute">
+        <input type="text" maxlength="2" name="input_minute" id="2" value="">
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    $('input').keyup(function(){
+        if($(this).val().length==$(this).attr("maxlength")){
+            var i = $('input').index(this);
+            $('input').eq(i+1).focus();
+        }
+    });
+});
+</script>
