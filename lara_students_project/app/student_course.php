@@ -40,4 +40,14 @@ class student_course extends Model
 		$value=DB::table('student_courses')->orderBy('id', 'asc')->get(); //->paginate(4) 
 		return $value;
 	}
+
+	public static function user_list_view_model()
+	{
+		$userList = DB::table('users')->select('id','name','user_type','email','created_at')->orderBy('id')->get();
+
+		if($userList->count() > 0)
+		{
+			return $userList;
+		}
+	}
 }

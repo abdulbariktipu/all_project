@@ -35,4 +35,7 @@ Route::get('/counter', function(){
 Route::get('/contact_mail', 'SendMailController@contact')->name('contact');
 Route::post('/send_mail', 'SendMailController@send_mail')->name('send_mail');
 
+Route::get('/pdf-download', 'PDFController@PDFgenerator'); // https://www.siddharthshukla.in/blog/laravel-6-generate-pdf-file/
+
+
 

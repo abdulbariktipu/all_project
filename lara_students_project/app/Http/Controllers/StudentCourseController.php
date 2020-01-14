@@ -12,7 +12,7 @@ use Auth;
 use App\helpers;
 use App\Application;
 
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate; // added
 
 class StudentCourseController extends Controller
 {
@@ -49,8 +49,10 @@ class StudentCourseController extends Controller
         if(!Gate::allows('isSuperAdmin')){
           abort(404,'Sorry, You can do this action.');
         }
-        $userList = DB::table('users')->select('id','name','user_type','email','created_at')->orderBy('id')->get();
-        //dd($userList);
+        $userList = student_course::user_list_view_model();
+        // or below
+        //$userList = DB::table('users')->select('id','name','user_type','email','created_at')->orderBy('id')->get();
+        // dd($userList);
         return view('user_list_view', ['userList' => $userList]);
     }
 
