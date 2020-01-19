@@ -1,0 +1,17 @@
+.container{
+    margin: 0 auto;
+    width: 30%;
+}
+
+.content{
+    border: 1px solid black;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+.content span{
+    width: 250px;
+}
+
+.content span:hover{
+    cursor: pointer;
+}
