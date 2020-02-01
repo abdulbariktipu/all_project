@@ -118,6 +118,122 @@
 		<?php
 	}
 
+	if ($action=='marcent_wise_report') // customer_wise_report
+	{
+		extract($_REQUEST);
+
+		$sql="SELECT a.customerName, b.orderNumber, sum(c.quantityOrdered) as qty, sum(c.priceEach) as value, c.productCode, b.orderDate, b.requiredDate, b.shippedDate
+		FROM customers a, orders b, orderdetails c 
+		WHERE a.customerNumber=b.customerNumber and b.orderNumber=c.orderNumber AND b.shippedDate BETWEEN '$from_date' AND '$to_date'
+		GROUP by a.customerName, b.orderNumber, c.productCode, b.orderDate, b.requiredDate, b.shippedDate";
+		// and b.customerNumber='$data' 
+		$sql_result=sql_select($sql);
+		$customer_rowspan=$qty_arr=$value_arr=array();
+		foreach ($sql_result as $customerName_key => $row) 
+		{
+			$customer_rowspan[$row['customerName']]++; 
+			$qty_arr[$row['customerName']]+=$row['qty'];
+			$value_arr[$row['customerName']]+=$row['value'];
+		}
+		?>
+		<div id="report_container" align="center" style="width:1040px">
+			<fieldset style="width:1040px;">
+				<h2>Marcent Wise Report</h2>
+			    <table class="rpt_table" border="1" rules="all" width="1040" cellpadding="0" cellspacing="0">
+			        <thead>
+			            <th width="40">SL</th> 
+			            <th width="200"> Customer Name</th>
+			            <th width="130">Order No</th>
+			            <th width="100">Product Code</th>
+			            <th width="130">Order Qty.</th>
+			            <th width="100">Order Value ($)</th>
+			            <th width="100">Order Date</th>
+			            <th width="100">Required Date</th>
+			            <th>Shipped Date</th>
+			        </thead>
+			    </table>
+			    <table class="rpt_table" border="1" rules="all" width="1040" cellpadding="0" cellspacing="0" id="table_body">
+		            <tbody>
+		            	<?php
+		            	$i=1;		            	
+	                	foreach ($sql_result as $customerName_key => $row) 
+	                	{	                		
+							if ($i%2==0) $bgcolor="#E9F3FF"; else $bgcolor="#FFFFFF"; 
+							if(!in_array($row['customerName'], $chk))
+		                   	{	                   		
+		                   		if ($i!=1) 
+		                   		{
+				                    ?>
+				                   	<tr>
+				                        <td colspan="2" align="right"><strong>Merchant Total : </strong></td>
+				                        <td width="130"></td>
+				                        <td width="100"></td>
+				                        <td width="130" align="right"><strong><? echo $customer_wise_total_quantity; ?></strong></td>
+				                        <td width="100" align="right"><strong><? echo $customer_wise_total_value;?></strong></td>
+				                        <td width="100"></td>
+				                        <td width="100"></td>
+				                        <td ></td>
+				                    </tr>
+				                   <?			                   	                   
+			               		}
+			               		unset($customer_wise_total_quantity);
+			               		unset($customer_wise_total_value);
+	                   		}
+				            $chk[]=$row['customerName'];
+							?>
+		                    <tr bgcolor="<?php echo $bgcolor; ?>">
+		                        <td width="40"><?php echo $i; ?></td>
+		                        <td width="200"><?php echo $row['customerName']; ?></td>
+		                        <td width="130"><?php echo $row['orderNumber']; ?></td>
+		                        <td width="100"><?php echo $row['productCode']; ?></td>
+		                        <td width="130" align="right"><?php echo $row['qty']; ?></td>
+		                        <td width="100" align="right"><?php echo $row['value']; ?></td>
+		                        <td width="100" align="center"><?php echo $row['orderDate']; ?></td>
+		                        <td width="100" align="center"><?php echo $row['requiredDate']; ?></td>
+		                        <td  align="center"><?php echo $row['shippedDate']; ?></td>
+		                    </tr>
+		                    <?php
+		                    $i++; 
+		                    $customer_wise_total_quantity+=$row['qty'];
+		                    $customer_wise_total_value+=$row['value'];
+
+		                    $grand_total_order_qty+=$row['qty'];
+		                    $grand_total_order_value+=$row['value'];
+	                	}
+		                ?>
+		                <tr>	
+	                        <td colspan="2" align="right"><strong>Merchant Total : </strong></td>
+	                        <td width="130"></td>
+	                        <td width="100"></td>
+	                        <td width="130" align="right"><strong><? echo $customer_wise_total_quantity;?></strong></td>
+	                        <td width="100" align="right"><strong><? echo $customer_wise_total_value;?></strong></td>
+	                        <td width="100"></td>
+	                        <td width="100"></td>
+	                        <td></td>
+	                    </tr>
+		            </tbody>
+	        	</table>
+
+	        	<table class="rpt_table" border="1" rules="all" width="1040" cellpadding="0" cellspacing="0" id="report_table_footer">
+		        	<tfoot>
+		                <tr>
+		                    <td width="40"></td>
+		                    <td width="200" align="right"><strong>Grand Total : </strong></td>
+		                    <td width="130"></td>
+		                    <td width="100"></td>
+		                    <td width="130" align="right"><strong><?php echo $grand_total_order_qty;?></strong></td>
+		                    <td width="100" align="right"><strong><?php echo $grand_total_order_value; ?></strong></td>
+		                    <td width="100"></td>
+		                    <td width="100"></td>
+		                    <td></td>
+		                </tr>
+		            </tfoot>
+	        	</table>
+			</fieldset>
+		</div>
+		<?php
+	}
+
 	if ($action=='customer_order_wise_report') // customer_order_productCode_wise_report
 	{
 		extract($_REQUEST);
@@ -849,124 +965,6 @@
 		</div>
 		<?php
 	}
-
-	if ($action=='marcent_wise_report') // customer_wise_report
-	{
-		extract($_REQUEST);
-
-		$sql="SELECT a.customerName, b.orderNumber, sum(c.quantityOrdered) as qty, sum(c.priceEach) as value, c.productCode, b.orderDate, b.requiredDate, b.shippedDate
-		FROM customers a, orders b, orderdetails c 
-		WHERE a.customerNumber=b.customerNumber and b.orderNumber=c.orderNumber AND b.shippedDate BETWEEN '$from_date' AND '$to_date'
-		GROUP by a.customerName, b.orderNumber, c.productCode, b.orderDate, b.requiredDate, b.shippedDate";
-		// and b.customerNumber='$data' 
-		$sql_result=sql_select($sql);
-		$customer_rowspan=$qty_arr=$value_arr=array();
-		foreach ($sql_result as $customerName_key => $row) 
-		{
-			$customer_rowspan[$row['customerName']]++; 
-			$qty_arr[$row['customerName']]+=$row['qty'];
-			$value_arr[$row['customerName']]+=$row['value'];
-		}
-		?>
-		<div id="report_container" align="center" style="width:1040px">
-			<fieldset style="width:1040px;">
-				<h2>Marcent Wise Report</h2>
-			    <table class="rpt_table" border="1" rules="all" width="1040" cellpadding="0" cellspacing="0">
-			        <thead>
-			            <th width="40">SL</th> 
-			            <th width="200"> Customer Name</th>
-			            <th width="130">Order No</th>
-			            <th width="100">Product Code</th>
-			            <th width="130">Order Qty.</th>
-			            <th width="100">Order Value ($)</th>
-			            <th width="100">Order Date</th>
-			            <th width="100">Required Date</th>
-			            <th>Shipped Date</th>
-			        </thead>
-			    </table>
-			    <table class="rpt_table" border="1" rules="all" width="1040" cellpadding="0" cellspacing="0" id="table_body">
-		            <tbody>
-		            	<?php
-		            	$i=1;		            	
-	                	foreach ($sql_result as $customerName_key => $row) 
-	                	{	                		
-							if ($i%2==0) $bgcolor="#E9F3FF"; else $bgcolor="#FFFFFF"; 
-							if(!in_array($row['customerName'], $chk))
-		                   	{	                   		
-		                   		if ($i!=1) 
-		                   		{
-				                    ?>
-				                   	<tr>
-				                        <td colspan="2" align="right"><strong>Merchant Total : </strong></td>
-				                        <td width="130"></td>
-				                        <td width="100"></td>
-				                        <td width="130" align="right"><strong><? echo $customer_wise_total_quantity; ?></strong></td>
-				                        <td width="100" align="right"><strong><? echo $customer_wise_total_value;?></strong></td>
-				                        <td width="100"></td>
-				                        <td width="100"></td>
-				                        <td ></td>
-				                    </tr>
-				                   <?			                   	                   
-			               		}
-			               		unset($customer_wise_total_quantity);
-			               		unset($customer_wise_total_value);
-	                   		}
-				            $chk[]=$row['customerName'];
-							?>
-		                    <tr bgcolor="<?php echo $bgcolor; ?>">
-		                        <td width="40"><?php echo $i; ?></td>
-		                        <td width="200"><?php echo $row['customerName']; ?></td>
-		                        <td width="130"><?php echo $row['orderNumber']; ?></td>
-		                        <td width="100"><?php echo $row['productCode']; ?></td>
-		                        <td width="130" align="right"><?php echo $row['qty']; ?></td>
-		                        <td width="100" align="right"><?php echo $row['value']; ?></td>
-		                        <td width="100" align="center"><?php echo $row['orderDate']; ?></td>
-		                        <td width="100" align="center"><?php echo $row['requiredDate']; ?></td>
-		                        <td  align="center"><?php echo $row['shippedDate']; ?></td>
-		                    </tr>
-		                    <?php
-		                    $i++; 
-		                    $customer_wise_total_quantity+=$row['qty'];
-		                    $customer_wise_total_value+=$row['value'];
-
-		                    $grand_total_order_qty+=$row['qty'];
-		                    $grand_total_order_value+=$row['value'];
-	                	}
-
-		                    ?>
-		                <tr>	
-	                        <td colspan="2" align="right"><strong>Merchant Total : </strong></td>
-	                        <td width="130"></td>
-	                        <td width="100"></td>
-	                        <td width="130" align="right"><strong><? echo $customer_wise_total_quantity;?></strong></td>
-	                        <td width="100" align="right"><strong><? echo $customer_wise_total_value;?></strong></td>
-	                        <td width="100"></td>
-	                        <td width="100"></td>
-	                        <td></td>
-	                    </tr>
-		            </tbody>
-	        	</table>
-
-	        	<table class="rpt_table" border="1" rules="all" width="1040" cellpadding="0" cellspacing="0" id="report_table_footer">
-		        	<tfoot>
-		                <tr>
-		                    <td width="40"></td>
-		                    <td width="200" align="right"><strong>Grand Total : </strong></td>
-		                    <td width="130"></td>
-		                    <td width="100"></td>
-		                    <td width="130" align="right"><strong><?php echo $grand_total_order_qty;?></strong></td>
-		                    <td width="100" align="right"><strong><?php echo $grand_total_order_value; ?></strong></td>
-		                    <td width="100"></td>
-		                    <td width="100"></td>
-		                    <td></td>
-		                </tr>
-		            </tfoot>
-	        	</table>
-			</fieldset>
-		</div>
-		<?php
-	}
-
 
 	?>
 </body>
