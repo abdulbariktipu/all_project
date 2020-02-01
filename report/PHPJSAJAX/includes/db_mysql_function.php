@@ -2,28 +2,27 @@
 //error_reporting (0);
 function connect( $server='localhost', $user='root', $passwd='', $db_name='classicmodels' ) 
 {
-	$con = mysql_connect( $server, $user, $passwd );
+	$con = mysqli_connect( $server, $user, $passwd, $db_name );
 	if(!$con)
 	{
 		trigger_error("Problem connecting to server");
 	}
-	$DB =  mysql_select_db($db_name, $con);
+	/*$DB =  mysqli_select_db($db_name, $con);
 	if(!$DB)
 	{
 		trigger_error("Problem selecting database");
-	}
+	}*/
 	//mysql_query("START TRANSACTION");
 	return $con;
 }
 
 function sql_select($strQuery)
 { 
-
 	$con = connect(); 
-	$result_select = mysql_query( $strQuery );
+	$result_select = mysqli_query($con, $strQuery );
 	
 	$rows = array();
-	while( $row = mysql_fetch_array( $result_select ))
+	while( $row = mysqli_fetch_array( $result_select ))
 	{
 		if($row==1) 
 		{
@@ -41,7 +40,7 @@ function sql_select($strQuery)
 }
 function disconnect($con) 
 {
-	$discdb = mysql_close($con);
+	$discdb = mysqli_close($con);
 	if(!$discdb)
 	{
 		trigger_error("Problem disconnecting database");

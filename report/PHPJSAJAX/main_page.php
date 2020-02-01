@@ -124,6 +124,10 @@
                 {
                     var data="action=month_date_wise_report&search="+operation+"&from_date="+from_date+"&to_date="+to_date;
                 }
+                if (operation==6)
+                {
+                    var data="action=marcent_wise_report&search="+operation+"&from_date="+from_date+"&to_date="+to_date;
+                }
 
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() 
@@ -162,6 +166,7 @@
         <button type="button" onclick="showHint(3)">Month Wise</button>
         <button type="button" onclick="showHint(4)">Month Wise</button>
         <button type="button" onclick="showHint(5)">Month and Date Wise</button>
+        <button type="button" onclick="showHint(6)">Marcent Wise</button>
         </form>
         <p><span id="showReport"></span></p>
     </body>
