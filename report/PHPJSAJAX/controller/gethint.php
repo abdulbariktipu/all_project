@@ -183,8 +183,17 @@
 							?>
 		                    <tr bgcolor="<?php echo $bgcolor; ?>">
 		                        <td width="40"><?php echo $i; ?></td>
-		                        <td width="200"><?php echo $row['customerName']; ?></td>
-		                        <td width="130"><?php echo $row['orderNumber']; ?></td>
+		                        <?php
+		                        	if (!in_array($row['customerName'], $chkc)) 
+		                        	{
+		                        		$rowspan=$customer_rowspan[$row['customerName']];
+		                        	?>
+		                        	<td width="200" rowspan="<?php echo $rowspan; ?>"><?php echo $row['customerName'];?></td>
+		                        	<td width="130" rowspan="<?php echo $rowspan; ?>"><?php echo $row['orderNumber']; ?></td>
+		                        	<?php
+		                        	}
+		                        	$chkc[]=$row['customerName'];
+		                        ?>		                        
 		                        <td width="100"><?php echo $row['productCode']; ?></td>
 		                        <td width="130" align="right"><?php echo $row['qty']; ?></td>
 		                        <td width="100" align="right"><?php echo $row['value']; ?></td>
