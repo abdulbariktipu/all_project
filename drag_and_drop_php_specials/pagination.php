@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost","root","mysql","php_specials");
+$link = mysqli_connect("localhost","root","","php_specials");
 
 $q2 = "SELECT count(id) as total from users";
 $result2 = mysqli_query($link,$q2);

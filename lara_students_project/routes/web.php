@@ -38,6 +38,7 @@ Route::post('/send_mail', 'SendMailController@send_mail')->name('send_mail');
 Route::get('/pdf-download', 'PDFController@PDFgenerator'); // https://www.siddharthshukla.in/blog/laravel-6-generate-pdf-file/
 
 Route::get('/drag_and_drop', 'StudentCourseController@drag_and_drop_fn')->name('drag_and_drop');
+Route::get('/drag_and_drop_update', 'StudentCourseController@drag_and_drop_update')->name('drag_and_drop_update');
 
 
 

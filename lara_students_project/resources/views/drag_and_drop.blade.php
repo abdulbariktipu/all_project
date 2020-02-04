@@ -23,7 +23,7 @@
         <td style="color: red;">No Data Found</td>         
       @else
             @foreach ($drag_and_dropList as $row)      
-            <tr{{ $row->id }}>
+            <tr {{ $row->id }}>
               <td>{{ $i }}</td>
               <td>{{ $row->title }}</td>
               <td>{{ substr($row->description,0,50).'...' }}</td>
@@ -48,4 +48,40 @@
         // This is the code print a particular div element
     }
   </script>
+
+  <script type="text/javascript">
+    $(function(){
+      $('.sortable').sortable({
+        stop:function()
+        {
+          var ids = '';
+          $('.sortable tr').each(function(){
+            id = $(this).attr('id');
+            if(ids=='')
+            {
+              ids = id;
+            }
+            else
+            {
+              ids = ids+','+id;
+            }
+            //alert(ids);return;
+          })
+          $.ajax({
+            // url:'save_order.php',
+            url: ' {{ route('drag_and_drop_update') }} ',
+            data: {"_token": "{{ csrf_token() }}", ids:ids},
+            //data:'ids='+ids,
+            type:'post',
+            success:function()
+            {
+              alert('Order saved successfully');
+            }
+          })
+        }
+      });
+    });
+  </script>
+
+  
 @endsection

@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost","root","mysql","php_specials");
+$link = mysqli_connect("localhost","root","","php_specials");
 $name = mysqli_real_escape_string($link,$_POST['name']);
 $email = mysqli_real_escape_string($link,$_POST['email']);
 $comment = mysqli_real_escape_string($link,$_POST['comment']);

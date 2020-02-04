@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost","root","mysql","php_specials");
+$link = mysqli_connect("localhost","root","","php_specials");
 $result = mysqli_query($link,"SELECT * FROM comments ORDER BY id DESC LIMIT 3");
 if(mysqli_num_rows($result)>0)
 {
