@@ -251,6 +251,17 @@ class StudentCourseController extends Controller
         //
     }
 
+
+    public function drag_and_drop_fn()
+    {
+        if(!Gate::allows('isSuperAdmin')){
+          abort(404,'Sorry, You can do this action.');
+        }
+        $drag_and_dropList = student_course::drag_and_drop_model();
+        // dd($userList);
+        return view('drag_and_drop', ['drag_and_dropList' => $drag_and_dropList]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

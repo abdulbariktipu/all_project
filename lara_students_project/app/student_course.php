@@ -50,4 +50,14 @@ class student_course extends Model
 			return $userList;
 		}
 	}
+	
+	public static function drag_and_drop_model()
+	{
+		$drag_and_dropList = DB::table('news_copy')->select('*')->orderBy('display_order', 'asc')->get();
+
+		if($drag_and_dropList->count() > 0)
+		{
+			return $drag_and_dropList;
+		}
+	}
 }

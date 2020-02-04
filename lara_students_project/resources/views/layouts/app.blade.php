@@ -317,7 +317,8 @@ desired effect
             <li><a href=" {{ route('register') }}">Course List</a></li>
           </ul>
         </li>
-        <li class="active"><a href=" {{ route('contact') }}"><i class="fa fa-link"></i><span>Contact</span></a></li>
+        <li><a href=" {{ route('contact') }}"><i class="fa fa-link"></i><span>Contact</span></a></li>
+        <li><a href=" {{ route('drag_and_drop') }}"><i class="fa fa-link"></i><span>Drag and Drop</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
